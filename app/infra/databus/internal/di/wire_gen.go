@@ -7,7 +7,6 @@ package di
 
 import (
 	"angrymiao-go/app/infra/databus/internal/dao"
-	"angrymiao-go/app/infra/databus/internal/server/grpc"
 	"angrymiao-go/app/infra/databus/internal/server/http"
 	"angrymiao-go/app/infra/databus/internal/service"
 )
@@ -28,35 +27,20 @@ func InitApp() (*App, func(), error) {
 		cleanup()
 		return nil, nil, err
 	}
-	serviceService, cleanup3, err := service.New(daoDao)
-	if err != nil {
-		cleanup2()
-		cleanup()
-		return nil, nil, err
-	}
+	serviceService := service.New(daoDao)
 	engine, err := http.New(serviceService)
 	if err != nil {
-		cleanup3()
 		cleanup2()
 		cleanup()
 		return nil, nil, err
 	}
-	server, err := grpc.New(serviceService)
+	app, cleanup3, err := NewApp(serviceService, engine)
 	if err != nil {
-		cleanup3()
-		cleanup2()
-		cleanup()
-		return nil, nil, err
-	}
-	app, cleanup4, err := NewApp(serviceService, engine, server)
-	if err != nil {
-		cleanup3()
 		cleanup2()
 		cleanup()
 		return nil, nil, err
 	}
 	return app, func() {
-		cleanup4()
 		cleanup3()
 		cleanup2()
 		cleanup()

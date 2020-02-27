@@ -2,19 +2,18 @@ package service
 
 import (
 	"angrymiao-go/app/infra/databus/conf"
+	"angrymiao-go/app/infra/databus/internal/dao"
 	"angrymiao-go/app/infra/databus/internal/model"
 	"context"
+	_ "github.com/CloudZou/punk/pkg/conf/paladin"
+	"github.com/CloudZou/punk/pkg/log"
 	"time"
 
-	pb "angrymiao-go/app/infra/databus/api"
-	"angrymiao-go/app/infra/databus/internal/dao"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
-
-	"github.com/golang/protobuf/ptypes/empty"
+	"github.com/CloudZou/punk/pkg/stat/prom"
 	"github.com/google/wire"
 )
 
-var Provider = wire.NewSet(New, wire.Bind(new(pb.DemoServer), new(*Service)))
+var Provider = wire.NewSet(New)
 
 const (
 	_authUpdateInterval = 1 * time.Minute
@@ -34,9 +33,9 @@ type Service struct {
 }
 
 // New new and return service
-func New(c *conf.Config) (s *Service) {
+func New(dao *dao.Dao) (s *Service) {
 	s = &Service{
-		dao: dao.New(c),
+		dao: dao,
 		// cluster
 		clusterChan: make(chan model.Auth, 5),
 		// stats prom

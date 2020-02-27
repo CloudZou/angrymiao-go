@@ -4,11 +4,8 @@ import (
 	"angrymiao-go/app/infra/databus/conf"
 	"angrymiao-go/app/infra/databus/internal/service"
 	"angrymiao-go/app/infra/databus/tcp"
-	"net/http"
-
-	pb "angrymiao-go/app/infra/databus/api"
-	"angrymiao-go/app/infra/databus/internal/model"
 	"github.com/CloudZou/punk/pkg/conf/paladin"
+
 	"github.com/CloudZou/punk/pkg/log"
 	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
 )
@@ -19,13 +16,23 @@ var (
 )
 
 // Init init https
-func Init(c *conf.Config, s *service.Service) {
+func New(s *service.Service) (engine *bm.Engine, err error) {
+	var (
+		cfg bm.ServerConfig
+		ct paladin.TOML
+	)
+	if err = paladin.Get("http.toml").Unmarshal(&ct); err != nil {
+		return
+	}
+	if err = ct.Get("Server").UnmarshalTOML(&cfg); err != nil {
+		return
+	}
 	svc = s
 	// router
-	router := bm.DefaultServer(c.HTTPServer)
-	initRouter(router)
+	engine = bm.DefaultServer(&cfg)
+	initRouter(engine)
 	// init internal server
-	if err := router.Start(); err != nil {
+	if err := engine.Start(); err != nil {
 		log.Error("bm.DefaultServer error(%v)", err)
 		panic(err)
 	}

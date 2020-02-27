@@ -7,7 +7,6 @@ package di
 
 import (
 	"angrymiao-go/app/infra/canal/internal/dao"
-	"angrymiao-go/app/infra/canal/internal/server/grpc"
 	"angrymiao-go/app/infra/canal/internal/server/http"
 	"angrymiao-go/app/infra/canal/internal/service"
 )
@@ -41,14 +40,7 @@ func InitApp() (*App, func(), error) {
 		cleanup()
 		return nil, nil, err
 	}
-	server, err := grpc.New(serviceService)
-	if err != nil {
-		cleanup3()
-		cleanup2()
-		cleanup()
-		return nil, nil, err
-	}
-	app, cleanup4, err := NewApp(serviceService, engine, server)
+	app, cleanup4, err := NewApp(serviceService, engine)
 	if err != nil {
 		cleanup3()
 		cleanup2()
