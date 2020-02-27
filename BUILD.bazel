@@ -1,6 +1,6 @@
 load("@bazel_gazelle//:def.bzl", "gazelle")
 
-# gazelle:prefix github.com/CloudZou/angrymiao-go
+# gazelle:prefix angrymiao-go
 # gazelle:proto disable_global
 gazelle(
     name = "gazelle",
