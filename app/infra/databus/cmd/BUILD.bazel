@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "github.com/CloudZou/angrymiao-go/app/infra/databus/cmd",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//vendor/angrymiao-go/app/infra/databus/internal/di:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "cmd",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

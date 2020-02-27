@@ -7,22 +7,16 @@ import (
 	"testing"
 
 	"github.com/CloudZou/punk/pkg/conf/paladin"
-	"github.com/CloudZou/punk/pkg/testing/lich"
 )
 
-var d *dao
+var d *Dao
 var ctx = context.Background()
 
 func TestMain(m *testing.M) {
 	flag.Set("conf", "../../test")
 	flag.Set("f", "../../test/docker-compose.yaml")
 	flag.Parse()
-	disableLich := os.Getenv("DISABLE_LICH") != ""
-	if !disableLich {
-		if err := lich.Setup(); err != nil {
-			panic(err)
-		}
-	}
+
 	var err error
 	if err = paladin.Init(); err != nil {
 		panic(err)
@@ -33,8 +27,5 @@ func TestMain(m *testing.M) {
 	}
 	ret := m.Run()
 	cf()
-	if !disableLich {
-		_ = lich.Teardown()
-	}
 	os.Exit(ret)
 }

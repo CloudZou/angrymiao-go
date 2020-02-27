@@ -1,0 +1,33 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "dao.go",
+        "db.go",
+        "mysql.go",
+        "redis.go",
+        "wire_gen.go",
+    ],
+    importpath = "github.com/CloudZou/angrymiao-go/app/infra/databus/internal/dao",
+    visibility = ["//app/infra/databus:__subpackages__"],
+    deps = [
+        "//vendor/angrymiao-go/app/infra/databus/conf:go_default_library",
+        "//vendor/angrymiao-go/app/infra/databus/internal/model:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/gredis:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/sync/pipeline/fanout:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/time:go_default_library",
+        "//vendor/github.com/google/wire:go_default_library",
+        "//vendor/github.com/jinzhu/gorm:go_default_library",
+        "//vendor/github.com/jinzhu/gorm/dialects/mysql:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["dao_test.go"],
+    embed = [":go_default_library"],
+    deps = ["//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library"],
+)

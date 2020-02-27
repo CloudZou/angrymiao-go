@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "conn.go",
+        "pubsub.go",
+        "tcp.go",
+    ],
+    importpath = "github.com/CloudZou/angrymiao-go/app/infra/databus/tcp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/angrymiao-go/app/infra/databus/conf:go_default_library",
+        "//vendor/angrymiao-go/app/infra/databus/dsn:go_default_library",
+        "//vendor/angrymiao-go/app/infra/databus/internal/model:go_default_library",
+        "//vendor/angrymiao-go/app/infra/databus/internal/service:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/conf/env:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
+        "//vendor/github.com/Shopify/sarama:go_default_library",
+        "//vendor/github.com/bsm/sarama-cluster:go_default_library",
+        "//vendor/github.com/gogo/protobuf/proto:go_default_library",
+        "//vendor/github.com/rcrowley/go-metrics:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "conn_test.go",
+        "pubsub_test.go",
+        "tcp_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//vendor/angrymiao-go/app/infra/databus/conf:go_default_library",
+        "//vendor/github.com/smartystreets/goconvey/convey:go_default_library",
+    ],
+)
