@@ -8,10 +8,10 @@ go_library(
         "redis.go",
         "wire_gen.go",
     ],
-    importpath = "github.com/CloudZou/angrymiao-go/app/infra/canal/internal/dao",
+    importpath = "angrymiao-go/app/infra/canal/internal/dao",
     visibility = ["//app/infra/canal:__subpackages__"],
     deps = [
-        "//vendor/angrymiao-go/app/infra/canal/conf:go_default_library",
+        "//app/infra/canal/conf:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/gredis:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",

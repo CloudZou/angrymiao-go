@@ -3,7 +3,6 @@ package dao
 import (
 	"angrymiao-go/app/infra/databus/internal/model"
 	"context"
-	"github.com/CloudZou/punk/pkg/log"
 )
 
 const (
@@ -18,34 +17,34 @@ const (
 func (d *Dao) Auth(c context.Context) (auths map[string]*model.Auth, err error) {
 	auths = make(map[string]*model.Auth)
 	// auth
-	rows, err := d.db.Query(c, _getAuthSQL)
-	if err != nil {
-		log.Error("getAuthStmt.Query error(%v)", err)
-		return
-	}
-	defer rows.Close()
-	for rows.Next() {
-		a := &model.Auth{}
-		if err = rows.Scan(&a.Group, &a.Operation, &a.Key, &a.Secret, &a.Topic, &a.Cluster); err != nil {
-			log.Error("rows.Scan error(%v)", err)
-			return
-		}
-		auths[a.Group] = a
-	}
-	// auth2
-	rows2, err := d.db.Query(c, _getAuth2SQL)
-	if err != nil {
-		log.Error("getAuthStmt.Query error(%v)", err)
-		return
-	}
-	defer rows2.Close()
-	for rows2.Next() {
-		a := &model.Auth{}
-		if err = rows2.Scan(&a.Group, &a.Operation, &a.Key, &a.Secret, &a.Batch, &a.Topic, &a.Cluster); err != nil {
-			log.Error("rows.Scan error(%v)", err)
-			return
-		}
-		auths[a.Group] = a
-	}
+	//rows, err := d.db.Query(c, _getAuthSQL)
+	//if err != nil {
+	//	log.Error("getAuthStmt.Query error(%v)", err)
+	//	return
+	//}
+	//defer rows.Close()
+	//for rows.Next() {
+	//	a := &model.Auth{}
+	//	if err = rows.Scan(&a.Group, &a.Operation, &a.Key, &a.Secret, &a.Topic, &a.Cluster); err != nil {
+	//		log.Error("rows.Scan error(%v)", err)
+	//		return
+	//	}
+	//	auths[a.Group] = a
+	//}
+	//// auth2
+	//rows2, err := d.db.Query(c, _getAuth2SQL)
+	//if err != nil {
+	//	log.Error("getAuthStmt.Query error(%v)", err)
+	//	return
+	//}
+	//defer rows2.Close()
+	//for rows2.Next() {
+	//	a := &model.Auth{}
+	//	if err = rows2.Scan(&a.Group, &a.Operation, &a.Key, &a.Secret, &a.Batch, &a.Topic, &a.Cluster); err != nil {
+	//		log.Error("rows.Scan error(%v)", err)
+	//		return
+	//	}
+	//	auths[a.Group] = a
+	//}
 	return
 }

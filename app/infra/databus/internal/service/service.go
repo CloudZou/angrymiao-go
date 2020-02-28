@@ -1,7 +1,6 @@
 package service
 
 import (
-	"angrymiao-go/app/infra/databus/conf"
 	"angrymiao-go/app/infra/databus/internal/dao"
 	"angrymiao-go/app/infra/databus/internal/model"
 	"context"

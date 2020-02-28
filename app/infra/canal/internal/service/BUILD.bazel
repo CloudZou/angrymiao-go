@@ -3,10 +3,10 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["service.go"],
-    importpath = "github.com/CloudZou/angrymiao-go/app/infra/canal/internal/service",
+    importpath = "angrymiao-go/app/infra/canal/internal/service",
     visibility = ["//app/infra/canal:__subpackages__"],
     deps = [
-        "//vendor/angrymiao-go/app/infra/canal/internal/dao:go_default_library",
+        "//app/infra/canal/internal/dao:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
         "//vendor/github.com/golang/protobuf/ptypes/empty:go_default_library",
         "//vendor/github.com/google/wire:go_default_library",

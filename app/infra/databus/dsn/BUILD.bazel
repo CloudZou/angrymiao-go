@@ -3,6 +3,6 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["dsn.go"],
-    importpath = "github.com/CloudZou/angrymiao-go/app/infra/databus/dsn",
+    importpath = "angrymiao-go/app/infra/databus/dsn",
     visibility = ["//visibility:public"],
 )

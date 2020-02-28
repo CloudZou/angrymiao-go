@@ -3,6 +3,6 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["model.go"],
-    importpath = "github.com/CloudZou/angrymiao-go/app/infra/canal/internal/model",
+    importpath = "angrymiao-go/app/infra/canal/internal/model",
     visibility = ["//app/infra/canal:__subpackages__"],
 )

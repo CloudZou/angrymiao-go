@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["conf.go"],
-    importpath = "github.com/CloudZou/angrymiao-go/app/infra/databus/conf",
+    importpath = "angrymiao-go/app/infra/databus/conf",
     visibility = ["//visibility:public"],
     deps = [
         "//vendor/github.com/BurntSushi/toml:go_default_library",

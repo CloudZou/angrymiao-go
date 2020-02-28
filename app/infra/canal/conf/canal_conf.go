@@ -1,9 +1,11 @@
 package conf
 
 import (
+	"angrymiao-go/app/infra/canal/infoc"
 	"fmt"
 	pconf "github.com/CloudZou/punk/pkg/conf"
 	"github.com/CloudZou/punk/pkg/log"
+	"github.com/CloudZou/punk/pkg/queue/databus"
 	xtime "github.com/CloudZou/punk/pkg/time"
 	"io/ioutil"
 	"net"
@@ -19,7 +21,6 @@ import (
 var (
 	// config change event
 	event      = make(chan *InsConf, 1)
-	canalPath  string
 )
 
 // Addition addition attrbute of canal.
@@ -95,11 +96,6 @@ type InsConf struct {
 	MasterInfo    *MasterInfoConfig `toml:"masterinfo"`
 }
 
-// HBaseTable hbase canal table.
-type HBaseTable struct {
-	Name      string   `toml:"name"`      // table name
-	OmitField []string `toml:"omitfield"` // field will be ignored in table
-}
 
 // CanalConfig config struct
 type CanalConfig struct {
@@ -222,23 +218,11 @@ func reloadConfig(name string) {
 		// TODO(felix): auto reload? or restart hard?
 		return
 	}
-	if strings.HasSuffix(name, ".hbase.toml") {
-		ic, err := newHBaseConf(name, cf)
-		if err != nil {
-			return
-		}
-		hbaseEvent <- ic
-	} else if strings.HasSuffix(name, ".tidb.toml") {
-		ic, err := newTiDBConf(name, cf)
-		if err != nil {
-			return
-		}
-		tidbEvent <- ic
-	} else {
-		ic, err := newInsConf(name, cf)
-		if err != nil {
-			return
-		}
-		event <- ic
+
+	ic, err := newInsConf(name, cf)
+	if err != nil {
+		return
 	}
+	event <- ic
+
 }

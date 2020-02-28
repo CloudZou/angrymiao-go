@@ -1,7 +1,6 @@
 package http
 
 import (
-	"angrymiao-go/app/infra/databus/conf"
 	"angrymiao-go/app/infra/databus/internal/service"
 	"angrymiao-go/app/infra/databus/tcp"
 	"github.com/CloudZou/punk/pkg/conf/paladin"
@@ -36,6 +35,7 @@ func New(s *service.Service) (engine *bm.Engine, err error) {
 		log.Error("bm.DefaultServer error(%v)", err)
 		panic(err)
 	}
+	return
 }
 
 // initRouter init local router api path.
