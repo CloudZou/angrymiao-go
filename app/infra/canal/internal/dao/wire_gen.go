@@ -12,21 +12,16 @@ import (
 // Injectors from wire.go:
 
 func newTestDao() (*Dao, func(), error) {
-	redisClient, err := NewRedisClient()
-	if err != nil {
-		return nil, nil, err
-	}
 	db, cleanup, err := NewDB()
 	if err != nil {
 		return nil, nil, err
 	}
-	dao, cleanup2, err := New(redisClient, db)
+	dao, err := New(db)
 	if err != nil {
 		cleanup()
 		return nil, nil, err
 	}
 	return dao, func() {
-		cleanup2()
 		cleanup()
 	}, nil
 }

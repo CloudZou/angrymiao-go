@@ -1,23 +1,33 @@
 package main
 
 import (
+	"angrymiao-go/app/infra/canal/conf"
 	"flag"
+	"fmt"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"syscall"
 	"time"
 
 	"angrymiao-go/app/infra/canal/internal/di"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
 	"github.com/CloudZou/punk/pkg/log"
 )
 
 func main() {
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(dir)
+
 	flag.Parse()
+	if err := conf.Init(); err != nil {
+		panic(err)
+	}
 	log.Init(nil) // debug flag: log.dir={path}
 	defer log.Close()
 	log.Info("canal start")
-	paladin.Init()
 	_, closeFunc, err := di.InitApp()
 	if err != nil {
 		panic(err)

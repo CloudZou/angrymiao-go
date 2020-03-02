@@ -1,52 +1,24 @@
 package dao
 
 import (
-	"context"
-	"time"
-
-	"github.com/CloudZou/punk/pkg/gredis"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
-	"github.com/CloudZou/punk/pkg/sync/pipeline/fanout"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/app/infra/canal/conf"
 	"github.com/jinzhu/gorm"
 
 	"github.com/google/wire"
 )
 
-var Provider = wire.NewSet(New, NewDB, NewRedisClient)
+var Provider = wire.NewSet(New, NewDB)
 
 // Dao Dao.
 type Dao struct {
-	db          *gorm.DB
-	redis       *gredis.RedisClient
-	cache *fanout.Fanout
-	demoExpire int32
+	db *gorm.DB
+	c  *conf.Config
 }
 
-
-func New(r *gredis.RedisClient, db *gorm.DB) (d *Dao, cf func(), err error) {
-	var cfg struct{
-		DemoExpire xtime.Duration
-	}
-	if err = paladin.Get("application.toml").UnmarshalTOML(&cfg); err != nil {
-		return
-	}
+func New(db *gorm.DB) (d *Dao, err error) {
 	d = &Dao{
+		c:  conf.Conf,
 		db: db,
-		redis: r,
-		cache: fanout.New("cache"),
-		demoExpire: int32(time.Duration(cfg.DemoExpire) / time.Second),
 	}
-	cf = d.Close
 	return
-}
-
-// Close close the resource.
-func (d *Dao) Close() {
-	d.cache.Close()
-}
-
-// Ping ping the resource.
-func (d *Dao) Ping(ctx context.Context) (err error) {
-	return nil
 }

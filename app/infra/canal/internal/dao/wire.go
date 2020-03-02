@@ -9,5 +9,5 @@ import (
 
 //go:generate punk tool wire
 func newTestDao() (*Dao, func(), error) {
-	panic(wire.Build(New, NewDB, NewRedisClient))
+	panic(wire.Build(New, NewDB))
 }

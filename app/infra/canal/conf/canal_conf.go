@@ -20,7 +20,7 @@ import (
 
 var (
 	// config change event
-	event      = make(chan *InsConf, 1)
+	event = make(chan *InsConf, 1)
 )
 
 // Addition addition attrbute of canal.
@@ -96,10 +96,9 @@ type InsConf struct {
 	MasterInfo    *MasterInfoConfig `toml:"masterinfo"`
 }
 
-
 // CanalConfig config struct
 type CanalConfig struct {
-	Instances      []*InsConf      `toml:"instance"`
+	Instances []*InsConf `toml:"instance"`
 }
 
 func newInsConf(fn, fc string) (c *InsConf, err error) {
@@ -148,21 +147,21 @@ func LoadCanalConf() (c *CanalConfig, err error) {
 			continue
 		}
 
-			var ic *InsConf
-			if !strings.HasSuffix(ns.Name, ".toml") {
-				err = fmt.Errorf("file(%s) name is not a toml", ns.Name)
-				continue
-			}
-			if ic, err = newInsConf(ns.Name, ns.Config); err != nil {
-				err = fmt.Errorf("file(%s) decode error(%v)", ns.Name, err)
-				return
-			}
-			if _, ok := im[ic.Addr]; ok {
-				err = fmt.Errorf("file(%s) repeat with other toml", ns.Name)
-				return
-			}
-			im[ic.Addr] = struct{}{}
-			c.Instances = append(c.Instances, ic)
+		var ic *InsConf
+		if !strings.HasSuffix(ns.Name, ".toml") {
+			err = fmt.Errorf("file(%s) name is not a toml", ns.Name)
+			continue
+		}
+		if ic, err = newInsConf(ns.Name, ns.Config); err != nil {
+			err = fmt.Errorf("file(%s) decode error(%v)", ns.Name, err)
+			return
+		}
+		if _, ok := im[ic.Addr]; ok {
+			err = fmt.Errorf("file(%s) repeat with other toml", ns.Name)
+			return
+		}
+		im[ic.Addr] = struct{}{}
+		c.Instances = append(c.Instances, ic)
 
 	}
 	if canalPath == "" {

@@ -1,9 +1,9 @@
 package service
 
-
 import (
 	"context"
 	"fmt"
+	"github.com/google/wire"
 	"net/http"
 	"net/url"
 	"regexp"
@@ -23,6 +23,8 @@ import (
 	"github.com/siddontang/go-mysql/client"
 )
 
+var Provider = wire.NewSet(NewCanal)
+
 var (
 	stats       = prom.New().WithState("go_canal_counter", []string{"type", "addr", "scheme", "table", "action"})
 	tblReplacer = regexp.MustCompile("[0-9]+") // NOTE: replace number of sub-table name to space
@@ -30,14 +32,13 @@ var (
 
 // Canal is canal.
 type Canal struct {
-	dao            *dao.Dao
-	instances      map[string]*Instance
-	insl           sync.RWMutex
-	tidbInsl       sync.RWMutex
-	err            error
-	backoff        netutil.Backoff
-	errCount       int64
-	lastErr        time.Time
+	dao       *dao.Dao
+	instances map[string]*Instance
+	insl      sync.RWMutex
+	err       error
+	backoff   netutil.Backoff
+	errCount  int64
+	lastErr   time.Time
 }
 
 // NewCanal load config and start canal instance.
@@ -110,7 +111,7 @@ func (c *Canal) PosSync(addr string) (err error) {
 	}
 	old.Close()
 	//TODO
-	old.OnPosSynced(pos,nil, true)
+	old.OnPosSynced(pos, nil, true)
 
 	ins, _ := NewInstance(old.config)
 	c.insl.Lock()

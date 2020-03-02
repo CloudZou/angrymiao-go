@@ -12,13 +12,13 @@ import (
 
 //go:generate punk tool wire
 type App struct {
-	svc *service.Service
+	svc  *service.Canal
 	http *bm.Engine
 }
 
-func NewApp(svc *service.Service, h *bm.Engine) (app *App, closeFunc func(), err error){
+func NewApp(svc *service.Canal, h *bm.Engine) (app *App, closeFunc func(), err error) {
 	app = &App{
-		svc: svc,
+		svc:  svc,
 		http: h,
 	}
 	closeFunc = func() {

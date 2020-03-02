@@ -14,42 +14,27 @@ import (
 // Injectors from wire.go:
 
 func InitApp() (*App, func(), error) {
-	redisClient, err := dao.NewRedisClient()
-	if err != nil {
-		return nil, nil, err
-	}
 	db, cleanup, err := dao.NewDB()
 	if err != nil {
 		return nil, nil, err
 	}
-	daoDao, cleanup2, err := dao.New(redisClient, db)
+	daoDao, err := dao.New(db)
 	if err != nil {
 		cleanup()
 		return nil, nil, err
 	}
-	serviceService, cleanup3, err := service.New(daoDao)
+	canal := service.NewCanal(daoDao)
+	engine, err := http.New(canal)
 	if err != nil {
-		cleanup2()
 		cleanup()
 		return nil, nil, err
 	}
-	engine, err := http.New(serviceService)
+	app, cleanup2, err := NewApp(canal, engine)
 	if err != nil {
-		cleanup3()
-		cleanup2()
-		cleanup()
-		return nil, nil, err
-	}
-	app, cleanup4, err := NewApp(serviceService, engine)
-	if err != nil {
-		cleanup3()
-		cleanup2()
 		cleanup()
 		return nil, nil, err
 	}
 	return app, func() {
-		cleanup4()
-		cleanup3()
 		cleanup2()
 		cleanup()
 	}, nil

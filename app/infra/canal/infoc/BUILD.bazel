@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "infoc.go",
+        "reporter.go",
+    ],
+    importpath = "angrymiao-go/app/infra/canal/infoc",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/net/ip:go_default_library",
+    ],
+)

@@ -4,14 +4,13 @@ import (
 	"errors"
 	"flag"
 	"github.com/BurntSushi/toml"
-	"github.com/CloudZou/punk/pkg/log"
 	pconf "github.com/CloudZou/punk/pkg/conf"
+	"github.com/CloudZou/punk/pkg/log"
 	"github.com/CloudZou/punk/pkg/naming/discovery"
 	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
 	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
 	"time"
 )
-
 
 var (
 	canalPath, confPath string
@@ -38,8 +37,6 @@ type Config struct {
 	DB *DbConfig
 }
 
-
-
 type DbConfig struct {
 	DSN          string          // write data source name.
 	ReadDSN      []string        // read data source name.
@@ -51,7 +48,6 @@ type DbConfig struct {
 	TranTimeout  time.Duration   // transaction sql timeout
 	Breaker      *breaker.Config // breaker
 }
-
 
 // Monitor wechat monitor
 type Monitor struct {
@@ -80,7 +76,8 @@ func Init() (err error) {
 		_, err = toml.DecodeFile(confPath, &Conf)
 		return
 	}
-	return remote()
+	err = remote()
+	return
 }
 
 func remote() (err error) {

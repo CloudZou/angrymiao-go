@@ -1,0 +1,42 @@
+[instance]
+	addr = "127.0.0.1:3306"
+	user = "root"
+	password = "123456"
+	monitor_off = false
+	monitor_period = "1s"
+	[[instance.db]]
+        schema = "punk-canal"
+        [instance.db.databus]
+			key = "4ba46ba31f9a44ef"
+	        secret = "e4c5a7fce28695209e6b4f0af8cf91c5"
+	        group = "MemberBinlog-MainAccount-AccountSummary-S"
+	        topic = "MemberBinlog-T"
+	        action = "sub"
+	        offset = "old"
+	        buffer = 2048
+	        name = "account-summary/member-binlog"
+	        proto = "tcp"
+	        addr = "172.18.33.50:6205"
+	        idle = 1
+	        active = 1
+	        dialTimeout = "1s"
+	        readTimeout = "60s"
+	        writeTimeout = "1s"
+	        idleTimeout = "10s"
+        [[instance.db.table]]
+	        primarykey = ["id","id1"]
+	        omitfield = []
+	        omitaction = []
+            name = ""
+        [[instance.db.table]]
+			primarykey = ["id2","id3"]
+		    omitfield = []
+		    omitaction = []
+	        name = ""
+
+    [instance.masterinfo]
+        addr = "127.0.0.1:3306"
+        dbName = "punk-canal"
+        user = "root"
+        password = "123456"
+        timeout = 1
