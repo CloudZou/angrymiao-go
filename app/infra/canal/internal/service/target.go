@@ -1,6 +1,5 @@
 package service
 
-
 import (
 	"context"
 	"encoding/base64"
@@ -98,6 +97,8 @@ func NewTarget(db *conf.Database) (t *Target) {
 	}
 	t.events = make([]chan *canal.RowsEvent, t.eventLen)
 	if db.Databus != nil {
+		auth := fmt.Sprintf("%s:%s@%s/topic=%s&role=%s", db.Databus.Key, db.Databus.Secret, db.Databus.Group, db.Databus.Topic, db.Databus.Action)
+		fmt.Println(auth)
 		t.producers = append(t.producers, &databusP{group: db.Databus.Group, topic: db.Databus.Topic, Databus: databus.New(db.Databus)})
 	}
 	if db.Infoc != nil {
