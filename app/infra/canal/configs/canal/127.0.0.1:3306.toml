@@ -2,21 +2,23 @@
 	addr = "127.0.0.1:3306"
 	user = "root"
 	password = "123456"
+	server_id = 2
 	monitor_off = false
 	monitor_period = "1s"
 	[[instance.db]]
-        schema = "punk-canal"
+        schema = "angrymiao"
         [instance.db.databus]
+            # redis password: 4ba46ba31f9a44ef:e4c5a7fce28695209e6b4f0af8cf91c5@MemberBinlog-MainAccount-AccountSummary-S/topic=MemberBinlog-T&role=pub
 			key = "4ba46ba31f9a44ef"
 	        secret = "e4c5a7fce28695209e6b4f0af8cf91c5"
 	        group = "MemberBinlog-MainAccount-AccountSummary-S"
 	        topic = "MemberBinlog-T"
-	        action = "sub"
+	        action = "pub"
 	        offset = "old"
 	        buffer = 2048
 	        name = "account-summary/member-binlog"
 	        proto = "tcp"
-	        addr = "172.18.33.50:6205"
+	        addr = "127.0.0.1:6379"
 	        idle = 1
 	        active = 1
 	        dialTimeout = "1s"
@@ -33,10 +35,10 @@
 		    omitfield = []
 		    omitaction = []
 	        name = ""
-
+	#master信息记录mysql binlog消费的位置,下一次可以直接从该地方消费
     [instance.masterinfo]
         addr = "127.0.0.1:3306"
         dbName = "punk-canal"
         user = "root"
         password = "123456"
-        timeout = 1
+        timeout = 10
