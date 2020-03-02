@@ -6,6 +6,7 @@
 	monitor_off = false
 	monitor_period = "1s"
 	[[instance.db]]
+		#需要消费数据变更的db
         schema = "angrymiao"
         [instance.db.databus]
             # redis password: 4ba46ba31f9a44ef:e4c5a7fce28695209e6b4f0af8cf91c5@MemberBinlog-MainAccount-AccountSummary-S/topic=MemberBinlog-T&role=pub
