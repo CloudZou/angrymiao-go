@@ -1,0 +1,32 @@
+version = "1.0.0"
+user = "nobody"
+pid = "/tmp/discovery.pid"
+dir = "./"
+perf = "127.0.0.1:7170"
+
+nodes = []
+
+[zones]
+#"127.0.0.1:7173"= ["zone1"]
+
+[log]
+dir = "/data/log/discovery/"
+stdout = true
+
+[bm]
+    [bm.inner]
+    addr = "0.0.0.0:7171"
+    timeout = "40s"
+
+[httpClient]
+key = "0c4b8fe3ff35a4b6"
+secret = "b370880d1aca7d3a289b9b9a7f4d6812"
+dial = "500ms"
+timeout = "1s"
+keepAlive = "60s"
+    [httpClient.breaker]
+    window = "3s"
+    sleep = "100ms"
+    bucket = 10
+    ratio = 0.5
+    request = 100

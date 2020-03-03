@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["conf.go"],
+    importpath = "angrymiao-go/app/infra/discovery/conf",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/BurntSushi/toml:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/conf:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/net/http/blademaster:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/net/ip:go_default_library",
+    ],
+)

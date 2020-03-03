@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "instance.go",
+        "node.go",
+        "param.go",
+    ],
+    importpath = "angrymiao-go/app/infra/discovery/model",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/CloudZou/punk/pkg/ecode:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
+    ],
+)
