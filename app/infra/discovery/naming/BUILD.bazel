@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "client.go",
+        "naming.go",
+    ],
+    importpath = "angrymiao-go/app/infra/discovery/naming",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/CloudZou/punk/pkg/ecode:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/net/http/blademaster:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/time:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "client_test.go",
+        "example_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//app/infra/discovery/conf:go_default_library",
+        "//app/infra/discovery/discovery:go_default_library",
+        "//app/infra/discovery/http:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/net/http/blademaster:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/time:go_default_library",
+        "//vendor/github.com/smartystreets/goconvey/convey:go_default_library",
+    ],
+)

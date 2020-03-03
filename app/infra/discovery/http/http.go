@@ -1,20 +1,25 @@
 package http
 
 import (
+	"errors"
+
 	"angrymiao-go/app/infra/discovery/conf"
-	"angrymiao-go/app/infra/discovery/service"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/app/infra/discovery/discovery"
+
+	log "github.com/CloudZou/punk/pkg/log"
 	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
 )
 
 var (
-	svr *service.Service
+	dis          *discovery.Discovery
+	protected    = true
+	errProtected = errors.New("discovery in protect mode and only support register")
 )
 
 // Init init http
-func Init(c *conf.Config, s *service.Service) {
-	svr = s
-	engineInner := bm.DefaultServer(c.BM.Inner)
+func Init(c *conf.Config, s *discovery.Discovery) {
+	dis = s
+	engineInner := bm.DefaultServer(c.HTTPServer)
 	innerRouter(engineInner)
 	if err := engineInner.Start(); err != nil {
 		log.Error("bm.DefaultServer error(%v)", err)
@@ -29,14 +34,20 @@ func innerRouter(e *bm.Engine) {
 		group.POST("/register", register)
 		group.POST("/renew", renew)
 		group.POST("/cancel", cancel)
-		group.GET("/fetch/all", fetchAll)
-		group.GET("/fetch", fetch)
-		group.GET("/fetchs", fetchs)
-		group.GET("/poll", poll)
-		group.GET("/polls", polls)
+		group.GET("/fetch/all", initProtect, fetchAll)
+		group.GET("/fetch", initProtect, fetch)
+		group.GET("/fetchs", initProtect, fetchs)
+		group.GET("/poll", initProtect, poll)
+		group.GET("/polls", initProtect, polls)
 		//manager
 		group.POST("/set", set)
-		group.GET("/polling", polling)
-		group.GET("/nodes", nodes)
+		group.GET("/nodes", initProtect, nodes)
+	}
+}
+
+func initProtect(ctx *bm.Context) {
+	if dis.Protected() {
+		ctx.JSON(nil, errProtected)
+		ctx.AbortWithStatus(503)
 	}
 }

@@ -10,8 +10,8 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//app/infra/discovery/conf:go_default_library",
+        "//app/infra/discovery/discovery:go_default_library",
         "//app/infra/discovery/model:go_default_library",
-        "//app/infra/discovery/service:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/ecode:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/net/http/blademaster:go_default_library",

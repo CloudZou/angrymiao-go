@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["resolver.go"],
+    importpath = "angrymiao-go/app/infra/discovery/naming/grpc",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//app/infra/discovery/naming:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
+        "//vendor/google.golang.org/grpc/resolver:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["resolver_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//app/infra/discovery/naming:go_default_library",
+        "//vendor/google.golang.org/grpc/resolver:go_default_library",
+    ],
+)

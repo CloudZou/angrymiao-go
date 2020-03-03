@@ -1,106 +1,95 @@
 package conf
 
 import (
-	"errors"
 	"flag"
-	"net"
-
-	"github.com/CloudZou/punk/pkg/conf"
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
-	xip "github.com/CloudZou/punk/pkg/net/ip"
+	"os"
 
 	"github.com/BurntSushi/toml"
+	"github.com/CloudZou/punk/pkg/conf/paladin"
+	log "github.com/CloudZou/punk/pkg/log"
+	http "github.com/CloudZou/punk/pkg/net/http/blademaster"
 )
 
 var (
-	confPath string
-	client   *conf.Client
+	confPath      string
+	schedulerPath string
+	region        string
+	zone          string
+	deployEnv     string
+	hostname      string
+	configKey     string
 	// Conf conf
 	Conf = &Config{}
-	// ConfCh for update node of server.
-	ConfCh    = make(chan struct{}, 1)
-	configKey = "discovery-service.toml"
 )
 
-// Config config
-type Config struct {
-	Nodes      []string
-	Zones      map[string][]string // zone -> nodes
-	BM         *HTTPServers
-	Log        *log.Config
-	HTTPClient *bm.ClientConfig
+func init() {
+	var err error
+	if hostname, err = os.Hostname(); err != nil || hostname == "" {
+		hostname = os.Getenv("HOSTNAME")
+	}
+	flag.StringVar(&configKey, "confkey", "discovery-example.toml", "discovery conf key")
+	flag.StringVar(&hostname, "hostname", hostname, "machine hostname")
+	flag.StringVar(&schedulerPath, "scheduler", "scheduler.json", "scheduler info")
 }
 
-func (c *Config) fix() (err error) {
-	// check ip
-	host, port, err := net.SplitHostPort(c.BM.Inner.Addr)
-	if err != nil {
-		return
+// Config config.
+type Config struct {
+	Nodes         []string
+	Zones         map[string][]string
+	HTTPServer    *http.ServerConfig
+	HTTPClient    *http.ClientConfig
+	Env           *Env
+	Log           *log.Config
+	Scheduler     []byte
+	EnableProtect bool
+}
+
+// Fix fix env config.
+func (c *Config) Fix() (err error) {
+	if c.Env == nil {
+		c.Env = new(Env)
 	}
-	if host == "0.0.0.0" || host == "127.0.0.1" || host == "" {
-		host = xip.InternalIP()
+	if c.Env.Region == "" {
+		c.Env.Region = region
 	}
-	c.BM.Inner.Addr = host + ":" + port
+	if c.Env.Zone == "" {
+		c.Env.Zone = zone
+	}
+	if c.Env.Host == "" {
+		c.Env.Host = hostname
+	}
+	if c.Env.DeployEnv == "" {
+		c.Env.DeployEnv = deployEnv
+	}
 	return
 }
 
-// HTTPServers Http Servers
-type HTTPServers struct {
-	Inner *bm.ServerConfig
-}
-
-func init() {
-	// flag.StringVar(&confPath, "conf", "discovery-example.toml", "config path")
-	flag.StringVar(&confPath, "conf", "", "config path")
+// Env is discovery env.
+type Env struct {
+	Region    string
+	Zone      string
+	Host      string
+	DeployEnv string
 }
 
 // Init init conf
 func Init() (err error) {
-	if confPath != "" {
-		if _, err = toml.DecodeFile(confPath, &Conf); err != nil {
-			return
-		}
-		return Conf.fix()
-	}
-	err = remote()
-	return
-}
-
-func remote() (err error) {
-	if client, err = conf.New(); err != nil {
+	if err = paladin.Init(); err != nil {
 		return
 	}
-	if err = load(); err != nil {
-		return
-	}
-	go func() {
-		for range client.Event() {
-			log.Info("config reload")
-			if load() != nil {
-				log.Error("config reload error (%v)", err)
-				continue
-			}
-			// to change the node of server
-			ConfCh <- struct{}{}
-		}
-	}()
-	return
+	return paladin.Watch(configKey, Conf)
 }
 
-func load() (err error) {
-	s, ok := client.Value(configKey)
-	if !ok {
-		return errors.New("load config center error")
-	}
+// Set config setter.
+func (c *Config) Set(content string) (err error) {
 	var tmpConf *Config
-	if _, err = toml.Decode(s, &tmpConf); err != nil {
-		return errors.New("could not decode config")
-	}
-	if err = tmpConf.fix(); err != nil {
+	if _, err = toml.Decode(content, &tmpConf); err != nil {
+		log.Error("decode config fail %v", err)
 		return
 	}
-	// copy
+	if err = tmpConf.Fix(); err != nil {
+		return
+	}
 	*Conf = *tmpConf
-	return
+	return nil
 }
