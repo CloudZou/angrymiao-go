@@ -1,0 +1,29 @@
+[db]
+	addr = "127.0.0.1:3306"
+    dsn = "root:123456@tcp(127.0.0.1:3306)/angrymiao?timeout=1s&readTimeout=1s&writeTimeout=1s&parseTime=true&loc=Local&charset=utf8mb4,utf8"
+    readDSN = ["root:123456@tcp(127.0.0.2:3306)/angrymiao?timeout=1s&readTimeout=1s&writeTimeout=1s&parseTime=true&loc=Local&charset=utf8mb4,utf8","{user}:{password}@tcp(127.0.0.3:3306)/{database}?timeout=1s&readTimeout=1s&writeTimeout=1s&parseTime=true&loc=Local&charset=utf8,utf8mb4"]
+    active = 20
+    idle = 10
+    idleTimeout = 3000
+    queryTimeout =  200
+    execTimeout = 300
+    tranTimeout = 400
+
+[redis]
+	name = "demo"
+	proto = "tcp"
+	addr = "127.0.0.1:6379"
+	idle = 10
+	active = 10
+
+[httpServer]
+    addr = "0.0.0.0:8000"
+    timeout = "1s"
+
+[grpcServer]
+    addr = "0.0.0.0:9000"
+    timeout = "1s"
+
+[rpcServer]
+	addr = "0.0.0.0:8099"
+	proto = "tcp"

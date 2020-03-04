@@ -3,11 +3,11 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["server.go"],
-    importpath = "github.com/CloudZou/angrymiao-go/app/service/main/user/internal/server/http",
+    importpath = "angrymiao-go/app/service/main/user/internal/server/http",
     visibility = ["//app/service/main/user:__subpackages__"],
     deps = [
-        "//vendor/angrymiao-go/app/service/main/user/api:go_default_library",
-        "//vendor/angrymiao-go/app/service/main/user/internal/model:go_default_library",
+        "//app/service/main/user/api:go_default_library",
+        "//app/service/main/user/internal/model:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/net/http/blademaster:go_default_library",

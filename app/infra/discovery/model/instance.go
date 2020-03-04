@@ -2,11 +2,12 @@ package model
 
 import (
 	"encoding/json"
+	"strconv"
 	"sync"
 	"time"
 
 	"github.com/CloudZou/punk/pkg/ecode"
-	log "github.com/CloudZou/punk/pkg/log"
+	"github.com/CloudZou/punk/pkg/log"
 )
 
 // InstanceStatus Status of instance
@@ -47,12 +48,14 @@ type Instance struct {
 	Region   string            `json:"region"`
 	Zone     string            `json:"zone"`
 	Env      string            `json:"env"`
-	AppID    string            `json:"appid"`
+	Appid    string            `json:"appid"`
+	Treeid   int64             `json:"treeid"`
 	Hostname string            `json:"hostname"`
-	Addrs    []string          `json:"addrs"`
+	HTTP     string            `json:"http"`
+	RPC      string            `json:"rpc"`
 	Version  string            `json:"version"`
 	Metadata map[string]string `json:"metadata"`
-
+	Addrs    []string          `json:"addrs"`
 	// Status enum instance status
 	Status uint32 `json:"status"`
 
@@ -72,17 +75,21 @@ func NewInstance(arg *ArgRegister) (i *Instance) {
 		Region:          arg.Region,
 		Zone:            arg.Zone,
 		Env:             arg.Env,
-		AppID:           arg.AppID,
+		Appid:           arg.Appid,
+		Treeid:          arg.Treeid,
 		Hostname:        arg.Hostname,
-		Addrs:           arg.Addrs,
+		HTTP:            arg.HTTP,
+		RPC:             arg.RPC,
 		Version:         arg.Version,
 		Status:          arg.Status,
+		Addrs:           arg.Addrs,
 		RegTimestamp:    now,
 		UpTimestamp:     now,
 		LatestTimestamp: now,
 		RenewTimestamp:  now,
 		DirtyTimestamp:  now,
 	}
+	i.Metadata = make(map[string]string)
 	if arg.Metadata != "" {
 		if err := json.Unmarshal([]byte(arg.Metadata), &i.Metadata); err != nil {
 			log.Error("json unmarshal metadata err %v", err)
@@ -91,26 +98,12 @@ func NewInstance(arg *ArgRegister) (i *Instance) {
 	return
 }
 
-// deep copy a new instance from old one
-func copyInstance(oi *Instance) (ni *Instance) {
-	ni = new(Instance)
-	*ni = *oi
-	ni.Addrs = make([]string, len(oi.Addrs))
-	for i, add := range oi.Addrs {
-		ni.Addrs[i] = add
-	}
-	ni.Metadata = make(map[string]string)
-	for k, v := range oi.Metadata {
-		ni.Metadata[k] = v
-	}
-	return
-}
-
 // InstanceInfo the info get by consumer.
 type InstanceInfo struct {
-	Instances       map[string][]*Instance `json:"instances"`
-	Scheduler       *Scheduler             `json:"scheduler,omitempty"`
-	LatestTimestamp int64                  `json:"latest_timestamp"`
+	Instances          []*Instance            `json:"instances"`
+	ZoneInstances      map[string][]*Instance `json:"zone_instances"`
+	LatestTimestamp    int64                  `json:"latest_timestamp"`
+	LatestTimestampStr string                 `json:"latest_timestamp_str"`
 }
 
 // Apps app distinguished by zone
@@ -128,11 +121,11 @@ func NewApps() *Apps {
 }
 
 // NewApp news a app by appid. If ok=false, returns the app of already exist.
-func (p *Apps) NewApp(zone, appid string, lts int64) (a *App, new bool) {
+func (p *Apps) NewApp(zone, appid string, treeid, lts int64) (a *App, new bool) {
 	p.lock.Lock()
 	a, ok := p.apps[zone]
 	if !ok {
-		a = NewApp(zone, appid)
+		a = NewApp(zone, appid, treeid)
 		p.apps[zone] = a
 	}
 	if lts <= p.latestTimestamp {
@@ -175,28 +168,36 @@ func (p *Apps) Del(zone string) {
 func (p *Apps) InstanceInfo(zone string, latestTime int64, status uint32) (ci *InstanceInfo, err error) {
 	p.lock.RLock()
 	defer p.lock.RUnlock()
+
 	if latestTime >= p.latestTimestamp {
 		err = ecode.NotModified
 		return
 	}
 	ci = &InstanceInfo{
-		LatestTimestamp: p.latestTimestamp,
-		Instances:       make(map[string][]*Instance),
+		LatestTimestamp:    p.latestTimestamp,
+		LatestTimestampStr: strconv.FormatInt(p.latestTimestamp/int64(time.Second), 10),
+		ZoneInstances:      make(map[string][]*Instance),
 	}
 	var ok bool
 	for z, app := range p.apps {
 		if zone == "" || z == zone {
 			ok = true
-			instances := make([]*Instance, 0)
-			for _, i := range app.Instances() {
+			as := app.Instances()
+			if len(as) == 0 {
+				continue
+			}
+			instance := make([]*Instance, 0, len(as))
+			for _, i := range as {
 				// if up is false return all status instance
 				if i.filter(status) {
 					// if i.Status == InstanceStatusUP && i.LatestTimestamp > latestTime { // TODO(felix): increase
-					ni := copyInstance(i)
-					instances = append(instances, ni)
+					ni := new(Instance)
+					*ni = *i
+					instance = append(instance, ni)
 				}
 			}
-			ci.Instances[z] = instances
+			ci.Instances = append(ci.Instances, instance...)
+			ci.ZoneInstances[z] = instance
 		}
 	}
 	if !ok {
@@ -209,28 +210,27 @@ func (p *Apps) InstanceInfo(zone string, latestTime int64, status uint32) (ci *I
 
 // UpdateLatest update LatestTimestamp.
 func (p *Apps) UpdateLatest(latestTime int64) {
-	p.lock.Lock()
 	if latestTime <= p.latestTimestamp {
 		// insure increase
 		latestTime = p.latestTimestamp + 1
 	}
 	p.latestTimestamp = latestTime
-	p.lock.Unlock()
 }
 
 // App Instances distinguished by hostname
 type App struct {
 	AppID           string
+	Treeid          int64
 	Zone            string
 	instances       map[string]*Instance
 	latestTimestamp int64
-
-	lock sync.RWMutex
+	lock            sync.RWMutex
 }
 
 // NewApp new App.
-func NewApp(zone, appid string) (a *App) {
+func NewApp(zone, appid string, treeid int64) (a *App) {
 	a = &App{
+		Treeid:    treeid,
 		AppID:     appid,
 		Zone:      zone,
 		instances: make(map[string]*Instance),
@@ -318,22 +318,25 @@ func (a *App) Len() (l int) {
 	return
 }
 
-// Set set new status,metadata,color  of instance .
+// Set set new status,metadata of instance .
 func (a *App) Set(changes *ArgSet) (ok bool) {
 	a.lock.Lock()
 	defer a.lock.Unlock()
 	var (
 		dst     *Instance
-		setTime = changes.SetTimestamp
+		setTime int64
 	)
+	if changes.SetTimestamp == 0 {
+		setTime = time.Now().UnixNano()
+	}
 	for i, hostname := range changes.Hostname {
 		if dst, ok = a.instances[hostname]; !ok {
-			log.Error("SetWeight hostname(%s) not found", hostname)
+			log.Error("Set hostname(%s) not found", hostname)
 			return
 		}
 		if len(changes.Status) != 0 {
 			if uint32(changes.Status[i]) != InstanceStatusUP && uint32(changes.Status[i]) != InstancestatusWating {
-				log.Error("SetWeight change status(%d) is error", changes.Status[i])
+				log.Error("SetStatus change status(%d) is error", changes.Status[i])
 				ok = false
 				return
 			}
@@ -343,11 +346,13 @@ func (a *App) Set(changes *ArgSet) (ok bool) {
 			}
 		}
 		if len(changes.Metadata) != 0 {
-			if err := json.Unmarshal([]byte(changes.Metadata[i]), &dst.Metadata); err != nil {
+			metadata := make(map[string]string)
+			if err := json.Unmarshal([]byte(changes.Metadata[i]), &metadata); err != nil {
 				log.Error("set change metadata err %s", changes.Metadata[i])
 				ok = false
 				return
 			}
+			dst.Metadata = metadata
 		}
 		dst.LatestTimestamp = setTime
 		dst.DirtyTimestamp = setTime

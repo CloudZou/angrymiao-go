@@ -1,8 +1,0 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_library")
-
-go_library(
-    name = "go_default_library",
-    srcs = ["model.go"],
-    importpath = "github.com/CloudZou/angrymiao-go/app/service/main/user/internal/model",
-    visibility = ["//app/service/main/user:__subpackages__"],
-)

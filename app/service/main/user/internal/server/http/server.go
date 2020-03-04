@@ -1,11 +1,11 @@
 package http
 
 import (
+	"angrymiao-go/app/service/main/user/conf"
 	"net/http"
 
 	pb "angrymiao-go/app/service/main/user/api"
 	"angrymiao-go/app/service/main/user/internal/model"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
 	"github.com/CloudZou/punk/pkg/log"
 	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
 )
@@ -14,18 +14,8 @@ var svc pb.DemoServer
 
 // New new a bm server.
 func New(s pb.DemoServer) (engine *bm.Engine, err error) {
-	var (
-		cfg bm.ServerConfig
-		ct  paladin.TOML
-	)
-	if err = paladin.Get("http.toml").Unmarshal(&ct); err != nil {
-		return
-	}
-	if err = ct.Get("Server").UnmarshalTOML(&cfg); err != nil {
-		return
-	}
 	svc = s
-	engine = bm.DefaultServer(&cfg)
+	engine = bm.DefaultServer(conf.Conf.HTTPServer)
 	pb.RegisterDemoBMServer(engine, s)
 	initRouter(engine)
 	err = engine.Start()

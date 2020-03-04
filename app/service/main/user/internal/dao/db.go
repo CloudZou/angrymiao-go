@@ -3,7 +3,6 @@ package dao
 import (
 	"angrymiao-go/app/service/main/user/conf"
 	"fmt"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
 	"github.com/CloudZou/punk/pkg/log"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -11,19 +10,7 @@ import (
 )
 
 func NewDB() (db *gorm.DB, cf func(), err error) {
-	var (
-		cfg conf.DbConfig
-		ct  paladin.TOML
-	)
-	if err = paladin.Get("db.toml").Unmarshal(&ct); err != nil {
-		log.Error("db config failed. %v", err)
-		return
-	}
-	if err = ct.Get("Client").UnmarshalTOML(&cfg); err != nil {
-		return
-	}
-
-	db, err = gorm.Open("mysql", cfg.DSN)
+	db, err = gorm.Open("mysql", conf.Conf.Db.DSN)
 
 	if err != nil {
 		log.Error("models.Setup err: %v", err)

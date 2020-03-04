@@ -2,6 +2,7 @@ package di
 
 import (
 	"context"
+	"github.com/CloudZou/punk/pkg/net/rpc"
 	"time"
 
 	"angrymiao-go/app/service/main/user/internal/service"
@@ -13,16 +14,18 @@ import (
 
 //go:generate punk tool wire
 type App struct {
-	svc  *service.Service
-	http *bm.Engine
-	grpc *warden.Server
+	svc    *service.Service
+	http   *bm.Engine
+	grpc   *warden.Server
+	rpcSvr *rpc.Server
 }
 
-func NewApp(svc *service.Service, h *bm.Engine, g *warden.Server) (app *App, closeFunc func(), err error) {
+func NewApp(svc *service.Service, h *bm.Engine, g *warden.Server, r *rpc.Server) (app *App, closeFunc func(), err error) {
 	app = &App{
-		svc:  svc,
-		http: h,
-		grpc: g,
+		svc:    svc,
+		http:   h,
+		grpc:   g,
+		rpcSvr: r,
 	}
 	closeFunc = func() {
 		ctx, cancel := context.WithTimeout(context.Background(), 35*time.Second)
@@ -31,6 +34,9 @@ func NewApp(svc *service.Service, h *bm.Engine, g *warden.Server) (app *App, clo
 		}
 		if err := h.Shutdown(ctx); err != nil {
 			log.Error("httpSrv.Shutdown error(%v)", err)
+		}
+		if err := r.Close(); err != nil {
+			log.Error("rpcSrv.Close err(%v)", err)
 		}
 		cancel()
 	}

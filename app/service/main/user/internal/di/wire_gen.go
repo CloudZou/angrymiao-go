@@ -9,6 +9,7 @@ import (
 	"angrymiao-go/app/service/main/user/internal/dao"
 	"angrymiao-go/app/service/main/user/internal/server/grpc"
 	"angrymiao-go/app/service/main/user/internal/server/http"
+	"angrymiao-go/app/service/main/user/internal/server/rpc"
 	"angrymiao-go/app/service/main/user/internal/service"
 )
 
@@ -48,7 +49,8 @@ func InitApp() (*App, func(), error) {
 		cleanup()
 		return nil, nil, err
 	}
-	app, cleanup4, err := NewApp(serviceService, engine, server)
+	rpcServer := rpc.New(serviceService)
+	app, cleanup4, err := NewApp(serviceService, engine, server, rpcServer)
 	if err != nil {
 		cleanup3()
 		cleanup2()

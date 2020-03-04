@@ -1,3 +1,0 @@
-./discovery -conf /Users/cloudzou/Documents/Work/golang/discovery/configs/discovery-1.toml -confkey=discovery-1.toml
-./discovery -conf /Users/cloudzou/Documents/Work/golang/discovery/configs/discovery-2.toml -confkey=discovery-2.toml -http.perf=tcp://0.0.0.0:2334
-./discovery -conf /Users/cloudzou/Documents/Work/golang/discovery/configs/discovery-3.toml -confkey=discovery-3.toml -http.perf=tcp://0.0.0.0:2335
