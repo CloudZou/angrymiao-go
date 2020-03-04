@@ -5,18 +5,13 @@ go_library(
     srcs = [
         "dao.go",
         "db.go",
-        "redis.go",
         "wire_gen.go",
     ],
     importpath = "angrymiao-go/app/infra/canal/internal/dao",
     visibility = ["//app/infra/canal:__subpackages__"],
     deps = [
         "//app/infra/canal/conf:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/gredis:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/sync/pipeline/fanout:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/time:go_default_library",
         "//vendor/github.com/google/wire:go_default_library",
         "//vendor/github.com/jinzhu/gorm:go_default_library",
         "//vendor/github.com/jinzhu/gorm/dialects/mysql:go_default_library",

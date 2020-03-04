@@ -1,11 +1,11 @@
-perf = "127.0.0.1:7171"
 # 同一discovery集群的所有node节点地址，包含本node
-nodes = ["127.0.0.1:7171","127.0.0.1:7172","127.0.0.1:7173"]
+#nodes = ["127.0.0.1:7171","127.0.0.1:7172","127.0.0.1:7173"]
+nodes = ["discovery.angrymiao.com"]
 # 本可用区zone(一般指机房)标识
 [env]
-region = "sh"
-zone = "sh001"
-host = "test1"
+region = "sz"
+zone = "sz001"
+host = "discovery1"
 deployEnv = "dev"
 
 

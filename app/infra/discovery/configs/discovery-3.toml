@@ -3,9 +3,9 @@ nodes = ["127.0.0.1:7171","127.0.0.1:7172","127.0.0.1:7173"]
 
 # 本可用区zone(一般指机房)标识
 [env]
-region = "sh"
-zone = "sh001"
-host = "test3"
+region = "sz"
+zone = "sz001"
+host = "discovery3"
 deployEnv = "dev"
 
 

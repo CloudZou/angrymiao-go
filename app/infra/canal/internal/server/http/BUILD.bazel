@@ -2,13 +2,22 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
     name = "go_default_library",
-    srcs = ["server.go"],
+    srcs = [
+        "canal.go",
+        "infoc.go",
+        "server.go",
+    ],
     importpath = "angrymiao-go/app/infra/canal/internal/server/http",
     visibility = ["//app/infra/canal:__subpackages__"],
     deps = [
+        "//app/infra/canal/conf:go_default_library",
+        "//app/infra/canal/infoc:go_default_library",
         "//app/infra/canal/internal/service:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
+        "//vendor/github.com/BurntSushi/toml:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/conf:go_default_library",
+        "//vendor/github.com/CloudZou/punk/pkg/ecode:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
         "//vendor/github.com/CloudZou/punk/pkg/net/http/blademaster:go_default_library",
+        "//vendor/github.com/siddontang/go-mysql/canal:go_default_library",
     ],
 )

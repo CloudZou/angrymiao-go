@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: discovery-backend
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "*"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,Access-Control-Allow-Origin "
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+spec:
+  tls:
+    - hosts:
+        - discovery.angrymiao.com
+      secretName: discovery-backend-tls
+  rules:
+    - host: discovery.angrymiao.com
+      http:
+        paths:
+          - path: '/'
+            backend:
+              serviceName: discovery-backend-service
+              servicePort: 80
