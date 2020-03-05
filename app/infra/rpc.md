@@ -1,4 +1,8 @@
-# GRPC RPC 注册中心使用说明
+# GRPC/RPC 注册中心使用说明
+
+. grpc服务实现代码在github.com/CloudZou/punk/pkg/net/rpc/warden包，相应的服务发现客户端实现在/net/rpc/warden/resolver 
+. rpc服务实现代码在github.com/CloudZou/punk/pkg/net/rpc,服务发现实现在/net/rpc/client2.go文件,NewDiscoveryCli函数
+. 服务注册中心地址为discovery.angrymiao.com,目前单节点部署在k8s集群上
 
 ## 项目简介
 + rpc 服务代码参考:
