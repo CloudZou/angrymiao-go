@@ -3,3 +3,5 @@
 /bazel-bin/
 /bazel-angrymiao-go/
 /vendor/
+
+*.idea/
