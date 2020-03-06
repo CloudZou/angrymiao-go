@@ -1,0 +1,104 @@
+package dao
+
+import (
+	"angrymiao-go/app/service/main/product/conf"
+	"fmt"
+	"github.com/CloudZou/punk/pkg/log"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"time"
+)
+
+func NewDB() (db *gorm.DB, cf func(), err error) {
+	db, err = gorm.Open("mysql", conf.Conf.DB.DSN)
+
+	if err != nil {
+		log.Error("models.Setup err: %v", err)
+	}
+
+	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
+		return defaultTableName
+	}
+
+	db.SingularTable(true)
+	db.Callback().Create().Replace("gorm:update_time_stamp", updateTimeForCreateCallback)
+	db.Callback().Create().Replace("gorm:before_create", beforeCreateCallback)
+	db.DB().SetMaxIdleConns(10)
+	db.DB().SetMaxOpenConns(100)
+
+	cf = func() { db.Close() }
+	return
+}
+
+func beforeCreateCallback(scope *gorm.Scope) {
+	if !scope.HasError() {
+		if createTimeField, ok := scope.FieldByName("Status"); ok {
+			if createTimeField.IsBlank {
+				createTimeField.Set(0)
+			}
+		}
+	}
+	if !scope.HasError() {
+		scope.CallMethod("BeforeSave")
+	}
+	if !scope.HasError() {
+		scope.CallMethod("BeforeCreate")
+	}
+
+}
+
+// updateTimeForCreateCallback will set `CreatedOn`, `ModifiedOn` when creating
+func updateTimeForCreateCallback(scope *gorm.Scope) {
+	if !scope.HasError() {
+		nowTime := time.Now()
+		if createTimeField, ok := scope.FieldByName("CreateTime"); ok {
+			if createTimeField.IsBlank {
+				createTimeField.Set(nowTime)
+			}
+		}
+
+		if modifyTimeField, ok := scope.FieldByName("UpdateTime"); ok {
+			if modifyTimeField.IsBlank {
+				modifyTimeField.Set(nowTime)
+			}
+		}
+	}
+}
+
+// deleteCallback will set `DeletedOn` where deleting
+func deleteCallback(scope *gorm.Scope) {
+	if !scope.HasError() {
+		var extraOption string
+		if str, ok := scope.Get("gorm:delete_option"); ok {
+			extraOption = fmt.Sprint(str)
+		}
+
+		deletedOnField, hasDeletedOnField := scope.FieldByName("DeletedOn")
+
+		if !scope.Search.Unscoped && hasDeletedOnField {
+			scope.Raw(fmt.Sprintf(
+				"UPDATE %v SET %v=%v%v%v",
+				scope.QuotedTableName(),
+				scope.Quote(deletedOnField.DBName),
+				scope.AddToVars(time.Now().Unix()),
+				addExtraSpaceIfExist(scope.CombinedConditionSql()),
+				addExtraSpaceIfExist(extraOption),
+			)).Exec()
+		} else {
+			scope.Raw(fmt.Sprintf(
+				"DELETE FROM %v%v%v",
+				scope.QuotedTableName(),
+				addExtraSpaceIfExist(scope.CombinedConditionSql()),
+				addExtraSpaceIfExist(extraOption),
+			)).Exec()
+		}
+	}
+}
+
+// addExtraSpaceIfExist adds a separator
+func addExtraSpaceIfExist(str string) string {
+	if str != "" {
+		return " " + str
+	}
+	return ""
+}
