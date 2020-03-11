@@ -3,6 +3,7 @@ package main
 import (
 	"angrymiao-go/app/service/main/product/conf"
 	"flag"
+	"github.com/CloudZou/punk/pkg/conf/env"
 	"github.com/CloudZou/punk/pkg/net/trace"
 	"os"
 	"os/signal"
@@ -21,7 +22,8 @@ func main() {
 	log.Init(nil) // debug flag: log.dir={path}
 	defer log.Close()
 	log.Info("product start")
-	trace.Init(nil)
+	env.AppID = "product.service"
+	trace.Init(conf.Conf.UdpTraceConfig)
 	_, closeFunc, err := di.InitApp()
 	if err != nil {
 		panic(err)

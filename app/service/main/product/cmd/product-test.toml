@@ -4,6 +4,12 @@ maxListen = 1000
 timeout = "2s"
 
 
+[udpTraceConfig]
+    network = "udp"
+    addr ="127.0.0.1:11400"
+    proto = "udp"
+    timeout = "2s"
+
 [rpcClient]
 timeout = "1s"
 
