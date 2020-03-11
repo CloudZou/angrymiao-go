@@ -26,11 +26,6 @@ func New(s *service.Service) (svr *rpc.Server) {
 
 func (r *RPC) SayHello(c context.Context, arg *string, res *struct{}) (err error) {
 	log.Error("Say Hello From RPC Client")
-	_, err = r.s.SayHello(c, &api.HelloReq{Name: *arg})
-	return
-}
-
-func (r *RPC) SayHelloURL(c context.Context, name *string, res *struct{}) (err error) {
-	_, err = r.s.SayHelloURL(c, &api.HelloReq{Name: *name})
+	_, err = r.s.SayHello(c, &api.HelloRequest{Name: *arg})
 	return
 }

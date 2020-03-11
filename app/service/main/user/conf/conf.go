@@ -10,6 +10,7 @@ import (
 	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
 	"github.com/CloudZou/punk/pkg/net/rpc"
 	"github.com/CloudZou/punk/pkg/net/rpc/warden"
+	"github.com/CloudZou/punk/pkg/net/trace"
 	"time"
 )
 
@@ -40,8 +41,9 @@ type Config struct {
 	GRPCServer *warden.ServerConfig
 	HTTPServer *bm.ServerConfig
 
-	Db    DbConfig
-	Redis gredis.RedisConfig
+	Db             DbConfig
+	Redis          gredis.RedisConfig
+	UdpTraceConfig *trace.Config
 }
 
 func init() {
