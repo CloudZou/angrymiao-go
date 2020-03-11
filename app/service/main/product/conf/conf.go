@@ -9,6 +9,7 @@ import (
 	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
 	"github.com/CloudZou/punk/pkg/net/rpc"
 	"github.com/CloudZou/punk/pkg/net/rpc/warden"
+	"github.com/CloudZou/punk/pkg/net/trace"
 	"time"
 )
 
@@ -40,6 +41,8 @@ type Config struct {
 	DB DbConfig
 
 	UserGrpcClient *warden.ClientConfig
+
+	UdpTraceConfig *trace.Config
 }
 
 func init() {

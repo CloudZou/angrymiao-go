@@ -31,7 +31,6 @@ func initRouter(e *bm.Engine) {
 	g := e.Group("/api/v1")
 	{
 		g.GET("/sayHello", sayHello)
-		g.GET("/sayHelloURL", sayHelloURL)
 	}
 }
 
@@ -43,18 +42,9 @@ func ping(ctx *bm.Context) {
 }
 
 func sayHello(c *bm.Context) {
-	err := rpcSvc.SayHello(c, c.Params.ByName("name"))
+	err := grpcSvc.SayHello(c, c.Params.ByName("name"))
 	if err != nil {
 		log.Error("say hello error(%v)", err)
-	}
-	c.JSON(nil, nil)
-	return
-}
-
-func sayHelloURL(c *bm.Context) {
-	err := rpcSvc.SayHelloURL(c, c.Params.ByName("name"))
-	if err != nil {
-		log.Error("say helloURL error(%v)", err)
 	}
 	c.JSON(nil, nil)
 	return
