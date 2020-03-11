@@ -8,4 +8,5 @@ dir = "/data/log/dapper-agent"
 cache_dir = "/data/log/dapper-collect/data"
 
 [udp_collect]
-addr = "unixgram:///var/run/dapper-collect/dapper-collect.sock"
+#addr = "unixgram:///var/run/dapper-collect/dapper-collect.sock"
+addr = "udp://127.0.0.1:11400"
