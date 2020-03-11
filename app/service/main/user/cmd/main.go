@@ -7,6 +7,7 @@ import (
 	"github.com/CloudZou/punk/pkg/conf/env"
 	"github.com/CloudZou/punk/pkg/naming"
 	"github.com/CloudZou/punk/pkg/naming/discovery"
+	"github.com/CloudZou/punk/pkg/net/trace"
 	"os"
 	"os/signal"
 	"syscall"
@@ -23,6 +24,8 @@ func main() {
 	defer log.Close()
 	log.Info("user start")
 	conf.Init()
+	env.AppID = "user.service"
+	trace.Init(conf.Conf.UdpTraceConfig)
 	_, closeFunc, err := di.InitApp()
 	if err != nil {
 		panic(err)

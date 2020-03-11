@@ -27,3 +27,10 @@
 [rpcServer]
 	addr = "0.0.0.0:8099"
 	proto = "tcp"
+
+
+[udpTraceConfig]
+    network = "udp"
+    addr ="127.0.0.1:11400"
+    proto = "udp"
+    timeout = "2s"
