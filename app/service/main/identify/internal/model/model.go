@@ -1,0 +1,12 @@
+package model
+
+// Punk hello punk.
+type Punk struct {
+	Hello string
+}
+
+type Article struct {
+	ID      int64
+	Content string
+	Author  string
+}
