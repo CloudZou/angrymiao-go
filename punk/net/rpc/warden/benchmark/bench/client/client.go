@@ -8,10 +8,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
-	"github.com/CloudZou/punk/pkg/net/rpc/warden"
-	"github.com/CloudZou/punk/pkg/net/rpc/warden/benchmark/bench/proto"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/net/netutil/breaker"
+	"angrymiao-go/punk/net/rpc/warden"
+	"angrymiao-go/punk/net/rpc/warden/benchmark/bench/proto"
+	xtime "angrymiao-go/punk/time"
 
 	goproto "github.com/gogo/protobuf/proto"
 	"github.com/montanaflynn/stats"

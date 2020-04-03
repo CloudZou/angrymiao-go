@@ -12,7 +12,7 @@ go_library(
         "string.go",
         "xml.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/net/http/blademaster/render",
+    importpath = "angrymiao-go/punk/net/http/blademaster/render",
     visibility = ["//visibility:public"],
     deps = [
         "//vendor/github.com/gogo/protobuf/proto:go_default_library",

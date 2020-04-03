@@ -7,7 +7,7 @@ go_library(
         "pool.go",
         "slice.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/container/pool",
+    importpath = "angrymiao-go/punk/container/pool",
     visibility = ["//visibility:public"],
     deps = ["//pkg/time:go_default_library"],
 )

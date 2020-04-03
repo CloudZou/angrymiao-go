@@ -1,9 +1,9 @@
 package report
 
 import (
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/queue/databus"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/queue/databus"
+	xtime "angrymiao-go/punk/time"
 	"time"
 )
 

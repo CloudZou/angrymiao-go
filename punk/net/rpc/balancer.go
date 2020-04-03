@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"sync/atomic"
 
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/sync/errgroup"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/sync/errgroup"
 )
 
 const (

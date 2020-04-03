@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "go_default_library",
     srcs = ["codel.go"],
-    importpath = "github.com/CloudZou/punk/pkg/container/queue/aqm",
+    importpath = "angrymiao-go/punk/container/queue/aqm",
     visibility = ["//visibility:public"],
     deps = ["//pkg/ecode:go_default_library"],
 )

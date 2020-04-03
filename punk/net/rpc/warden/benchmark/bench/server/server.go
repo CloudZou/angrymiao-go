@@ -10,9 +10,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/net/rpc/warden"
-	"github.com/CloudZou/punk/pkg/net/rpc/warden/benchmark/bench/proto"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/net/rpc/warden"
+	"angrymiao-go/punk/net/rpc/warden/benchmark/bench/proto"
+	xtime "angrymiao-go/punk/time"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"google.golang.org/grpc"

@@ -6,7 +6,7 @@ go_library(
         "resolver.go",
         "util.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/warden/resolver",
+    importpath = "angrymiao-go/punk/net/rpc/warden/resolver",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/env:go_default_library",

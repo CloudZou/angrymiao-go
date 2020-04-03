@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "go_default_library",
     srcs = ["feature_gate.go"],
-    importpath = "github.com/CloudZou/punk/pkg/exp/feature",
+    importpath = "angrymiao-go/punk/exp/feature",
     visibility = ["//visibility:public"],
     deps = ["//vendor/github.com/pkg/errors:go_default_library"],
 )

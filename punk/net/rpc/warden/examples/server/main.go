@@ -9,12 +9,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ecode"
-	epb "github.com/CloudZou/punk/pkg/ecode/pb"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/rpc/warden"
-	pb "github.com/CloudZou/punk/pkg/net/rpc/warden/proto/testproto"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/ecode"
+	epb "angrymiao-go/punk/ecode/pb"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/rpc/warden"
+	pb "angrymiao-go/punk/net/rpc/warden/proto/testproto"
+	xtime "angrymiao-go/punk/time"
 
 	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc"

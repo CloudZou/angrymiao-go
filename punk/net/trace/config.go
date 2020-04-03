@@ -8,8 +8,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/CloudZou/punk/pkg/conf/dsn"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/conf/dsn"
+	xtime "angrymiao-go/punk/time"
 )
 
 var _traceDSN = "unixgram:///var/run/dapper-collect/dapper-collect.sock"

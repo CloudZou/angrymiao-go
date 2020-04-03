@@ -2,8 +2,8 @@ package resolver
 
 import (
 	"context"
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/naming"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/naming"
 )
 
 type mockDiscoveryBuilder struct {

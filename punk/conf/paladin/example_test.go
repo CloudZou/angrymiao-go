@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/CloudZou/punk/pkg/conf/paladin"
-	"github.com/CloudZou/punk/pkg/conf/paladin/apollo"
+	"angrymiao-go/punk/conf/paladin"
+	"angrymiao-go/punk/conf/paladin/apollo"
 
 	"github.com/BurntSushi/toml"
 )

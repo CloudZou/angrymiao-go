@@ -8,7 +8,7 @@ load(
 go_library(
     name = "go_default_library",
     srcs = ["meta.go"],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/warden/metadata",
+    importpath = "angrymiao-go/punk/net/rpc/warden/metadata",
     tags = ["automanaged"],
     visibility = ["//visibility:public"],
 )

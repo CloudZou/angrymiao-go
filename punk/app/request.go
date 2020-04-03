@@ -1,8 +1,8 @@
 package app
 
 import (
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	"angrymiao-go/punk/log"
+	bm "angrymiao-go/punk/net/http/blademaster"
 	"github.com/astaxie/beego/validation"
 )
 

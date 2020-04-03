@@ -11,10 +11,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	cmcd "github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
-	xhttp "github.com/CloudZou/punk/pkg/net/http/blademaster"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	cmcd "angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
+	xhttp "angrymiao-go/punk/net/http/blademaster"
+	xtime "angrymiao-go/punk/time"
 )
 
 const (

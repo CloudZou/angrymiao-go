@@ -17,7 +17,7 @@ go_library(
         "script.go",
         "trace.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/cache/redis",
+    importpath = "angrymiao-go/punk/cache/redis",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/container/pool:go_default_library",

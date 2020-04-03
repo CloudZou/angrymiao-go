@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "go_default_library",
     srcs = ["wrr.go"],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/warden/balancer/wrr",
+    importpath = "angrymiao-go/punk/net/rpc/warden/balancer/wrr",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/log:go_default_library",

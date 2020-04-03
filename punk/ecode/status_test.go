@@ -7,7 +7,7 @@ import (
 	"github.com/golang/protobuf/ptypes/timestamp"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/CloudZou/punk/pkg/ecode/types"
+	"angrymiao-go/punk/ecode/types"
 )
 
 func TestEqual(t *testing.T) {

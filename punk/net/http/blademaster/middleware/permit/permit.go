@@ -1,6 +1,8 @@
 package permit
 
 import (
+	"angrymiao-go/punk/cache/redis"
+	"encoding/json"
 	"net/url"
 
 	mng "angrymiao-go/app/admin/manager/api"
@@ -19,7 +21,7 @@ const (
 	_sessIDKey             = "_AJSESSIONID"
 	_sessUIDKey            = "uid"      // manager user_id
 	_sessUnKey             = "username" // LDAP username
-	_defaultDomain         = ".bilibili.co"
+	_defaultDomain         = ".angrymiao.com"
 	_defaultCookieName     = "mng-go"
 	_defaultCookieLifeTime = 2592000
 	// CtxPermissions will be set into ctx.
@@ -37,7 +39,7 @@ type Permit struct {
 	verifyURI       string
 	permissionURI   string
 	dashboardCaller string
-	dsClient        *bm.Client // dashboard client
+	dsClient        *bm.Client // auth client
 	maClient        *bm.Client // manager-admin client
 
 	sm *SessionManager // user Session
@@ -52,7 +54,7 @@ type Verify interface {
 
 // Config identify config.
 type Config struct {
-	DsHTTPClient    *bm.ClientConfig // dashboard client config. appkey can not reuse.
+	DsHTTPClient    *bm.ClientConfig // auth client config. appkey can not reuse.
 	MaHTTPClient    *bm.ClientConfig // manager-admin client config
 	Session         *SessionConfig
 	ManagerHost     string
@@ -277,28 +279,27 @@ func (p *Permit) permit(permit string, permissions []string) bool {
 
 // verifyDashboard check whether the user is valid from Dashboard.
 func (p *Permit) verifyDashboard(ctx *bm.Context, sid string) (username string, err error) {
-	params := url.Values{}
-	params.Set("session_id", sid)
-	params.Set("encrypt", "md5")
-	params.Set("caller", p.dashboardCaller)
-	var res struct {
+	var dsbRes struct {
 		Code     int    `json:"code"`
 		UserName string `json:"username"`
 	}
-	if err = p.dsClient.Get(ctx, p.verifyURI, metadata.String(ctx, metadata.RemoteIP), params, &res); err != nil {
-		log.Error("dashboard get verify Session url(%s) error(%v)", p.verifyURI+"?"+params.Encode(), err)
+	conn := p.sm.rp.Get(ctx)
+	defer conn.Close()
+	reply, err := redis.Bytes(conn.Do("GET", sid))
+	if err != nil {
+		log.Error("conn.Do(GET, %s) error(%v)", sid, err)
 		return
 	}
-	if ecode.Int(res.Code) != ecode.OK {
-		log.Error("dashboard get verify Session url(%s) error(%v)", p.verifyURI+"?"+params.Encode(), res.Code)
-		err = ecode.Int(res.Code)
-		return
+	if err = json.Unmarshal(reply, &dsbRes); err != nil {
+		log.Error("json.Unmarshal(%v,%v) error(%v)", string(reply), dsbRes, err)
 	}
-	username = res.UserName
+
+	username = dsbRes.UserName
 	return
 }
 
 // permissions get user's permisssions from manager-admin.
+//从permission service获取相应的权限
 func (p *Permit) permissions(ctx *bm.Context, username string) (uid int64, perms []string, err error) {
 	params := url.Values{}
 	params.Set(_sessUnKey, username)
@@ -307,11 +308,11 @@ func (p *Permit) permissions(ctx *bm.Context, username string) (uid int64, perms
 		Data permissions `json:"data"`
 	}
 	if err = p.maClient.Get(ctx, p.permissionURI, metadata.String(ctx, metadata.RemoteIP), params, &res); err != nil {
-		log.Error("dashboard get permissions url(%s) error(%v)", p.permissionURI+"?"+params.Encode(), err)
+		log.Error("auth get permissions url(%s) error(%v)", p.permissionURI+"?"+params.Encode(), err)
 		return
 	}
 	if ecode.Int(res.Code) != ecode.OK {
-		log.Error("dashboard get permissions url(%s) error(%v)", p.permissionURI+"?"+params.Encode(), res.Code)
+		log.Error("auth get permissions url(%s) error(%v)", p.permissionURI+"?"+params.Encode(), res.Code)
 		err = ecode.Int(res.Code)
 		return
 	}

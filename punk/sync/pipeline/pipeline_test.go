@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/net/metadata"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/net/metadata"
+	xtime "angrymiao-go/punk/time"
 )
 
 func TestPipeline(t *testing.T) {

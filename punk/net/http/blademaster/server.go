@@ -13,12 +13,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/conf/dsn"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/criticality"
-	"github.com/CloudZou/punk/pkg/net/ip"
-	"github.com/CloudZou/punk/pkg/net/metadata"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/conf/dsn"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/criticality"
+	"angrymiao-go/punk/net/ip"
+	"angrymiao-go/punk/net/metadata"
+	xtime "angrymiao-go/punk/time"
 
 	"github.com/pkg/errors"
 )

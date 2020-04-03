@@ -18,7 +18,7 @@ go_library(
         "tracer.go",
         "util.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/net/trace",
+    importpath = "angrymiao-go/punk/net/trace",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/dsn:go_default_library",

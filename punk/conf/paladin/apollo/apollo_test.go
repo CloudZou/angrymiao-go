@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/conf/paladin/apollo/internal/mockserver"
+	"angrymiao-go/punk/conf/paladin/apollo/internal/mockserver"
 )
 
 func TestMain(m *testing.M) {

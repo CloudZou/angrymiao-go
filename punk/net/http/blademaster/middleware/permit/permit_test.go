@@ -103,7 +103,7 @@ func getPermit() *Permit {
 			},
 		},
 		ManagerHost:     "http://uat-manager.bilibili.co",
-		DashboardHost:   "http://dashboard-mng.bilibili.co",
+		DashboardHost:   "http://auth-mng.bilibili.co",
 		DashboardCaller: "manager-go",
 	})
 }

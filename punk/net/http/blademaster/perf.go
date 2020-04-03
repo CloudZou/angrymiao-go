@@ -7,7 +7,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/CloudZou/punk/pkg/conf/dsn"
+	"angrymiao-go/punk/conf/dsn"
 
 	"github.com/pkg/errors"
 )

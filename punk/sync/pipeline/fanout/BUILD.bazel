@@ -6,7 +6,7 @@ go_library(
         "fanout.go",
         "metrics.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/sync/pipeline/fanout",
+    importpath = "angrymiao-go/punk/sync/pipeline/fanout",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/log:go_default_library",

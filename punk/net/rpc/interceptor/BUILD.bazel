@@ -7,7 +7,7 @@ load(
 go_library(
     name = "go_default_library",
     srcs = ["interceptor.go"],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/interceptor",
+    importpath = "angrymiao-go/punk/net/rpc/interceptor",
     tags = ["automanaged"],
     visibility = ["//visibility:public"],
     deps = [

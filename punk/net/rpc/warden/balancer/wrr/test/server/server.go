@@ -10,10 +10,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/rpc/warden"
-	pb "github.com/CloudZou/punk/pkg/net/rpc/warden/proto/testproto"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/rpc/warden"
+	pb "angrymiao-go/punk/net/rpc/warden/proto/testproto"
 )
 
 var (

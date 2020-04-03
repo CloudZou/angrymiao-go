@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/criticality"
-	"github.com/CloudZou/punk/pkg/net/metadata"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/criticality"
+	"angrymiao-go/punk/net/metadata"
 
 	"github.com/pkg/errors"
 )

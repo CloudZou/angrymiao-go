@@ -8,12 +8,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/naming"
-	"github.com/CloudZou/punk/pkg/naming/discovery"
-	rcontext "github.com/CloudZou/punk/pkg/net/rpc/context"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/naming"
+	"angrymiao-go/punk/naming/discovery"
+	rcontext "angrymiao-go/punk/net/rpc/context"
 )
 
 func TestBreaker(t *testing.T) {

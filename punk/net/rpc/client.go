@@ -16,14 +16,14 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/ecode"
-	xlog "github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/metadata"
-	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
-	"github.com/CloudZou/punk/pkg/net/trace"
-	"github.com/CloudZou/punk/pkg/stat"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/ecode"
+	xlog "angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/metadata"
+	"angrymiao-go/punk/net/netutil/breaker"
+	"angrymiao-go/punk/net/trace"
+	"angrymiao-go/punk/stat"
+	xtime "angrymiao-go/punk/time"
 
 	perr "github.com/pkg/errors"
 )

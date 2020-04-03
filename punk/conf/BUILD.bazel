@@ -6,7 +6,7 @@ go_library(
         "client.go",
         "client_v2.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/conf",
+    importpath = "angrymiao-go/punk/conf",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/env:go_default_library",

@@ -8,10 +8,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/log"
-	nmd "github.com/CloudZou/punk/pkg/net/metadata"
-	wmeta "github.com/CloudZou/punk/pkg/net/rpc/warden/metadata"
-	"github.com/CloudZou/punk/pkg/stat/summary"
+	"angrymiao-go/punk/log"
+	nmd "angrymiao-go/punk/net/metadata"
+	wmeta "angrymiao-go/punk/net/rpc/warden/metadata"
+	"angrymiao-go/punk/stat/summary"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/balancer"

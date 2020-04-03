@@ -1,12 +1,12 @@
 package report
 
 import (
-	"github.com/CloudZou/punk/pkg/queue/databus"
+	"angrymiao-go/punk/queue/databus"
 	"sync"
 	"testing"
 	"time"
 
-	xtime "github.com/CloudZou/punk/pkg/time"
+	xtime "angrymiao-go/punk/time"
 )
 
 var (

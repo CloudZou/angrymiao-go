@@ -21,7 +21,7 @@ go_library(
         "tree.go",
         "utils.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/net/http/blademaster",
+    importpath = "angrymiao-go/punk/net/http/blademaster",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/dsn:go_default_library",

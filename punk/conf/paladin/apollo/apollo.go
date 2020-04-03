@@ -12,7 +12,7 @@ import (
 
 	"github.com/philchia/agollo"
 
-	"github.com/CloudZou/punk/pkg/conf/paladin"
+	"angrymiao-go/punk/conf/paladin"
 )
 
 var (

@@ -7,7 +7,7 @@ go_library(
         "request.go",
         "response.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/app",
+    importpath = "angrymiao-go/punk/app",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/ecode:go_default_library",

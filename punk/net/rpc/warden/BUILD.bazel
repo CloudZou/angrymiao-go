@@ -10,7 +10,7 @@ go_library(
         "stats.go",
         "validate.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/warden",
+    importpath = "angrymiao-go/punk/net/rpc/warden",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/dsn:go_default_library",

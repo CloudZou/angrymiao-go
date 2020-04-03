@@ -3,6 +3,6 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["naming.go"],
-    importpath = "github.com/CloudZou/punk/pkg/naming",
+    importpath = "angrymiao-go/punk/naming",
     visibility = ["//visibility:public"],
 )

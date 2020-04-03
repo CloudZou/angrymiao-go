@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/net/metadata"
-	"github.com/CloudZou/punk/pkg/stat/metric"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/net/metadata"
+	"angrymiao-go/punk/stat/metric"
+	xtime "angrymiao-go/punk/time"
 )
 
 // ErrFull channel full error

@@ -1,7 +1,7 @@
 package stat
 
 import (
-	"github.com/CloudZou/punk/pkg/stat/prom"
+	"angrymiao-go/punk/stat/prom"
 )
 
 // Stat interface.

@@ -14,7 +14,7 @@ go_library(
         "toml.go",
         "value.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/conf/paladin",
+    importpath = "angrymiao-go/punk/conf/paladin",
     visibility = ["//visibility:public"],
     deps = [
         "//vendor/github.com/BurntSushi/toml:go_default_library",

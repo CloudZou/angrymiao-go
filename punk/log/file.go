@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/log/internal/filewriter"
+	"angrymiao-go/punk/log/internal/filewriter"
 )
 
 // level idx

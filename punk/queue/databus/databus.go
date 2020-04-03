@@ -12,16 +12,16 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/cache/redis"
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/container/pool"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/naming"
-	"github.com/CloudZou/punk/pkg/naming/discovery"
-	"github.com/CloudZou/punk/pkg/net/netutil"
-	"github.com/CloudZou/punk/pkg/net/trace"
-	"github.com/CloudZou/punk/pkg/stat/prom"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/cache/redis"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/container/pool"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/naming"
+	"angrymiao-go/punk/naming/discovery"
+	"angrymiao-go/punk/net/netutil"
+	"angrymiao-go/punk/net/trace"
+	"angrymiao-go/punk/stat/prom"
+	xtime "angrymiao-go/punk/time"
 )
 
 const (

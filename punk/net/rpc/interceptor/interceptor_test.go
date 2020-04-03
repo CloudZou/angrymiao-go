@@ -6,8 +6,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/net/rpc/context"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/net/rpc/context"
 
 	"golang.org/x/time/rate"
 )

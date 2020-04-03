@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/net/netutil/breaker"
+	xtime "angrymiao-go/punk/time"
 )
 
 // ExampleGroup show group usage.

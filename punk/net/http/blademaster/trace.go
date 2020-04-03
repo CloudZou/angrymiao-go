@@ -6,8 +6,8 @@ import (
 	"net/http/httptrace"
 	"strconv"
 
-	"github.com/CloudZou/punk/pkg/net/metadata"
-	"github.com/CloudZou/punk/pkg/net/trace"
+	"angrymiao-go/punk/net/metadata"
+	"angrymiao-go/punk/net/trace"
 )
 
 const _defaultComponentName = "net/http"

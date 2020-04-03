@@ -3,6 +3,6 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["backoff.go"],
-    importpath = "github.com/CloudZou/punk/pkg/net/netutil",
+    importpath = "angrymiao-go/punk/net/netutil",
     visibility = ["//visibility:public"],
 )

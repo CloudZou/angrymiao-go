@@ -1,7 +1,7 @@
 package fanout
 
 import (
-	"github.com/CloudZou/punk/pkg/stat/metric"
+	"angrymiao-go/punk/stat/metric"
 )
 
 const (

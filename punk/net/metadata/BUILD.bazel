@@ -6,7 +6,7 @@ go_library(
         "key.go",
         "metadata.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/net/metadata",
+    importpath = "angrymiao-go/punk/net/metadata",
     visibility = ["//visibility:public"],
     deps = ["//vendor/github.com/pkg/errors:go_default_library"],
 )

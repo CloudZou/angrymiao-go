@@ -8,12 +8,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/naming"
-	"github.com/CloudZou/punk/pkg/naming/discovery"
-	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/naming"
+	"angrymiao-go/punk/naming/discovery"
+	"angrymiao-go/punk/net/netutil/breaker"
+	xtime "angrymiao-go/punk/time"
 )
 
 const (

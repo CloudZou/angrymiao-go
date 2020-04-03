@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/rpc/context"
-	"github.com/CloudZou/punk/pkg/stat"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/rpc/context"
+	"angrymiao-go/punk/stat"
 
 	"golang.org/x/time/rate"
 )

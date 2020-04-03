@@ -70,7 +70,7 @@ func Example() {
 			},
 		},
 		ManagerHost:     "http://uat-manager.bilibili.co",
-		DashboardHost:   "http://uat-dashboard-mng.bilibili.co",
+		DashboardHost:   "http://uat-auth-mng.bilibili.co",
 		DashboardCaller: "manager-go",
 	})
 

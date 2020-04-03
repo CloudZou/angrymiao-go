@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["hello.pb.go"],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/warden/proto/testproto",
+    importpath = "angrymiao-go/punk/net/rpc/warden/proto/testproto",
     visibility = ["//visibility:public"],
     deps = [
         "//vendor/github.com/gogo/protobuf/gogoproto:go_default_library",

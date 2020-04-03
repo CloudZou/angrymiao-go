@@ -9,7 +9,7 @@ load(
 go_library(
     name = "go_default_library",
     srcs = ["client.go"],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/warden/examples/grpcDebug",
+    importpath = "angrymiao-go/punk/net/rpc/warden/examples/grpcDebug",
     tags = ["automanaged"],
     visibility = ["//visibility:public"],
     deps = [

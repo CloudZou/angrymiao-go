@@ -16,7 +16,7 @@ go_library(
         "rolling_policy.go",
         "window.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/stat/metric",
+    importpath = "angrymiao-go/punk/stat/metric",
     visibility = ["//visibility:public"],
     deps = ["//vendor/github.com/prometheus/client_golang/prometheus:go_default_library"],
 )

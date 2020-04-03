@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/container/pool"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/container/pool"
+	xtime "angrymiao-go/punk/time"
 )
 
 var p *Pool

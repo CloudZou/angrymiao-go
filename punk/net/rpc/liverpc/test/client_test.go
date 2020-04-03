@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/net/rpc/liverpc"
-	"github.com/CloudZou/punk/pkg/net/rpc/liverpc/testdata"
-	v1 "github.com/CloudZou/punk/pkg/net/rpc/liverpc/testdata/v1"
-	v2 "github.com/CloudZou/punk/pkg/net/rpc/liverpc/testdata/v2"
+	"angrymiao-go/punk/net/rpc/liverpc"
+	"angrymiao-go/punk/net/rpc/liverpc/testdata"
+	v1 "angrymiao-go/punk/net/rpc/liverpc/testdata/v1"
+	v2 "angrymiao-go/punk/net/rpc/liverpc/testdata/v2"
 
 	"github.com/pkg/errors"
 )

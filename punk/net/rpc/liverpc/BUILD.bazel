@@ -9,7 +9,7 @@ go_library(
         "option.go",
         "protocol.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/liverpc",
+    importpath = "angrymiao-go/punk/net/rpc/liverpc",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/env:go_default_library",

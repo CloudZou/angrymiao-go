@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ecode"
+	"angrymiao-go/punk/ecode"
 )
 
 var testConf = &Config{

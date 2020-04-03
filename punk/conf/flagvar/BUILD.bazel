@@ -3,6 +3,6 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["flagvar.go"],
-    importpath = "github.com/CloudZou/punk/pkg/conf/flagvar",
+    importpath = "angrymiao-go/punk/conf/flagvar",
     visibility = ["//visibility:public"],
 )

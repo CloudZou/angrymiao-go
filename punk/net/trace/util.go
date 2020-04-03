@@ -8,8 +8,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/net/metadata"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/net/metadata"
 )
 
 var _hostHash byte

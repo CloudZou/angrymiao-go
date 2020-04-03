@@ -7,9 +7,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/stat/metric"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/stat/metric"
 )
 
 // sreBreaker is a sre CircuitBreaker pattern.

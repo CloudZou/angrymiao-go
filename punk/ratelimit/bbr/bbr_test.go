@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ratelimit"
-	"github.com/CloudZou/punk/pkg/stat/metric"
+	"angrymiao-go/punk/ratelimit"
+	"angrymiao-go/punk/stat/metric"
 	"github.com/stretchr/testify/assert"
 )
 

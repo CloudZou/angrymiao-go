@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "go_default_library",
     srcs = ["pipeline.go"],
-    importpath = "github.com/CloudZou/punk/pkg/sync/pipeline",
+    importpath = "angrymiao-go/punk/sync/pipeline",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/net/metadata:go_default_library",

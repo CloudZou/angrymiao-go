@@ -10,14 +10,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/conf/dsn"
-	"github.com/CloudZou/punk/pkg/log"
-	nmd "github.com/CloudZou/punk/pkg/net/metadata"
-	"github.com/CloudZou/punk/pkg/net/trace"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/conf/dsn"
+	"angrymiao-go/punk/log"
+	nmd "angrymiao-go/punk/net/metadata"
+	"angrymiao-go/punk/net/trace"
+	xtime "angrymiao-go/punk/time"
 	//this package is for json format response
-	_ "github.com/CloudZou/punk/pkg/net/rpc/warden/encoding/json"
-	"github.com/CloudZou/punk/pkg/net/rpc/warden/status"
+	_ "angrymiao-go/punk/net/rpc/warden/encoding/json"
+	"angrymiao-go/punk/net/rpc/warden/status"
 
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"

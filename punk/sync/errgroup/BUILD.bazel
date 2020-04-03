@@ -6,7 +6,7 @@ go_library(
         "doc.go",
         "errgroup.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/sync/errgroup",
+    importpath = "angrymiao-go/punk/sync/errgroup",
     visibility = ["//visibility:public"],
 )
 

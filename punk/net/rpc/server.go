@@ -19,13 +19,13 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/CloudZou/punk/pkg/conf/dsn"
-	"github.com/CloudZou/punk/pkg/conf/env"
-	xlog "github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/metadata"
-	"github.com/CloudZou/punk/pkg/net/rpc/context"
-	"github.com/CloudZou/punk/pkg/net/rpc/interceptor"
-	"github.com/CloudZou/punk/pkg/net/trace"
+	"angrymiao-go/punk/conf/dsn"
+	"angrymiao-go/punk/conf/env"
+	xlog "angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/metadata"
+	"angrymiao-go/punk/net/rpc/context"
+	"angrymiao-go/punk/net/rpc/interceptor"
+	"angrymiao-go/punk/net/trace"
 
 	pkgerr "github.com/pkg/errors"
 )

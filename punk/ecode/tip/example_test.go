@@ -3,10 +3,10 @@ package tip_test
 import (
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ecode/tip"
-	xhttp "github.com/CloudZou/punk/pkg/net/http/blademaster"
-	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/ecode/tip"
+	xhttp "angrymiao-go/punk/net/http/blademaster"
+	"angrymiao-go/punk/net/netutil/breaker"
+	xtime "angrymiao-go/punk/time"
 )
 
 func ExampleInit() {

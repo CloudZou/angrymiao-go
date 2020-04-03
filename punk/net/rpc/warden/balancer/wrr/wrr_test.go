@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
-	nmd "github.com/CloudZou/punk/pkg/net/metadata"
-	wmeta "github.com/CloudZou/punk/pkg/net/rpc/warden/metadata"
+	nmd "angrymiao-go/punk/net/metadata"
+	wmeta "angrymiao-go/punk/net/rpc/warden/metadata"
 
 	"google.golang.org/grpc/balancer"
 	"google.golang.org/grpc/resolver"

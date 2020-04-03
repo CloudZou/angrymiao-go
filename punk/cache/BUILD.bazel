@@ -6,7 +6,7 @@ go_library(
         "cache.go",
         "metrics.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/cache",
+    importpath = "angrymiao-go/punk/cache",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/log:go_default_library",

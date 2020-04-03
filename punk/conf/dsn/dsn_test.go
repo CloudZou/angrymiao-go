@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	xtime "github.com/CloudZou/punk/pkg/time"
+	xtime "angrymiao-go/punk/time"
 )
 
 type config struct {

@@ -6,7 +6,7 @@ go_library(
         "filewriter.go",
         "option.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/log/internal/filewriter",
+    importpath = "angrymiao-go/punk/log/internal/filewriter",
     visibility = ["//pkg/log:__subpackages__"],
 )
 

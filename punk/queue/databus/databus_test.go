@@ -2,12 +2,12 @@ package databus_test
 
 import (
 	"context"
-	"github.com/CloudZou/punk/pkg/naming/discovery"
-	"github.com/CloudZou/punk/pkg/queue/databus"
+	"angrymiao-go/punk/naming/discovery"
+	"angrymiao-go/punk/queue/databus"
 	"testing"
 	"time"
 
-	xtime "github.com/CloudZou/punk/pkg/time"
+	xtime "angrymiao-go/punk/time"
 )
 
 var (

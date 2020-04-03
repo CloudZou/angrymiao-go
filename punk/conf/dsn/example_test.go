@@ -3,8 +3,8 @@ package dsn_test
 import (
 	"log"
 
-	"github.com/CloudZou/punk/pkg/conf/dsn"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/conf/dsn"
+	xtime "angrymiao-go/punk/time"
 )
 
 // Config struct

@@ -6,7 +6,7 @@ go_library(
         "apollo.go",
         "const.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/conf/paladin/apollo",
+    importpath = "angrymiao-go/punk/conf/paladin/apollo",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/paladin:go_default_library",

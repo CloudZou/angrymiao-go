@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/stat/metric"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/stat/metric"
+	xtime "angrymiao-go/punk/time"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 )
 
 func Test_logFn(t *testing.T) {

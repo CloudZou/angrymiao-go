@@ -6,7 +6,7 @@ go_library(
         "ecode.go",
         "ecode.pb.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/ecode/pb",
+    importpath = "angrymiao-go/punk/ecode/pb",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/ecode:go_default_library",

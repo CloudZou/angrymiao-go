@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ecode"
+	"angrymiao-go/punk/ecode"
 )
 
 // Config codel config.

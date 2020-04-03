@@ -3,8 +3,8 @@ package report
 import (
 	"context"
 	"encoding/json"
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/queue/databus"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/queue/databus"
 	"strconv"
 	"time"
 

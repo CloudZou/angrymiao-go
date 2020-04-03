@@ -6,9 +6,9 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/metadata"
-	"github.com/CloudZou/punk/pkg/net/trace"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/metadata"
+	"angrymiao-go/punk/net/trace"
 )
 
 var (

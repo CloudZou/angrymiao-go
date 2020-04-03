@@ -5,8 +5,8 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/stat/prom"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/stat/prom"
 )
 
 var (

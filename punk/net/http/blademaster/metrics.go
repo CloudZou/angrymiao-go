@@ -1,6 +1,6 @@
 package blademaster
 
-import "github.com/CloudZou/punk/pkg/stat/metric"
+import "angrymiao-go/punk/stat/metric"
 
 const (
 	clientNamespace = "http_client"

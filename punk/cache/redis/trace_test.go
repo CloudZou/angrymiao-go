@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/CloudZou/punk/pkg/net/trace"
+	"angrymiao-go/punk/net/trace"
 )
 
 type mockTrace struct {

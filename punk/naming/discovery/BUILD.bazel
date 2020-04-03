@@ -6,7 +6,7 @@ go_library(
         "discovery.go",
         "shuffle.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/naming/discovery",
+    importpath = "angrymiao-go/punk/naming/discovery",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/env:go_default_library",

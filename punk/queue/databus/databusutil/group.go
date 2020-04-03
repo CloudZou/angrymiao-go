@@ -1,8 +1,8 @@
 package databusutil
 
 import (
-	"github.com/CloudZou/punk/pkg/queue/databus"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/queue/databus"
+	xtime "angrymiao-go/punk/time"
 	"runtime"
 	"sync"
 	"time"

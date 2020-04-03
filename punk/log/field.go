@@ -4,7 +4,7 @@ import (
 	"math"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/log/internal/core"
+	"angrymiao-go/punk/log/internal/core"
 )
 
 // D represents a map of entry level data used for structured logging.

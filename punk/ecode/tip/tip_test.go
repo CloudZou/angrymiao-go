@@ -4,7 +4,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/CloudZou/punk/pkg/ecode"
+	"angrymiao-go/punk/ecode"
 )
 
 var (

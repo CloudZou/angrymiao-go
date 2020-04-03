@@ -3,8 +3,8 @@ package discovery_test
 import (
 	"context"
 	"fmt"
-	"github.com/CloudZou/punk/pkg/naming"
-	"github.com/CloudZou/punk/pkg/naming/discovery"
+	"angrymiao-go/punk/naming"
+	"angrymiao-go/punk/naming/discovery"
 	"time"
 )
 

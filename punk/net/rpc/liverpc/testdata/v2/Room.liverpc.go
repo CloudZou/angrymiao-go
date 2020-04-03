@@ -13,7 +13,7 @@ package v2
 import context "context"
 
 import proto "github.com/golang/protobuf/proto"
-import "github.com/CloudZou/punk/pkg/net/rpc/liverpc"
+import "angrymiao-go/punk/net/rpc/liverpc"
 
 var _ proto.Message // generate to suppress unused imports
 // Imports only used by utility functions:

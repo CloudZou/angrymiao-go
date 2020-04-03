@@ -8,8 +8,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/stat/metric"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/stat/metric"
 )
 
 // Config log config.

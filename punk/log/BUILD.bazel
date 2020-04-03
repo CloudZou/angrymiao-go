@@ -16,7 +16,7 @@ go_library(
         "util.go",
         "verbose.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/log",
+    importpath = "angrymiao-go/punk/log",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/env:go_default_library",

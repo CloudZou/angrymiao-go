@@ -27,7 +27,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/stat"
+	"angrymiao-go/punk/stat"
 
 	"github.com/pkg/errors"
 )

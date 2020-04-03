@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	protogen "github.com/CloudZou/punk/pkg/net/trace/proto"
+	protogen "angrymiao-go/punk/net/trace/proto"
 )
 
 const (

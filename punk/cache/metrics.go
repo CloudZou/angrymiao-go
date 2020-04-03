@@ -1,6 +1,6 @@
 package cache
 
-import "github.com/CloudZou/punk/pkg/stat/metric"
+import "angrymiao-go/punk/stat/metric"
 
 const _metricNamespace = "cache"
 

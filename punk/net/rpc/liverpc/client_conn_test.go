@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/net/metadata"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/net/metadata"
 
 	. "github.com/smartystreets/goconvey/convey"
 )

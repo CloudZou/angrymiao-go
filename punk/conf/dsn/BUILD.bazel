@@ -7,7 +7,7 @@ go_library(
         "dsn.go",
         "query.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/conf/dsn",
+    importpath = "angrymiao-go/punk/conf/dsn",
     visibility = ["//visibility:public"],
     deps = ["//vendor/gopkg.in/go-playground/validator.v9:go_default_library"],
 )

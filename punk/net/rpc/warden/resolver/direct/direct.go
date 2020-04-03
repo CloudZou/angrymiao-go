@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/naming"
-	"github.com/CloudZou/punk/pkg/net/rpc/warden/resolver"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/naming"
+	"angrymiao-go/punk/net/rpc/warden/resolver"
 )
 
 const (

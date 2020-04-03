@@ -9,10 +9,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/naming"
-	wmeta "github.com/CloudZou/punk/pkg/net/rpc/warden/metadata"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/naming"
+	wmeta "angrymiao-go/punk/net/rpc/warden/metadata"
 
 	"github.com/dgryski/go-farm"
 	"github.com/pkg/errors"

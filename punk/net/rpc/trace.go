@@ -3,7 +3,7 @@ package rpc
 import (
 	"strconv"
 
-	"github.com/CloudZou/punk/pkg/net/trace"
+	"angrymiao-go/punk/net/trace"
 )
 
 // TraceInfo propagate trace propagate gorpc call

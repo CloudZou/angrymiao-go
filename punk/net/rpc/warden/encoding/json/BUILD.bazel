@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["json.go"],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/warden/encoding/json",
+    importpath = "angrymiao-go/punk/net/rpc/warden/encoding/json",
     visibility = ["//visibility:public"],
     deps = [
         "//vendor/github.com/gogo/protobuf/jsonpb:go_default_library",

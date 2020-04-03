@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ecode"
-	nmd "github.com/CloudZou/punk/pkg/net/metadata"
-	"github.com/CloudZou/punk/pkg/stat/summary"
-	"github.com/CloudZou/punk/pkg/stat/sys/cpu"
+	"angrymiao-go/punk/ecode"
+	nmd "angrymiao-go/punk/net/metadata"
+	"angrymiao-go/punk/stat/summary"
+	"angrymiao-go/punk/stat/sys/cpu"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"

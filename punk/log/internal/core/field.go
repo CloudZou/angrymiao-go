@@ -5,7 +5,7 @@ import (
 	"math"
 	"time"
 
-	xtime "github.com/CloudZou/punk/pkg/time"
+	xtime "angrymiao-go/punk/time"
 )
 
 // FieldType represent D value type

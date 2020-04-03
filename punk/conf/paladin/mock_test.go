@@ -3,7 +3,7 @@ package paladin_test
 import (
 	"testing"
 
-	"github.com/CloudZou/punk/pkg/conf/paladin"
+	"angrymiao-go/punk/conf/paladin"
 
 	"github.com/stretchr/testify/assert"
 )

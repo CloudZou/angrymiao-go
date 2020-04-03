@@ -13,8 +13,8 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/ecode/pb"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/ecode/pb"
 )
 
 func TestCodeConvert(t *testing.T) {

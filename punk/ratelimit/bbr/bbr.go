@@ -6,13 +6,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/container/group"
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
-	limit "github.com/CloudZou/punk/pkg/ratelimit"
-	"github.com/CloudZou/punk/pkg/stat/metric"
+	"angrymiao-go/punk/container/group"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
+	limit "angrymiao-go/punk/ratelimit"
+	"angrymiao-go/punk/stat/metric"
 
-	cpustat "github.com/CloudZou/punk/pkg/stat/sys/cpu"
+	cpustat "angrymiao-go/punk/stat/sys/cpu"
 )
 
 var (

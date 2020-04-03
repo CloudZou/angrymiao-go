@@ -6,7 +6,7 @@ go_library(
         "databus.go",
         "databus.pb.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/queue/databus",
+    importpath = "angrymiao-go/punk/queue/databus",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/cache/redis:go_default_library",

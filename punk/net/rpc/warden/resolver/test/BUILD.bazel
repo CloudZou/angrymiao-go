@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "go_default_library",
     srcs = ["mockdiscovery.go"],
-    importpath = "github.com/CloudZou/punk/pkg/net/rpc/warden/resolver/test",
+    importpath = "angrymiao-go/punk/net/rpc/warden/resolver/test",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/env:go_default_library",

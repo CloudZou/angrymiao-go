@@ -5,9 +5,9 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/net/rpc/warden"
-	pb "github.com/CloudZou/punk/pkg/net/rpc/warden/proto/testproto"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/net/rpc/warden"
+	pb "angrymiao-go/punk/net/rpc/warden/proto/testproto"
 
 	"github.com/golang/protobuf/ptypes"
 	"github.com/golang/protobuf/ptypes/any"

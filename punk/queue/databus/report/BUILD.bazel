@@ -6,7 +6,7 @@ go_library(
         "agent.go",
         "conf.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/queue/databus/report",
+    importpath = "angrymiao-go/punk/queue/databus/report",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/conf/env:go_default_library",

@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	criticalityPkg "github.com/CloudZou/punk/pkg/net/criticality"
-	"github.com/CloudZou/punk/pkg/net/metadata"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	criticalityPkg "angrymiao-go/punk/net/criticality"
+	"angrymiao-go/punk/net/metadata"
+	xtime "angrymiao-go/punk/time"
 
 	"github.com/stretchr/testify/assert"
 )

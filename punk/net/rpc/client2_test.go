@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/naming"
-	"github.com/CloudZou/punk/pkg/naming/discovery"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/naming"
+	"angrymiao-go/punk/naming/discovery"
+	xtime "angrymiao-go/punk/time"
 
 	. "github.com/smartystreets/goconvey/convey"
 )

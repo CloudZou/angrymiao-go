@@ -10,7 +10,7 @@ go_library(
         "json_encoder.go",
         "pool.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/log/internal/core",
+    importpath = "angrymiao-go/punk/log/internal/core",
     visibility = ["//pkg/log:__subpackages__"],
     deps = ["//pkg/time:go_default_library"],
 )

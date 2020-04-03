@@ -25,9 +25,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/container/pool"
-	"github.com/CloudZou/punk/pkg/net/trace"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/container/pool"
+	"angrymiao-go/punk/net/trace"
+	xtime "angrymiao-go/punk/time"
 )
 
 var beginTime, _ = time.Parse("2006-01-02 15:04:05", "2006-01-02 15:04:05")

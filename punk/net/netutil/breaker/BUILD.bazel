@@ -6,7 +6,7 @@ go_library(
         "breaker.go",
         "sre_breaker.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/net/netutil/breaker",
+    importpath = "angrymiao-go/punk/net/netutil/breaker",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/ecode:go_default_library",

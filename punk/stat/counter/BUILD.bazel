@@ -7,7 +7,7 @@ go_library(
         "gauge.go",
         "rolling.go",
     ],
-    importpath = "github.com/CloudZou/punk/pkg/stat/counter",
+    importpath = "angrymiao-go/punk/stat/counter",
     visibility = ["//visibility:public"],
 )
 
