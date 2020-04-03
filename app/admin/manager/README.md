@@ -1,0 +1,1 @@
+manager服务提供鉴权和授权的grpc服务接口和http接口
