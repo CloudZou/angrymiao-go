@@ -19,3 +19,7 @@ type AccountSession struct {
 
 	model.BaseModel
 }
+
+func (a *AccountSession) TableName() string {
+	return "account_session"
+}

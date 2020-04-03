@@ -2,7 +2,9 @@ package http
 
 import (
 	"angrymiao-go/app/admin/passport/conf"
+	"angrymiao-go/app/admin/passport/model"
 	"angrymiao-go/app/admin/passport/service"
+	"angrymiao-go/punk/ecode"
 	"net/http"
 	"angrymiao-go/punk/log"
 	bm "angrymiao-go/punk/net/http/blademaster"
@@ -37,6 +39,14 @@ func ping(ctx *bm.Context) {
 }
 
 func signIn(c *bm.Context) {
+	var (
+		err error
+	)
+	var signInForm = &model.SignInForm{}
+	if err = c.Bind(signInForm); err != nil {
+		c.JSON(nil, ecode.RequestErr)
+		return
+	}
 	//signIn,生成cookie返回给前端，并写入session到redis
 	c.JSON("", nil)
 }
