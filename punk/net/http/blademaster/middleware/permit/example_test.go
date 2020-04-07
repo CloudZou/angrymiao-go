@@ -53,7 +53,6 @@ func Example() {
 		Session: &permit.SessionConfig{
 			SessionIDLength: 32,
 			CookieLifeTime:  1800,
-			CookieName:      "mng-go",
 			Domain:          ".bilibili.co",
 		},
 		ManagerHost:     "http://uat-manager.bilibili.co",
@@ -61,7 +60,6 @@ func Example() {
 		DashboardCaller: "manager-go",
 	})
 
-	p := permit.New2(nil)
 
 	e := bm.NewServer(nil)
 
@@ -71,14 +69,6 @@ func Example() {
 	})
 	//Check whether the user has logged in,and check th user has the access permisson to the specifed path
 	e.GET("/tag/del", a.Permit("TAG_DEL"), func(c *bm.Context) {
-		uid := metadata.Int64(c, metadata.Uid)
-		username := metadata.String(c, metadata.Username)
-		c.JSON(fmt.Sprintf("pass uid(%d) username(%s)", uid, username), nil)
-	})
-	e.GET("/check/login", p.Verify2(), func(c *bm.Context) {
-		c.JSON("pass", nil)
-	})
-	e.POST("/tag/del", p.Permit2("TAG_DEL"), func(c *bm.Context) {
 		uid := metadata.Int64(c, metadata.Uid)
 		username := metadata.String(c, metadata.Username)
 		c.JSON(fmt.Sprintf("pass uid(%d) username(%s)", uid, username), nil)

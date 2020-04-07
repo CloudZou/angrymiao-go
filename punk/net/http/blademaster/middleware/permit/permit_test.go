@@ -8,8 +8,6 @@ import (
 	"testing"
 	"time"
 
-	"angrymiao-go/punk/cache/memcache"
-	"angrymiao-go/punk/container/pool"
 	"angrymiao-go/punk/ecode"
 	"angrymiao-go/punk/log"
 	bm "angrymiao-go/punk/net/http/blademaster"
@@ -86,21 +84,7 @@ func getPermit() *Permit {
 		Session: &SessionConfig{
 			SessionIDLength: 32,
 			CookieLifeTime:  1800,
-			CookieName:      "mng-go",
 			Domain:          ".bilibili.co",
-			Memcache: &memcache.Config{
-				Config: &pool.Config{
-					Active:      10,
-					Idle:        5,
-					IdleTimeout: xtime.Duration(time.Second * 80),
-				},
-				Name:         "go-business/auth",
-				Proto:        "tcp",
-				Addr:         "172.16.33.54:11211",
-				DialTimeout:  xtime.Duration(time.Millisecond * 1000),
-				ReadTimeout:  xtime.Duration(time.Millisecond * 1000),
-				WriteTimeout: xtime.Duration(time.Millisecond * 1000),
-			},
 		},
 		ManagerHost:     "http://uat-manager.bilibili.co",
 		DashboardHost:   "http://auth-mng.bilibili.co",
@@ -128,18 +112,9 @@ func setSession(uid int64, username string) (string, error) {
 	a := getPermit()
 	sv := a.sm.newSession(context.TODO())
 	sv.Set("username", username)
-	mcConn := a.sm.mc.Get(context.TODO())
+	mcConn := a.sm.rp.Get(context.TODO())
 	defer mcConn.Close()
 	key := sv.Sid
-	item := &memcache.Item{
-		Key:        key,
-		Object:     sv,
-		Flags:      memcache.FlagJSON,
-		Expiration: int32(a.sm.c.CookieLifeTime),
-	}
-	if err := mcConn.Set(item); err != nil {
-		return "", err
-	}
 	return key, nil
 }
 
