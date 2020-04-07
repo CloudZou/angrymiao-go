@@ -13,7 +13,6 @@ import (
 )
 
 const (
-	_verifyURI             = "/api/session/verify"
 	_permissionURI         = "/x/admin/manager/permission"
 	_sessIDKey             = "_AJSESSIONID"
 	_sessUIDKey            = "uid"      // manager user_id
@@ -32,10 +31,8 @@ type permissions struct {
 
 // Permit is an auth middleware.
 type Permit struct {
-	verifyURI       string
 	permissionURI   string
 	dashboardCaller string
-	dsClient        *bm.Client // auth client
 	maClient        *bm.Client // manager-admin client
 
 	sm *SessionManager // user Session
@@ -54,31 +51,14 @@ type Config struct {
 	MaHTTPClient    *bm.ClientConfig // manager-admin client config
 	Session         *SessionConfig
 	ManagerHost     string
-	DashboardHost   string
-	DashboardCaller string
 }
 
 
 // New new an auth service.
 func New(c *Config) *Permit {
 	a := &Permit{
-		dashboardCaller: c.DashboardCaller,
-		verifyURI:       c.DashboardHost + _verifyURI,
 		permissionURI:   c.ManagerHost + _permissionURI,
-		dsClient:        bm.NewClient(c.DsHTTPClient),
 		maClient:        bm.NewClient(c.MaHTTPClient),
-		sm:              newSessionManager(c.Session),
-	}
-	return a
-}
-
-
-// NewVerify new a verify service.
-func NewVerify(c *Config) Verify {
-	a := &Permit{
-		verifyURI:       c.DashboardHost + _verifyURI,
-		dsClient:        bm.NewClient(c.DsHTTPClient),
-		dashboardCaller: c.DashboardCaller,
 		sm:              newSessionManager(c.Session),
 	}
 	return a
