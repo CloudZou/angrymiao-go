@@ -1,6 +1,7 @@
 package conf
 
 import (
+	"angrymiao-go/punk/cache/redis"
 	"angrymiao-go/punk/conf"
 	"angrymiao-go/punk/database/orm"
 	"angrymiao-go/punk/log"
@@ -22,6 +23,7 @@ type Config struct {
 	Server *bm.ServerConfig
 	DB     *orm.Config
 	WardenServer *warden.ServerConfig
+	Redis *redis.Config
 }
 
 func init() {

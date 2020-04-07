@@ -22,7 +22,6 @@ var (
 const (
 	_sessIDKey             = "_AJSESSIONID"
 	_defaultDomain         = ".angrymiao.com"
-	_defaultCookieName     = "mng-go"
 	_defaultCookieLifeTime = 2592000
 	_sessionIDLength 	   = 32
 )
@@ -53,7 +52,6 @@ func ping(ctx *bm.Context) {
 
 func signIn(c *bm.Context) {
 	var (
-		ret bool
 		err error
 	)
 	var signInForm = &model.SignInForm{}
@@ -61,15 +59,14 @@ func signIn(c *bm.Context) {
 		c.JSON(nil, ecode.RequestErr)
 		return
 	}
-	ret, err = svc.SignIn(signInForm)
-	if err != nil || !ret {
+	res := newSession()
+	res.Values["username"] = signInForm.Username
+	err = svc.SignIn(c, res.Sid, signInForm)
+	if err != nil {
 		c.JSON("", ecode.AuthFailed)
 		return
 	}
-	res := newSession()
-	//设置登陆账号信息写入redis，调用setHTTPCookie(后续的验证逻辑在manager服务当中，由permit中间件处理）
-
-	//signIn,生成cookie返回给前端，并写入session到redis
+	setHTTPCookie(c, _sessIDKey, res.Sid)
 	c.JSON("", nil)
 }
 
