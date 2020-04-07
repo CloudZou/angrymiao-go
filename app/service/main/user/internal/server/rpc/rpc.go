@@ -4,9 +4,9 @@ import (
 	"angrymiao-go/app/service/main/user/api"
 	"angrymiao-go/app/service/main/user/conf"
 	"angrymiao-go/app/service/main/user/internal/service"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/rpc"
-	"github.com/CloudZou/punk/pkg/net/rpc/context"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/rpc"
+	"angrymiao-go/punk/net/rpc/context"
 )
 
 // RPC server

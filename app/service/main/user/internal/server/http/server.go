@@ -4,7 +4,7 @@ import (
 	pb "angrymiao-go/app/service/main/user/api"
 	"angrymiao-go/app/service/main/user/conf"
 	"angrymiao-go/app/service/main/user/internal/model"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 var svc pb.GreeterServer
@@ -19,7 +19,7 @@ func New(s pb.GreeterServer) (engine *bm.Engine, err error) {
 }
 
 func initRouter(e *bm.Engine) {
-	g := e.Group("/user")
+	g := e.Group("/api/v1/user")
 	{
 		g.GET("/start", howToStart)
 	}

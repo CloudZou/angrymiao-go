@@ -2,8 +2,8 @@ package dao
 
 import (
 	"context"
-	"github.com/CloudZou/punk/pkg/gredis"
-	"github.com/CloudZou/punk/pkg/sync/pipeline/fanout"
+	"angrymiao-go/punk/gredis"
+	"angrymiao-go/punk/sync/pipeline/fanout"
 	"github.com/jinzhu/gorm"
 
 	"github.com/google/wire"

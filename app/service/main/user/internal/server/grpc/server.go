@@ -6,7 +6,7 @@ import (
 	"angrymiao-go/app/service/main/user/internal/service"
 	"context"
 
-	"github.com/CloudZou/punk/pkg/net/rpc/warden"
+	"angrymiao-go/punk/net/rpc/warden"
 )
 
 // New new a grpc rpc.

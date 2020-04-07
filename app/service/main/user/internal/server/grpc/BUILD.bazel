@@ -7,7 +7,7 @@ go_library(
     visibility = ["//app/service/main/user:__subpackages__"],
     deps = [
         "//app/service/main/user/api:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/net/rpc/warden:go_default_library",
+        "//vendor/angrymiao-go/punk/conf/paladin:go_default_library",
+        "//vendor/angrymiao-go/punk/net/rpc/warden:go_default_library",
     ],
 )

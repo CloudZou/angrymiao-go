@@ -2,7 +2,7 @@ package dao
 
 import (
 	"angrymiao-go/app/service/main/user/conf"
-	"github.com/CloudZou/punk/pkg/gredis"
+	"angrymiao-go/punk/gredis"
 )
 
 // Setup Initialize the Redis Client instance

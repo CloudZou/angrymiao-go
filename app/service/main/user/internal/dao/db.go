@@ -3,7 +3,7 @@ package dao
 import (
 	"angrymiao-go/app/service/main/user/conf"
 	"fmt"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"time"
@@ -21,8 +21,8 @@ func NewDB() (db *gorm.DB, cf func(), err error) {
 	}
 
 	db.SingularTable(true)
-	db.Callback().Create().Replace("gorm:update_time_stamp", updateTimeForCreateCallback)
-	db.Callback().Create().Replace("gorm:before_create", beforeCreateCallback)
+	db.Callback().Create().Replace("orm:update_time_stamp", updateTimeForCreateCallback)
+	db.Callback().Create().Replace("orm:before_create", beforeCreateCallback)
 	db.DB().SetMaxIdleConns(10)
 	db.DB().SetMaxOpenConns(100)
 
@@ -69,7 +69,7 @@ func updateTimeForCreateCallback(scope *gorm.Scope) {
 func deleteCallback(scope *gorm.Scope) {
 	if !scope.HasError() {
 		var extraOption string
-		if str, ok := scope.Get("gorm:delete_option"); ok {
+		if str, ok := scope.Get("orm:delete_option"); ok {
 			extraOption = fmt.Sprint(str)
 		}
 

@@ -8,8 +8,8 @@ go_library(
     deps = [
         "//app/service/main/user/api:go_default_library",
         "//app/service/main/user/internal/model:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/net/http/blademaster:go_default_library",
+        "//vendor/angrymiao-go/punk/conf/paladin:go_default_library",
+        "//vendor/angrymiao-go/punk/log:go_default_library",
+        "//vendor/angrymiao-go/punk/net/http/blademaster:go_default_library",
     ],
 )
