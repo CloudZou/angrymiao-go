@@ -4,18 +4,12 @@ import "angrymiao-go/punk/model"
 
 // const rbac const
 const (
-	// auth_item type
-	TypePointer  = 1
-	TypeCategory = 2
-	TypeRole     = 3
-	TypeGroup    = 4
-
-	// Admin super admin
-	Admin = 1
-	// user state
-	UserStateOn = 0
-	UserDepOn   = 1
 )
+
+type User struct {
+	Username     string    `json:"username"`
+	model.BaseModel
+}
 
 // Account auth user account
 type Account struct {

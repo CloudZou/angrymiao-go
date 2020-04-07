@@ -40,7 +40,7 @@ func innerRouter(e *bm.Engine) {
 	e.Ping(ping)
 	g := e.Group("/x/admin/manager")
 	{
-		g.GET("/auth", permitSvc.Verify2(), authUser)
+		g.GET("/auth", permitSvc.Verify(), authUser)
 		g.GET("/logout", logout)
 		g.GET("/permission", vfySvc.Verify, permissions)
 	}
