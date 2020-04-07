@@ -27,7 +27,7 @@ type Session struct {
 type SessionConfig struct {
 	SessionIDLength int
 	CookieLifeTime  int
-	CookieName      string
+	//CookieName      string
 	Domain          string
 
 	RedisConfig *redis.Config
@@ -60,7 +60,7 @@ func (s *SessionManager) SessionStart(ctx *bm.Context) (si *Session) {
 // SessionRelease flush session into store.
 func (s *SessionManager) SessionRelease(ctx *bm.Context, sv *Session) {
 	// set http cookie
-	s.setHTTPCookie(ctx, s.c.CookieName, sv.Sid)
+	s.setHTTPCookie(ctx, _sessIDKey, sv.Sid)
 	// set mc
 	conn := s.rp.Get(ctx)
 	defer conn.Close()
@@ -86,7 +86,7 @@ func (s *SessionManager) SessionDestroy(ctx *bm.Context, sv *Session) {
 }
 
 func (s *SessionManager) cache(ctx *bm.Context) (res *Session, err error) {
-	ck, err := ctx.Request.Cookie(s.c.CookieName)
+	ck, err := ctx.Request.Cookie(_sessIDKey)
 	if err != nil || ck == nil {
 		return
 	}

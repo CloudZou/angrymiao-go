@@ -10,9 +10,6 @@ import (
 	"angrymiao-go/punk/log"
 	bm "angrymiao-go/punk/net/http/blademaster"
 	"angrymiao-go/punk/net/metadata"
-	"angrymiao-go/punk/net/rpc/warden"
-
-	"github.com/pkg/errors"
 )
 
 const (
@@ -62,11 +59,6 @@ type Config struct {
 	DashboardCaller string
 }
 
-// Config2 .
-type Config2 struct {
-	MngClient *warden.ClientConfig
-	Session   *SessionConfig
-}
 
 // New new an auth service.
 func New(c *Config) *Permit {
@@ -81,17 +73,6 @@ func New(c *Config) *Permit {
 	return a
 }
 
-// New2 .
-func New2(c *warden.ClientConfig) *Permit {
-	permitClient, err := mng.NewClient(c)
-	if err != nil {
-		panic(errors.WithMessage(err, "Failed to dial mng rpc server"))
-	}
-	return &Permit{
-		PermitClient: permitClient,
-		sm:           &SessionManager{},
-	}
-}
 
 // NewVerify new a verify service.
 func NewVerify(c *Config) Verify {
@@ -104,19 +85,6 @@ func NewVerify(c *Config) Verify {
 	return a
 }
 
-// Verify2 check whether the user has logged in.
-func (p *Permit) Verify2() bm.HandlerFunc {
-	return func(ctx *bm.Context) {
-		sid, username, err := p.login2(ctx)
-		if err != nil {
-			ctx.JSON(nil, ecode.Unauthorized)
-			ctx.Abort()
-			return
-		}
-		ctx.Set(_sessUnKey, username)
-		p.sm.setHTTPCookie(ctx, _defaultCookieName, sid)
-	}
-}
 
 // Verify return bm HandlerFunc which check whether the user has logged in.
 func (p *Permit) Verify() bm.HandlerFunc {
@@ -184,67 +152,6 @@ func (p *Permit) login(ctx *bm.Context) (si *Session, err error) {
 	return
 }
 
-// Permit2 same function as permit function but reply on grpc.
-func (p *Permit) Permit2(permit string) bm.HandlerFunc {
-	return func(ctx *bm.Context) {
-		sid, username, err := p.login2(ctx)
-		if err != nil {
-			ctx.JSON(nil, ecode.Unauthorized)
-			ctx.Abort()
-			return
-		}
-		p.sm.setHTTPCookie(ctx, _defaultCookieName, sid)
-		ctx.Set(_sessUnKey, username)
-		if md, ok := metadata.FromContext(ctx); ok {
-			md[metadata.Username] = username
-		}
-		reply, err := p.Permissions(ctx, &mng.PermissionReq{Username: username})
-		if err != nil {
-			if ecode.NothingFound.Equal(err) && permit != "" {
-				ctx.JSON(nil, ecode.AccessDenied)
-				ctx.Abort()
-			}
-			return
-		}
-		ctx.Set(_sessUIDKey, reply.Uid)
-		if md, ok := metadata.FromContext(ctx); ok {
-			md[metadata.Uid] = reply.Uid
-		}
-		if len(reply.Perms) > 0 {
-			ctx.Set(CtxPermissions, reply.Perms)
-		}
-		if !p.permit(permit, reply.Perms) {
-			ctx.JSON(nil, ecode.AccessDenied)
-			ctx.Abort()
-			return
-		}
-	}
-}
-
-// login2 .
-func (p *Permit) login2(ctx *bm.Context) (sid, uname string, err error) {
-	var dsbsid, mngsid string
-	dsbck, err := ctx.Request.Cookie(_sessIDKey)
-	if err == nil {
-		dsbsid = dsbck.Value
-	}
-	if dsbsid == "" {
-		err = ecode.Unauthorized
-		return
-	}
-	mngck, err := ctx.Request.Cookie(_defaultCookieName)
-	if err == nil {
-		mngsid = mngck.Value
-	}
-	reply, err := p.Login(ctx, &mng.LoginReq{Mngsid: mngsid, Dsbsid: dsbsid})
-	if err != nil {
-		log.Error("mng rpc Login error(%v)", err)
-		return
-	}
-	sid = reply.Sid
-	uname = reply.Username
-	return
-}
 
 func (p *Permit) verify(ctx *bm.Context) (username string, err error) {
 	var (
@@ -259,7 +166,7 @@ func (p *Permit) verify(ctx *bm.Context) (username string, err error) {
 		err = ecode.Unauthorized
 		return
 	}
-	username, err = p.verifyDashboard(ctx, sid)
+	username, err = p.verifyByCache(ctx, sid)
 	return
 }
 
@@ -277,10 +184,9 @@ func (p *Permit) permit(permit string, permissions []string) bool {
 	return false
 }
 
-// verifyDashboard check whether the user is valid from Dashboard.
-func (p *Permit) verifyDashboard(ctx *bm.Context, sid string) (username string, err error) {
+// verifyByCache check whether the user is valid from Dashboard.
+func (p *Permit) verifyByCache(ctx *bm.Context, sid string) (username string, err error) {
 	var dsbRes struct {
-		Code     int    `json:"code"`
 		UserName string `json:"username"`
 	}
 	conn := p.sm.rp.Get(ctx)
