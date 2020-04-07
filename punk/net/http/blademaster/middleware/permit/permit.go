@@ -19,7 +19,6 @@ const (
 	_sessUIDKey            = "uid"      // manager user_id
 	_sessUnKey             = "username" // LDAP username
 	_defaultDomain         = ".angrymiao.com"
-	_defaultCookieName     = "mng-go"
 	_defaultCookieLifeTime = 2592000
 	// CtxPermissions will be set into ctx.
 	CtxPermissions = "permissions"
@@ -208,6 +207,7 @@ func (p *Permit) verifyByCache(ctx *bm.Context, sid string) (username string, er
 //从permission service获取相应的权限
 func (p *Permit) permissions(ctx *bm.Context, username string) (uid int64, perms []string, err error) {
 	params := url.Values{}
+	//TODO 根据username获取permission，暂时不处理
 	params.Set(_sessUnKey, username)
 	var res struct {
 		Code int         `json:"code"`
