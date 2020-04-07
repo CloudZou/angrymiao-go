@@ -29,7 +29,7 @@ type Config struct {
 	DsbClient    *bm.ClientConfig
 	UnameTicker  xtime.Duration
 	WardenServer *warden.ServerConfig
-	Permit       *permit.Config2
+	Permit       *permit.Config
 }
 
 type cfg struct {
