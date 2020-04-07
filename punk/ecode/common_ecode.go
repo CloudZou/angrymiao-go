@@ -4,6 +4,8 @@ package ecode
 var (
 	OK = add(200) // 正确
 
+	NoLogin                 = add(-101) // 账号未登录
+
 	NotModified        = add(-304) // 木有改动
 	TemporaryRedirect  = add(-307) // 撞车跳转
 	RequestErr         = add(-400) // 请求错误
@@ -25,6 +27,7 @@ var (
 
 var HttpStatusCodeMsgFlags = map[Code]string{
 	OK:           "请求成功",
+	NoLogin:	  "账号未登录",
 	RequestErr:   "请求错误",
 	Unauthorized: "未认证",
 	AccessDenied: "访问权限不足",
