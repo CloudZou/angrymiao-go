@@ -4,18 +4,18 @@ import (
 	"angrymiao-go/app/service/main/user/conf"
 	"context"
 	"flag"
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/naming"
-	"github.com/CloudZou/punk/pkg/naming/discovery"
-	"github.com/CloudZou/punk/pkg/net/trace"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/naming"
+	"angrymiao-go/punk/naming/discovery"
+	"angrymiao-go/punk/net/trace"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
 	"angrymiao-go/app/service/main/user/internal/di"
-	"github.com/CloudZou/punk/pkg/log"
-	xip "github.com/CloudZou/punk/pkg/net/ip"
+	"angrymiao-go/punk/log"
+	xip "angrymiao-go/punk/net/ip"
 )
 
 func main() {

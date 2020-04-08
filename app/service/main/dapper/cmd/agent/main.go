@@ -5,7 +5,7 @@ import (
 	"angrymiao-go/app/service/main/dapper/conf"
 	"angrymiao-go/app/service/main/dapper/internal/pkg/util"
 	"flag"
-	xlog "github.com/CloudZou/punk/pkg/log"
+	xlog "angrymiao-go/punk/log"
 	"log"
 	"os"
 )

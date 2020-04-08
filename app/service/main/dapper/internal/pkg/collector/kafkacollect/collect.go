@@ -7,8 +7,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/stat/prom"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/stat/prom"
 	"sync"
 
 	"github.com/Shopify/sarama"

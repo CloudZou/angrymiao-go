@@ -6,8 +6,8 @@ import (
 
 	"angrymiao-go/app/service/main/product/internal/service"
 
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	"angrymiao-go/punk/log"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 //go:generate punk tool wire

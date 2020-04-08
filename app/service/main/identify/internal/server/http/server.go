@@ -1,13 +1,14 @@
 package http
 
 import (
+	"angrymiao-go/app/service/main/identify/internal/model"
 	"net/http"
 
 	pb "angrymiao-go/app\service\main/identify/api"
 	"angrymiao-go/app\service\main/identify/internal/model"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	"angrymiao-go/punk/conf/paladin"
+	"angrymiao-go/punk/log"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 var svc pb.DemoServer

@@ -2,7 +2,7 @@ package rpc
 
 import (
 	"context"
-	"github.com/CloudZou/punk/pkg/net/rpc"
+	"angrymiao-go/punk/net/rpc"
 )
 
 //const

@@ -3,15 +3,15 @@ package main
 import (
 	"angrymiao-go/app/service/main/product/conf"
 	"flag"
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/net/trace"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/net/trace"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
 	"angrymiao-go/app/service/main/product/internal/di"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 )
 
 func main() {

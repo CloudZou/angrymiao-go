@@ -11,10 +11,10 @@ import (
 	"angrymiao-go/app/service/main/dapper/internal/pkg/pointwrite"
 	"context"
 	"fmt"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 	"time"
 
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 // Collector dapper collector receving trace data from tcp and write

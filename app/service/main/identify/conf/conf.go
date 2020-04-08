@@ -1,7 +1,7 @@
 package conf
 
 import (
-	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
+	"angrymiao-go/punk/net/netutil/breaker"
 	"time"
 )
 

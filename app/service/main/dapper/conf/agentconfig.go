@@ -3,8 +3,8 @@ package conf
 import (
 	"fmt"
 	"github.com/BurntSushi/toml"
-	"github.com/CloudZou/punk/pkg/conf"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/conf"
+	"angrymiao-go/punk/log"
 )
 
 const (

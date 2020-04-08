@@ -3,12 +3,12 @@ package conf
 import (
 	"errors"
 	"flag"
-	"github.com/CloudZou/punk/pkg/conf"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/conf"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/time"
 
 	"github.com/BurntSushi/toml"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	xtime "angrymiao-go/punk/time"
 )
 
 func init() {

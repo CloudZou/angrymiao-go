@@ -1,0 +1,20 @@
+syntax = "proto3";
+package passport.service.identify;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option go_package = "model";
+
+// IdentifyInfo identify info
+message IdentifyInfo {
+    // user mid
+    int64 mid = 1 [(gogoproto.jsontag) = "mid"];
+    //username
+    string username = 2 [(gogoproto.jsontag) = "username"];
+    // cookie csrf
+    // when token reqest this field is empty
+    string csrf = 3 [(gogoproto.jsontag) = "csrfToken"];
+    // expire time(unix timestamp)
+    int32 expires = 4 [(gogoproto.jsontag) = "expires"];
+}
+

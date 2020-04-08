@@ -1,15 +1,15 @@
 package main
 
 import (
+	"angrymiao-go/app/service/main/identify/internal/di"
 	"flag"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
-	"angrymiao-go/app\service\main/identify/internal/di"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/conf/paladin"
+	"angrymiao-go/punk/log"
 )
 
 func main() {

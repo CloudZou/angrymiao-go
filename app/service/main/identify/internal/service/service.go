@@ -6,7 +6,7 @@ import (
 
 	pb "angrymiao-go/app\service\main/identify/api"
 	"angrymiao-go/app\service\main/identify/internal/dao"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
+	"angrymiao-go/punk/conf/paladin"
 
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/wire"
@@ -28,22 +28,6 @@ func New(d *dao.Dao) (s *Service, cf func(), err error) {
 	}
 	cf = s.Close
 	err = paladin.Watch("application.toml", s.ac)
-	return
-}
-
-// SayHello grpc demo func.
-func (s *Service) SayHello(ctx context.Context, req *pb.HelloReq) (reply *empty.Empty, err error) {
-	reply = new(empty.Empty)
-	fmt.Printf("hello %s", req.Name)
-	return
-}
-
-// SayHelloURL bm demo func.
-func (s *Service) SayHelloURL(ctx context.Context, req *pb.HelloReq) (reply *pb.HelloResp, err error) {
-	reply = &pb.HelloResp{
-		Content: "hello " + req.Name,
-	}
-	fmt.Printf("hello url %s", req.Name)
 	return
 }
 

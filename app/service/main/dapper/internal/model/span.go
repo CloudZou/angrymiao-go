@@ -6,7 +6,7 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	protogen "github.com/CloudZou/punk/pkg/net/trace/proto"
+	protogen "angrymiao-go/punk/net/trace/proto"
 )
 
 // ProtoSpan alias to tgo-common/library/net/trace/proto.Span

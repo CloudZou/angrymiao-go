@@ -7,8 +7,8 @@ import (
 	"angrymiao-go/app/service/main/product/internal/service"
 	"net/http"
 
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	"angrymiao-go/punk/log"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 var svc *service.Service

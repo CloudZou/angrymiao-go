@@ -3,7 +3,7 @@ package deliver
 import (
 	"encoding/binary"
 	"fmt"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 	"math/rand"
 	"net"
 	"sync"

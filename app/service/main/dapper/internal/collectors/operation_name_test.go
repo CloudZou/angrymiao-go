@@ -2,7 +2,7 @@ package collectors
 
 import (
 	"angrymiao-go/app/service/main/dapper/internal/model"
-	protogen "github.com/CloudZou/punk/pkg/net/trace/proto"
+	protogen "angrymiao-go/punk/net/trace/proto"
 	"testing"
 )
 

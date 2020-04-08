@@ -8,9 +8,9 @@ import (
 	"bytes"
 	"context"
 	"encoding/binary"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/stat/counter"
-	"github.com/CloudZou/punk/pkg/stat/prom"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/stat/counter"
+	"angrymiao-go/punk/stat/prom"
 	"net"
 	"strconv"
 	"sync"
@@ -20,7 +20,7 @@ import (
 	"github.com/golang/protobuf/ptypes/duration"
 	"github.com/golang/protobuf/ptypes/timestamp"
 
-	protogen "github.com/CloudZou/punk/pkg/net/trace/proto"
+	protogen "angrymiao-go/punk/net/trace/proto"
 )
 
 var (

@@ -1,14 +1,13 @@
 package di
 
 import (
+	"angrymiao-go/app/service/main/identify/internal/service"
 	"context"
 	"time"
 
-	"angrymiao-go/app\service\main/identify/internal/service"
-
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
-	"github.com/CloudZou/punk/pkg/net/rpc/warden"
+	"angrymiao-go/punk/log"
+	bm "angrymiao-go/punk/net/http/blademaster"
+	"angrymiao-go/punk/net/rpc/warden"
 )
 
 //go:generate punk tool wire

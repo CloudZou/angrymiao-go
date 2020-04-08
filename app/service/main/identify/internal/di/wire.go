@@ -4,10 +4,10 @@
 package di
 
 import (
-	"angrymiao-go/app\service\main/identify/internal/dao"
-	"angrymiao-go/app\service\main/identify/internal/service"
-	"angrymiao-go/app\service\main/identify/internal/server/grpc"
-	"angrymiao-go/app\service\main/identify/internal/server/http"
+	"angrymiao-go/app/service/main/identify/internal/dao"
+	"angrymiao-go/app/service/main/identify/internal/service"
+	"angrymiao-go/app/service/main/identify/internal/server/grpc"
+	"angrymiao-go/app/service/main/identify/internal/server/http"
 
 	"github.com/google/wire"
 )

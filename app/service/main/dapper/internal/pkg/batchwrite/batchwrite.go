@@ -3,7 +3,7 @@ package batchwrite
 import (
 	"angrymiao-go/app/service/main/dapper/internal/model"
 	"context"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 	"sync"
 	"time"
 

@@ -11,8 +11,8 @@ import (
 	"angrymiao-go/app/service/main/dapper/internal/pkg/deliver"
 	"angrymiao-go/app/service/main/dapper/internal/pkg/diskqueue"
 	"angrymiao-go/app/service/main/dapper/internal/server/udpcollect"
-	"github.com/CloudZou/punk/pkg/log"
-	spanpb "github.com/CloudZou/punk/pkg/net/trace/proto"
+	"angrymiao-go/punk/log"
+	spanpb "angrymiao-go/punk/net/trace/proto"
 	"github.com/golang/protobuf/proto"
 )
 
