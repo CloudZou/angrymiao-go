@@ -2,7 +2,9 @@ package permit
 
 import (
 	"angrymiao-go/punk/cache/redis"
+	"angrymiao-go/punk/net/rpc/warden"
 	"encoding/json"
+	"github.com/pkg/errors"
 	"net/url"
 
 	mng "angrymiao-go/app/admin/manager/api"
@@ -62,6 +64,17 @@ func New(c *Config) *Permit {
 		sm:              newSessionManager(c.Session),
 	}
 	return a
+}
+
+func New2(c *warden.ClientConfig) *Permit {
+	permitClient, err := mng.NewClient(c)
+	if err != nil {
+		panic(errors.WithMessage(err, "Failed to dial mng rpc server"))
+	}
+	return &Permit{
+		PermitClient: permitClient,
+		sm:           &SessionManager{},
+	}
 }
 
 
