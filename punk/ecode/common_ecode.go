@@ -5,6 +5,8 @@ var (
 	OK = add(200) // 正确
 
 	NoLogin                 = add(-101) // 账号未登录
+	AccessKeyErr            = add(-2)   // Access Key错误
+	CsrfNotMatchErr         = add(-111) // csrf 校验失败
 
 	NotModified        = add(-304) // 木有改动
 	TemporaryRedirect  = add(-307) // 撞车跳转
