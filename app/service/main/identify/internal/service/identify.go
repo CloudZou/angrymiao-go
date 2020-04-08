@@ -4,7 +4,6 @@ import (
 	v1 "angrymiao-go/app/service/main/identify/api"
 	"angrymiao-go/app/service/main/identify/internal/model"
 	"angrymiao-go/punk/ecode"
-	"angrymiao-go/punk/net/metadata"
 	"context"
 )
 

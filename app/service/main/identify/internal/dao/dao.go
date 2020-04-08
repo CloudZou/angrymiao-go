@@ -10,6 +10,7 @@ import (
 
 
 const (
+	//h5 统一登陆验证入口
 	_tokenURI  = "/intranet/auth/tokenInfo"
 	_cookieURI = "/intranet/auth/cookieInfo"
 )
