@@ -33,7 +33,6 @@ func (s *Service) GetTokenInfo(c context.Context, token *v1.GetTokenInfoReq) (re
 			err = ecode.NoLogin
 			return
 		}
-		s.loginLog(res.Mid, metadata.String(c, metadata.RemoteIP), metadata.String(c, metadata.RemotePort), token.Buvid)
 		return
 	}
 	if res, err = s.d.AccessToken(c, token.Token); err != nil {
@@ -47,8 +46,6 @@ func (s *Service) GetTokenInfo(c context.Context, token *v1.GetTokenInfoReq) (re
 		s.cache.Save(func() {
 			s.d.SetAccessCache(context.Background(), token.Token, res)
 		})
-		// if cache err or res nil, don't call addLoginLog
-		s.loginLog(res.Mid, metadata.String(c, metadata.RemoteIP), metadata.String(c, metadata.RemotePort), token.Buvid)
 	}
 	if res.Mid == _noLoginMid {
 		err = ecode.NoLogin

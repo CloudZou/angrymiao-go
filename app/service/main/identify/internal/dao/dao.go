@@ -1,49 +1,49 @@
 package dao
 
 import (
+	"angrymiao-go/app/service/main/identify/conf"
+	"angrymiao-go/punk/cache/redis"
+	bm "angrymiao-go/punk/net/http/blademaster"
+	"angrymiao-go/punk/stat/prom"
 	"context"
-	"time"
-
-	"angrymiao-go/punk/gredis"
-	"angrymiao-go/punk/conf/paladin"
-	"angrymiao-go/punk/sync/pipeline/fanout"
-	xtime "angrymiao-go/punk/time"
-	"github.com/jinzhu/gorm"
-
-	"github.com/google/wire"
 )
 
-var Provider = wire.NewSet(newDao, NewDB, NewRedisClient)
+
+const (
+	_tokenURI  = "/intranet/auth/tokenInfo"
+	_cookieURI = "/intranet/auth/cookieInfo"
+)
+
+var (
+	errorsCount = prom.BusinessErrCount
+	cachedCount = prom.CacheHit
+	missedCount = prom.CacheMiss
+)
 
 // Dao Dao.
 type Dao struct {
-	db          *gorm.DB
-	redis       *gredis.RedisClient
-	cache *fanout.Fanout
-	demoExpire int32
+	c *conf.Config
+	redis *redis.Pool
+
+	tokenURI  string
+	cookieURI string
+	client    *bm.Client
 }
 
 
-func newDao(r *gredis.RedisClient, db *gorm.DB) (d *Dao, cf func(), err error) {
-	var cfg struct{
-		DemoExpire xtime.Duration
-	}
-	if err = paladin.Get("application.toml").UnmarshalTOML(&cfg); err != nil {
-		return
-	}
+func New(c *conf.Config) (d *Dao) {
 	d = &Dao{
-		db: db,
-		redis: r,
-		cache: fanout.New("cache"),
-		demoExpire: int32(time.Duration(cfg.DemoExpire) / time.Second),
+		c:         c,
+		tokenURI:  c.Identify.AuthHost + _tokenURI,
+		cookieURI: c.Identify.AuthHost + _cookieURI,
+		client:    bm.NewClient(c.HTTPClient),
 	}
-	cf = d.Close
 	return
 }
 
 // Close close the resource.
 func (d *Dao) Close() {
-	d.cache.Close()
+
 }
 
 // Ping ping the resource.

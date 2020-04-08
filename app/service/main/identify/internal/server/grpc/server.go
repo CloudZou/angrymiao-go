@@ -1,7 +1,6 @@
 package grpc
 
 import (
-	pb "angrymiao-go/app\service\main/identify/api"
 	v1 "angrymiao-go/app/service/main/identify/api"
 	"angrymiao-go/app/service/main/identify/internal/service"
 	"angrymiao-go/punk/ecode"
@@ -11,7 +10,6 @@ import (
 	"fmt"
 	"google.golang.org/grpc"
 
-	"angrymiao-go/punk/conf/paladin"
 	"angrymiao-go/punk/net/rpc/warden"
 )
 

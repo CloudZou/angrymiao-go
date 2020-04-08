@@ -1,57 +1,36 @@
 package http
 
 import (
+	"angrymiao-go/app/service/main/identify/conf"
 	"angrymiao-go/app/service/main/identify/internal/model"
-	"net/http"
+	"angrymiao-go/app/service/main/identify/internal/service"
+	"angrymiao-go/punk/net/http/blademaster/middleware/verify"
 
-	pb "angrymiao-go/app\service\main/identify/api"
-	"angrymiao-go/app\service\main/identify/internal/model"
-	"angrymiao-go/punk/conf/paladin"
 	"angrymiao-go/punk/log"
 	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
-var svc pb.DemoServer
+var (
+	srv *service.Service
+	vfy *verify.Verify
+)
 
 // New new a bm server.
-func New(s pb.DemoServer) (engine *bm.Engine, err error) {
-	var (
-		cfg bm.ServerConfig
-		ct paladin.TOML
-	)
-	if err = paladin.Get("http.toml").Unmarshal(&ct); err != nil {
-		return
-	}
-	if err = ct.Get("Server").UnmarshalTOML(&cfg); err != nil {
-		return
-	}
-	svc = s
-	engine = bm.DefaultServer(&cfg)
-	pb.RegisterDemoBMServer(engine, s)
+func New(c *conf.Config, s *service.Service) (engine *bm.Engine, err error) {
+	srv = s
+	engine = bm.DefaultServer(c.BM)
 	initRouter(engine)
 	err = engine.Start()
+	if err := engine.Start(); err != nil {
+		log.Error("engine.Start error(%v)", err)
+		panic(err)
+	}
 	return
 }
 
 func initRouter(e *bm.Engine) {
-	e.Ping(ping)
 	g := e.Group("/identify")
 	{
-		g.GET("/start", howToStart)
-	}
-}
 
-func ping(ctx *bm.Context) {
-	if _, err := svc.Ping(ctx, nil); err != nil {
-		log.Error("ping error(%v)", err)
-		ctx.AbortWithStatus(http.StatusServiceUnavailable)
 	}
-}
-
-// example for http request handler.
-func howToStart(c *bm.Context) {
-	k := &model.Punk{
-		Hello: "Golang 大法好 !!!",
-	}
-	c.JSON(k, nil)
 }
