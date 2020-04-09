@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package sms.service.v1;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option go_package = "v1";
+
+service Sms {
+    // Send send sms
+    rpc Send(SendReq) returns(SendReply);
+}
+
+message SendReply {}
+
+message SendReq {
+    string mobile = 1 [(gogoproto.moretags) = 'form:"mobile"'];
+    string regionId = 2 [(gogoproto.moretags) = 'form:"regionId"'];
+    string country = 3 [(gogoproto.moretags) = 'form:"country"'];
+    string signName = 4 [(gogoproto.moretags) = 'form:"signName"'];
+    string tcode = 5 [(gogoproto.moretags) = 'form:"tcode"'];
+    string tparam = 6 [(gogoproto.moretags) = 'form:"tparam"'];
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package sms.service.model;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option go_package = "model";
+
+message ModelUserActionLog {
+    string msgid = 1 [(gogoproto.customname) = "MsgID"];
+    string mobile = 2;
+    string content = 3;
+    string status = 4;
+    string desc = 5;
+    int32 type = 6;
+    int32 action = 7;
+    int64 ts = 8;
+}
