@@ -81,10 +81,6 @@ func engine() *bm.Engine {
 		mid := metadata.Value(ctx, metadata.Mid)
 		ctx.JSON(fmt.Sprintf("%d", mid.(int64)), nil)
 	})
-	e.GET("/web", authn.UserWeb, func(ctx *bm.Context) {
-		mid, _ := ctx.Get("mid")
-		ctx.JSON(fmt.Sprintf("%d", mid), nil)
-	})
 	e.GET("/guest", authn.Guest, func(ctx *bm.Context) {
 		var (
 			mid int64
@@ -94,15 +90,7 @@ func engine() *bm.Engine {
 		}
 		ctx.JSON(fmt.Sprintf("%d", mid), nil)
 	})
-	e.GET("/guest/web", authn.GuestWeb, func(ctx *bm.Context) {
-		var (
-			mid int64
-		)
-		if _mid, ok := ctx.Get("mid"); ok {
-			mid, _ = _mid.(int64)
-		}
-		ctx.JSON(fmt.Sprintf("%d", mid), nil)
-	})
+
 	e.GET("/guest/mobile", authn.GuestMobile, func(ctx *bm.Context) {
 		var (
 			mid int64
