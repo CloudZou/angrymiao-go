@@ -1,30 +1,17 @@
 package conf
 
 import (
-	"errors"
-	"flag"
-	"github.com/BurntSushi/toml"
+	"angrymiao-go/punk/cache/redis"
 	"angrymiao-go/punk/conf"
-	"angrymiao-go/punk/gredis"
+	"angrymiao-go/punk/database/orm"
 	bm "angrymiao-go/punk/net/http/blademaster"
-	"angrymiao-go/punk/net/netutil/breaker"
 	"angrymiao-go/punk/net/rpc"
 	"angrymiao-go/punk/net/rpc/warden"
 	"angrymiao-go/punk/net/trace"
-	"time"
+	"errors"
+	"flag"
+	"github.com/BurntSushi/toml"
 )
-
-type DbConfig struct {
-	DSN          string          // write data source name.
-	ReadDSN      []string        // read data source name.
-	Active       int             // pool
-	Idle         int             // pool
-	IdleTimeout  time.Duration   // connect max life time.
-	QueryTimeout time.Duration   // query sql timeout
-	ExecTimeout  time.Duration   // execute sql timeout
-	TranTimeout  time.Duration   // transaction sql timeout
-	Breaker      *breaker.Config // breaker
-}
 
 // global var
 var (
@@ -41,8 +28,10 @@ type Config struct {
 	GRPCServer *warden.ServerConfig
 	HTTPServer *bm.ServerConfig
 
-	Db             DbConfig
-	Redis          gredis.RedisConfig
+	SMSClient *warden.ClientConfig
+
+	Db             *orm.Config
+	Redis          *redis.Config
 	UdpTraceConfig *trace.Config
 }
 
