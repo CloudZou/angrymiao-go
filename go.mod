@@ -7,6 +7,7 @@ require (
 	github.com/Shopify/sarama v1.26.1
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.110
 	github.com/astaxie/beego v1.12.1
+	github.com/bradfitz/gomemcache v0.0.0-20190913173617-a41fca850d0b // indirect
 	github.com/bsm/sarama-cluster v2.1.15+incompatible
 	github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd // indirect
 	github.com/coreos/bbolt v1.3.3 // indirect
@@ -47,6 +48,7 @@ require (
 	github.com/remyoudompheng/bigfft v0.0.0-20190728182440-6a916e37a237 // indirect
 	github.com/shirou/gopsutil v2.20.3+incompatible
 	github.com/siddontang/go-mysql v0.0.0-20200222075837-12e89848f047
+	github.com/silenceper/wechat v2.0.1+incompatible // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/smartystreets/goconvey v1.6.4
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
@@ -55,6 +57,7 @@ require (
 	github.com/twinj/uuid v1.0.0 // indirect
 	github.com/uber/jaeger-client-go v2.22.1+incompatible // indirect
 	github.com/uber/jaeger-lib v2.2.0+incompatible // indirect
+	golang.org/x/crypto v0.0.0-20200406173513-056763e48d71 // indirect
 	golang.org/x/net v0.0.0-20200222125558-5a598a2470a0
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0
 	google.golang.org/genproto v0.0.0-20200401122417-09ab7b7031d2
