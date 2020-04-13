@@ -1,4 +1,4 @@
-package util
+package jwt
 
 import (
 	"time"
@@ -28,7 +28,7 @@ func GenerateToken(phone string, userId int) (string, error) {
 		userId,
 		jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
-			Issuer:    "angrymiao-stellar",
+			Issuer:    "angrymiao-punk",
 		},
 	}
 
