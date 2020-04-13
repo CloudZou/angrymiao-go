@@ -10,7 +10,6 @@ import (
 	"angrymiao-go/punk/queue/databus"
 	"errors"
 	"flag"
-	"github.com/BurntSushi/toml"
 )
 
 // Conf global variable.

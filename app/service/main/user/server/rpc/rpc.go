@@ -1,12 +1,9 @@
 package rpc
 
 import (
-	"angrymiao-go/app/service/main/user/api"
 	"angrymiao-go/app/service/main/user/conf"
-	"angrymiao-go/app/service/main/user/internal/service"
-	"angrymiao-go/punk/log"
+	"angrymiao-go/app/service/main/user/service"
 	"angrymiao-go/punk/net/rpc"
-	"angrymiao-go/punk/net/rpc/context"
 )
 
 // RPC server
@@ -24,8 +21,3 @@ func New(s *service.Service) (svr *rpc.Server) {
 	return
 }
 
-func (r *RPC) SayHello(c context.Context, arg *string, res *struct{}) (err error) {
-	log.Error("Say Hello From RPC Client")
-	_, err = r.s.SayHello(c, &api.HelloRequest{Name: *arg})
-	return
-}

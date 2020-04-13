@@ -1,8 +1,9 @@
 package http
 
-import bm "angrymiao-go/punk/net/http/blademaster"
-import pb "angrymiao-go/app/job/sms/api"
-
+import (
+	pb "angrymiao-go/app/service/main/sms/api"
+	bm "angrymiao-go/punk/net/http/blademaster"
+)
 
 func send(ctx *bm.Context) {
 	req := new(pb.SendReq)

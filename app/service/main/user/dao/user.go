@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"angrymiao-go/app/service/main/user/internal/model"
+	"angrymiao-go/app/service/main/user/model"
 	"angrymiao-go/punk/log"
 )
 

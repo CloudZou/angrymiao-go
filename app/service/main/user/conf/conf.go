@@ -26,7 +26,7 @@ type Config struct {
 	// rpc server
 	RPCServer  *rpc.ServerConfig
 	GRPCServer *warden.ServerConfig
-	HTTPServer *bm.ServerConfig
+	BM *bm.ServerConfig
 
 	SMSClient *warden.ClientConfig
 

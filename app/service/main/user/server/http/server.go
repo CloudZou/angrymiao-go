@@ -1,34 +1,31 @@
 package http
 
 import (
-	pb "angrymiao-go/app/service/main/user/api"
 	"angrymiao-go/app/service/main/user/conf"
-	"angrymiao-go/app/service/main/user/internal/model"
+	"angrymiao-go/app/service/main/user/service"
+	"angrymiao-go/punk/log"
 	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
-var svc pb.GreeterServer
+var srv service.Service
 
 // New new a bm server.
-func New(s pb.GreeterServer) (engine *bm.Engine, err error) {
-	svc = s
-	engine = bm.DefaultServer(conf.Conf.HTTPServer)
+// New new a bm server.
+func New(c *conf.Config, s *service.Service) (engine *bm.Engine, err error) {
+	srv = s
+	engine = bm.DefaultServer(c.BM)
 	initRouter(engine)
 	err = engine.Start()
+	if err := engine.Start(); err != nil {
+		log.Error("engine.Start error(%v)", err)
+		panic(err)
+	}
 	return
 }
 
 func initRouter(e *bm.Engine) {
-	g := e.Group("/api/v1/user")
+	g := e.Group("/identify")
 	{
-		g.GET("/start", howToStart)
-	}
-}
 
-// example for http request handler.
-func howToStart(c *bm.Context) {
-	k := &model.Punk{
-		Hello: "Golang 大法好 !!!",
 	}
-	c.JSON(k, nil)
 }

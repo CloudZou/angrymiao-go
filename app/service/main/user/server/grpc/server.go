@@ -3,9 +3,7 @@ package grpc
 import (
 	"angrymiao-go/app/service/main/user/api"
 	"angrymiao-go/app/service/main/user/conf"
-	"angrymiao-go/app/service/main/user/internal/service"
-	"context"
-
+	"angrymiao-go/app/service/main/user/service"
 	"angrymiao-go/punk/net/rpc/warden"
 )
 
@@ -24,8 +22,3 @@ type rpc struct {
 }
 
 var _ api.GreeterServer = &rpc{}
-
-func (s *rpc) SayHello(ctx context.Context, req *api.HelloRequest) (reply *api.HelloReply, err error) {
-	reply, err = s.as.SayHello(ctx, req)
-	return
-}

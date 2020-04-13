@@ -2,6 +2,8 @@ package main
 
 import (
 	"angrymiao-go/app/service/main/user/conf"
+	"angrymiao-go/app/service/main/user/server/http"
+	"angrymiao-go/app/service/main/user/service"
 	"context"
 	"flag"
 	"angrymiao-go/punk/conf/env"
@@ -13,20 +15,21 @@ import (
 	"syscall"
 	"time"
 
-	"angrymiao-go/app/service/main/user/internal/di"
 	"angrymiao-go/punk/log"
 	xip "angrymiao-go/punk/net/ip"
 )
 
 func main() {
 	flag.Parse()
+	if err := conf.Init(); err != nil {
+		log.Error("conf.Init() error(%v)", err)
+		panic(err)
+	}
 	log.Init(nil) // debug flag: log.dir={path}
 	defer log.Close()
-	log.Info("user start")
-	conf.Init()
-	env.AppID = "user.service"
-	trace.Init(conf.Conf.UdpTraceConfig)
-	_, closeFunc, err := di.InitApp()
+	log.Info("passport start")
+	s, closeFunc, err := service.New(conf.Conf)
+	http.New(conf.Conf, s)
 	if err != nil {
 		panic(err)
 	}

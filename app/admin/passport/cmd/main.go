@@ -9,9 +9,6 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
-
-	"angrymiao-go/app/admin/passport/internal/di"
-	"angrymiao-go/punk/conf/paladin"
 	"angrymiao-go/punk/log"
 )
 

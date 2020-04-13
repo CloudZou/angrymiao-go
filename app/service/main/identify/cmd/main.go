@@ -1,24 +1,28 @@
 package main
 
 import (
-	"angrymiao-go/app/service/main/identify/internal/di"
+	"angrymiao-go/app/service/main/identify/conf"
+	"angrymiao-go/app/service/main/identify/internal/server/http"
+	"angrymiao-go/app/service/main/identify/internal/service"
 	"flag"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
-
-	"angrymiao-go/punk/conf/paladin"
 	"angrymiao-go/punk/log"
 )
 
 func main() {
 	flag.Parse()
+	if err := conf.Init(); err != nil {
+		log.Error("conf.Init() error(%v)", err)
+		panic(err)
+	}
 	log.Init(nil) // debug flag: log.dir={path}
 	defer log.Close()
-	log.Info("identify start")
-	paladin.Init()
-	_, closeFunc, err := di.InitApp()
+	log.Info("passport start")
+	s, closeFunc, err := service.New(conf.Conf)
+	http.New(conf.Conf, s)
 	if err != nil {
 		panic(err)
 	}
