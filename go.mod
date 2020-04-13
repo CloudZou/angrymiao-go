@@ -4,8 +4,9 @@ go 1.13
 
 require (
 	github.com/BurntSushi/toml v0.3.1
+	github.com/CloudZou/punk v0.0.0-20200306071323-49dbfc72e00c
 	github.com/Shopify/sarama v1.26.1
-	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
+	github.com/aliyun/alibaba-cloud-sdk-go v1.61.110
 	github.com/astaxie/beego v1.12.1
 	github.com/bsm/sarama-cluster v2.1.15+incompatible
 	github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd // indirect
@@ -17,8 +18,6 @@ require (
 	github.com/dgryski/go-farm v0.0.0-20190423205320-6a90982ecee2
 	github.com/etcd-io/gofail v0.0.0-20190801230047-ad7f989257ca // indirect
 	github.com/fsnotify/fsnotify v1.4.7
-	github.com/go-ole/go-ole v1.2.4 // indirect
-	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/protobuf v1.3.5
 	github.com/gomodule/redigo v2.0.1-0.20180401191855-9352ab68be13+incompatible
@@ -31,7 +30,6 @@ require (
 	github.com/juju/errors v0.0.0-20190930114154-d42613fe1ab9
 	github.com/juju/loggo v0.0.0-20190526231331-6e530bcce5d8 // indirect
 	github.com/juju/testing v0.0.0-20191001232224-ce9dec17d28b // indirect
-	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/lib/pq v1.3.0 // indirect
 	github.com/mattn/go-sqlite3 v2.0.3+incompatible // indirect
 	github.com/montanaflynn/stats v0.6.3
