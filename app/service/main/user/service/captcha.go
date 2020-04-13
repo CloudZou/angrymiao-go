@@ -3,6 +3,7 @@ package service
 import (
 	smsgrpc "angrymiao-go/app/service/main/sms/api"
 	"angrymiao-go/app/service/main/user/model"
+	"angrymiao-go/punk/ecode"
 	"angrymiao-go/punk/log"
 	"context"
 	"fmt"
@@ -31,5 +32,21 @@ func (s *Service)ValidateAndSend(c context.Context, mobile string, smsType model
 		log.Error("s.smsgrpc.Send(c,%v) err(%v)", sendReq, err)
 		return
 	}
+	return
+}
+
+func (s *Service)Authenticate(c context.Context, phoneLoginReq model.PhoneLoginReq, smsType model.SmsType) (err error) {
+	captchaKey := model.KeyOfMobileCaptcha(phoneLoginReq.Phone, smsType)
+	captcha, err := s.dao.GetCaptcha(c, captchaKey)
+	if err != nil {
+		log.Error("s.dao.GetCaptcha(c,%v) err(%v)", c, captchaKey, err)
+		return
+	}
+	if captcha != phoneLoginReq.Code {
+		log.Warn("captcha(%v) != phoneLoginReq.Code(%v)", captcha, phoneLoginReq.Code)
+		err = ecode.AuthCodeCheckFailed
+		return
+	}
+
 	return
 }
