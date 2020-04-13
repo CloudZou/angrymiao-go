@@ -7,9 +7,9 @@ import (
 
 	dc "angrymiao-go/app/infra/discovery/conf"
 	"angrymiao-go/app/infra/discovery/model"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
-	"github.com/CloudZou/punk/pkg/net/netutil/breaker"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	bm "angrymiao-go/punk/net/http/blademaster"
+	"angrymiao-go/punk/net/netutil/breaker"
+	xtime "angrymiao-go/punk/time"
 
 	. "github.com/smartystreets/goconvey/convey"
 	gock "gopkg.in/h2non/gock.v1"

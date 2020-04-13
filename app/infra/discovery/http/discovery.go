@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"angrymiao-go/app/infra/discovery/model"
-	"github.com/CloudZou/punk/pkg/ecode"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	"angrymiao-go/punk/ecode"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 const (

@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"angrymiao-go/app/infra/canal/internal/di"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 )
 
 func main() {

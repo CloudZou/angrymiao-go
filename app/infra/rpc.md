@@ -1,12 +1,12 @@
 # GRPC/RPC 注册中心使用说明
 
-+ grpc服务实现代码在github.com/CloudZou/punk/pkg/net/rpc/warden包，相应的服务发现客户端实现在/net/rpc/warden/resolver 
-+ rpc服务实现代码在github.com/CloudZou/punk/pkg/net/rpc,服务发现实现在/net/rpc/client2.go文件,NewDiscoveryCli函数
++ grpc服务实现代码在angrymiao-go/punk/net/rpc/warden包，相应的服务发现客户端实现在/net/rpc/warden/resolver 
++ rpc服务实现代码在angrymiao-go/punk/net/rpc,服务发现实现在/net/rpc/client2.go文件,NewDiscoveryCli函数
 + 服务注册中心地址为discovery.angrymiao.com,目前单节点部署在k8s集群上
   
   
 + rpc 服务代码参考:
-*rpc方法里面的第一个context.Context 必须是 "github.com/CloudZou/punk/pkg/net/rpc/context"这个路径下的，*
+*rpc方法里面的第一个context.Context 必须是 "angrymiao-go/punk/net/rpc/context"这个路径下的，*
 *另外第二个参数和第三个参数必须是指针，分表代表入参和返回参数*
 ```cassandraql
 // New new rpc server.
@@ -95,7 +95,7 @@ func (s *rpc) SayHelloURL(ctx context.Context, req *pb.HelloReq) (resp *pb.Hello
 
 ```
 
-+ grpc客户端代码调用参考, 直接使用v1.NewClient来从discovery获取远程实例，其中grpc的服务ip端口获取封装在github.com/CloudZou/punk/pkg/net/rpc/warden/resolver包:
++ grpc客户端代码调用参考, 直接使用v1.NewClient来从discovery获取远程实例，其中grpc的服务ip端口获取封装在angrymiao-go/punk/net/rpc/warden/resolver包:
 ```cassandraql
 type Service struct {
 	demoClient v1.DemoClient

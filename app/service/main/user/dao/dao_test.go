@@ -21,7 +21,7 @@ func TestMain(m *testing.M) {
 		panic(err)
 	}
 	var cf func()
-	if d, cf, err = newTestDao(); err != nil {
+	if d, cf, err = New(nil); err != nil {
 		panic(err)
 	}
 	ret := m.Run()

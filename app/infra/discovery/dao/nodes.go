@@ -7,7 +7,7 @@ import (
 
 	"angrymiao-go/app/infra/discovery/conf"
 	"angrymiao-go/app/infra/discovery/model"
-	"github.com/CloudZou/punk/pkg/sync/errgroup"
+	"angrymiao-go/punk/sync/errgroup"
 )
 
 // Nodes is helper to manage lifecycle of a collection of Nodes.

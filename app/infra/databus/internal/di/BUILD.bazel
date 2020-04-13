@@ -12,7 +12,7 @@ go_library(
         "//app/infra/databus/internal/dao:go_default_library",
         "//app/infra/databus/internal/server/http:go_default_library",
         "//app/infra/databus/internal/service:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/net/http/blademaster:go_default_library",
+        "//vendor/angrymiao-go/punk/log:go_default_library",
+        "//vendor/angrymiao-go/punk/net/http/blademaster:go_default_library",
     ],
 )

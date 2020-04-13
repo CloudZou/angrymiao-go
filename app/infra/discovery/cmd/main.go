@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 	"math/rand"
 	"os"
 	"os/signal"

@@ -3,7 +3,7 @@ package dao
 import (
 	"angrymiao-go/app/infra/canal/conf"
 	"fmt"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"time"

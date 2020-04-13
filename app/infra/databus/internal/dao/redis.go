@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"github.com/CloudZou/punk/pkg/conf/paladin"
-	"github.com/CloudZou/punk/pkg/gredis"
+	"angrymiao-go/punk/conf/paladin"
+	"angrymiao-go/punk/gredis"
 )
 
 // Setup Initialize the Redis Client instance

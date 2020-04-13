@@ -2,8 +2,8 @@ package infoc
 
 import (
 	"fmt"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/net/ip"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/net/ip"
 	"net"
 	"sync/atomic"
 	"time"

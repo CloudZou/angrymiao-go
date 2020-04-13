@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
 )
 
 // InstanceStatus Status of instance

@@ -11,9 +11,9 @@ import (
 
 	"angrymiao-go/app/infra/canal/conf"
 	"angrymiao-go/app/infra/canal/infoc"
-	config "github.com/CloudZou/punk/pkg/conf"
-	"github.com/CloudZou/punk/pkg/ecode"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	config "angrymiao-go/punk/conf"
+	"angrymiao-go/punk/ecode"
+	bm "angrymiao-go/punk/net/http/blademaster"
 
 	"github.com/BurntSushi/toml"
 	"github.com/siddontang/go-mysql/canal"

@@ -1,9 +1,9 @@
 package http
 
 import (
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 func errors(c *bm.Context) {

@@ -4,10 +4,10 @@ import (
 	"context"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/gredis"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
-	"github.com/CloudZou/punk/pkg/sync/pipeline/fanout"
-	xtime "github.com/CloudZou/punk/pkg/time"
+	"angrymiao-go/punk/gredis"
+	"angrymiao-go/punk/conf/paladin"
+	"angrymiao-go/punk/sync/pipeline/fanout"
+	xtime "angrymiao-go/punk/time"
 	"github.com/jinzhu/gorm"
 
 	"github.com/google/wire"

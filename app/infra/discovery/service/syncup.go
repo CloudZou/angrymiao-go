@@ -9,9 +9,9 @@ import (
 	"angrymiao-go/app/infra/discovery/conf"
 	"angrymiao-go/app/infra/discovery/dao"
 	"angrymiao-go/app/infra/discovery/model"
-	libenv "github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
+	libenv "angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
 )
 
 var (

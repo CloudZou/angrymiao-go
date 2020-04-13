@@ -11,8 +11,8 @@ import (
 	"angrymiao-go/app/infra/canal/conf"
 	"angrymiao-go/app/infra/canal/infoc"
 	"angrymiao-go/app/infra/canal/internal/model"
-	"github.com/CloudZou/punk/pkg/log"
-	"github.com/CloudZou/punk/pkg/queue/databus"
+	"angrymiao-go/punk/log"
+	"angrymiao-go/punk/queue/databus"
 
 	"github.com/pkg/errors"
 	"github.com/siddontang/go-mysql/canal"

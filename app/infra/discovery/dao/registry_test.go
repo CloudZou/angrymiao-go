@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"angrymiao-go/app/infra/discovery/model"
-	"github.com/CloudZou/punk/pkg/ecode"
+	"angrymiao-go/punk/ecode"
 
 	. "github.com/smartystreets/goconvey/convey"
 )

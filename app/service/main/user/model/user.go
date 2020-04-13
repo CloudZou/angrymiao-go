@@ -1,5 +1,7 @@
 package model
 
+import "angrymiao-go/punk/model"
+
 type AuthType string
 const (
 	Wechat AuthType = "Wechat"
@@ -8,19 +10,34 @@ const (
 )
 
 type User struct {
+	model.BaseModel
 	Email string   `json:"email" gorm:"email"`
 	Phone string	`json:"phone" gorm:"phone"`
 	Username string	`json:"username" gorm:"username"`
 	Gender string	`json:"gender" gorm:"gender"`
-	nickname string	`json:"nickname" gorm:"nickname"`
-	headPicurl string	`json:"headPicurl" gorm:"head_pic_url"`
-	password string	`json:"password" gorm:"password"`
-	wxOpenId string	`json:"wxOpenId" gorm:"wx_open_id"`
-	unionId string	`json:"unionId" gorm:"union_id"`
-	qqOpenId string	`json:"qqOpenId" gorm:"qq_open_id"`
-	authType AuthType	`json:"authType" gorm:"type:ENUM('Wechat', 'QQ','Mobile')""`
-	registerTime string	`json:"registerTime" gorm:"register_time"`
-	lastLoginTime string	`json:"lastLoginTime" gorm:"last_login_time"`
+	Nickname string	`json:"nickname" gorm:"nickname"`
+	HeadPicurl string	`json:"headPicurl" gorm:"head_pic_url"`
+	Password string	`json:"password" gorm:"password"`
+	WxOpenId string	`json:"wxOpenId" gorm:"wx_open_id"`
+	UnionId string	`json:"unionId" gorm:"union_id"`
+	QQOpenId string	`json:"qqOpenId" gorm:"qq_open_id"`
+	AuthType AuthType	`json:"authType" gorm:"type:ENUM('Wechat', 'QQ','Mobile')""`
+	RegisterTime string	`json:"registerTime" gorm:"register_time"`
+	LastLoginTime string	`json:"lastLoginTime" gorm:"last_login_time"`
+}
+
+func (u *User)ToUserViewResponse() (userViewResponse *UserViewResponse) {
+	userViewResponse = &UserViewResponse{
+		ID:           u.ID,
+		Nickname:     u.Nickname,
+		Phone:        u.Phone,
+		AvatarUrl:    u.HeadPicurl,
+		Balance:      "0.00",
+		Gender:       0,
+		DateJoined:   u.CreateTime,
+		AuthType:     u.AuthType,
+	}
+	return
 }
 
 func (u *User) TableName() string {

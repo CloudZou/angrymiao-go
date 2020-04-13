@@ -7,7 +7,7 @@ import (
 
 	"angrymiao-go/app/infra/discovery/conf"
 	"angrymiao-go/app/infra/discovery/dao"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 // Service discovery main service

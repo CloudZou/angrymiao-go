@@ -3,10 +3,10 @@ package http
 import (
 	"angrymiao-go/app/infra/databus/internal/service"
 	"angrymiao-go/app/infra/databus/tcp"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
+	"angrymiao-go/punk/conf/paladin"
 
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	"angrymiao-go/punk/log"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 

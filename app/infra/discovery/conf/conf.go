@@ -3,10 +3,10 @@ package conf
 import (
 	"errors"
 	"flag"
-	"github.com/CloudZou/punk/pkg/conf"
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
-	xip "github.com/CloudZou/punk/pkg/net/ip"
+	"angrymiao-go/punk/conf"
+	"angrymiao-go/punk/log"
+	bm "angrymiao-go/punk/net/http/blademaster"
+	xip "angrymiao-go/punk/net/ip"
 	"net"
 
 	"github.com/BurntSushi/toml"

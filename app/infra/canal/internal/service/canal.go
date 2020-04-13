@@ -14,11 +14,11 @@ import (
 
 	"angrymiao-go/app/infra/canal/conf"
 	"angrymiao-go/app/infra/canal/internal/dao"
-	"github.com/CloudZou/punk/pkg/conf/env"
-	"github.com/CloudZou/punk/pkg/log"
-	xhttp "github.com/CloudZou/punk/pkg/net/http/blademaster"
-	"github.com/CloudZou/punk/pkg/net/netutil"
-	"github.com/CloudZou/punk/pkg/stat/prom"
+	"angrymiao-go/punk/conf/env"
+	"angrymiao-go/punk/log"
+	xhttp "angrymiao-go/punk/net/http/blademaster"
+	"angrymiao-go/punk/net/netutil"
+	"angrymiao-go/punk/stat/prom"
 
 	"github.com/siddontang/go-mysql/client"
 )

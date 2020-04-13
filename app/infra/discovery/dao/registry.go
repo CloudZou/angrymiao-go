@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"angrymiao-go/app/infra/discovery/model"
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
 )
 
 const (

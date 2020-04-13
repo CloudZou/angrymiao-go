@@ -35,8 +35,8 @@ func (s *Service)ValidateAndSend(c context.Context, mobile string, smsType model
 	return
 }
 
-func (s *Service)Authenticate(c context.Context, phoneLoginReq model.PhoneLoginReq, smsType model.SmsType) (err error) {
-	captchaKey := model.KeyOfMobileCaptcha(phoneLoginReq.Phone, smsType)
+func (s *Service)Authenticate(c context.Context, phoneLoginReq model.PhoneLoginReq) (err error) {
+	captchaKey := model.KeyOfMobileCaptcha(phoneLoginReq.Phone, model.SIGN_UP)
 	captcha, err := s.dao.GetCaptcha(c, captchaKey)
 	if err != nil {
 		log.Error("s.dao.GetCaptcha(c,%v) err(%v)", c, captchaKey, err)

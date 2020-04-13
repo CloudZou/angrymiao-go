@@ -3,7 +3,7 @@ package http
 import (
 	"angrymiao-go/app/infra/canal/conf"
 	"angrymiao-go/app/infra/canal/internal/service"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
+	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
 var (

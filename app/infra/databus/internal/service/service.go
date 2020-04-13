@@ -4,11 +4,11 @@ import (
 	"angrymiao-go/app/infra/databus/internal/dao"
 	"angrymiao-go/app/infra/databus/internal/model"
 	"context"
-	_ "github.com/CloudZou/punk/pkg/conf/paladin"
-	"github.com/CloudZou/punk/pkg/log"
+	_ "angrymiao-go/punk/conf/paladin"
+	"angrymiao-go/punk/log"
 	"time"
 
-	"github.com/CloudZou/punk/pkg/stat/prom"
+	"angrymiao-go/punk/stat/prom"
 	"github.com/google/wire"
 )
 

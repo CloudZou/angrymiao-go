@@ -10,10 +10,10 @@ import (
 
 	"angrymiao-go/app/infra/discovery/conf"
 	"angrymiao-go/app/infra/discovery/model"
-	"github.com/CloudZou/punk/pkg/ecode"
-	"github.com/CloudZou/punk/pkg/log"
-	bm "github.com/CloudZou/punk/pkg/net/http/blademaster"
-	"github.com/CloudZou/punk/pkg/xstr"
+	"angrymiao-go/punk/ecode"
+	"angrymiao-go/punk/log"
+	bm "angrymiao-go/punk/net/http/blademaster"
+	"angrymiao-go/punk/xstr"
 )
 
 const (

@@ -8,9 +8,9 @@ go_library(
     deps = [
         "//app/infra/databus/internal/dao:go_default_library",
         "//app/infra/databus/internal/model:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/conf/paladin:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/log:go_default_library",
-        "//vendor/github.com/CloudZou/punk/pkg/stat/prom:go_default_library",
+        "//vendor/angrymiao-go/punk/conf/paladin:go_default_library",
+        "//vendor/angrymiao-go/punk/log:go_default_library",
+        "//vendor/angrymiao-go/punk/stat/prom:go_default_library",
         "//vendor/github.com/google/wire:go_default_library",
     ],
 )

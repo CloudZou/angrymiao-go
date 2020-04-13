@@ -3,8 +3,8 @@ package dao
 import (
 	"fmt"
 	"angrymiao-go/app/infra/databus/conf"
-	"github.com/CloudZou/punk/pkg/conf/paladin"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/conf/paladin"
+	"angrymiao-go/punk/log"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"time"

@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"angrymiao-go/app/infra/canal/conf"
-	"github.com/CloudZou/punk/pkg/log"
+	"angrymiao-go/punk/log"
 
 	"github.com/pkg/errors"
 	"github.com/siddontang/go-mysql/canal"
