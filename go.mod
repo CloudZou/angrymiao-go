@@ -4,7 +4,6 @@ go 1.13
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/CloudZou/punk v0.0.0-20200306071323-49dbfc72e00c
 	github.com/Shopify/sarama v1.26.1
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.110
 	github.com/astaxie/beego v1.12.1
