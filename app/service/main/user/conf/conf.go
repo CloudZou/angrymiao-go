@@ -11,6 +11,7 @@ import (
 	"errors"
 	"flag"
 	"github.com/BurntSushi/toml"
+	"github.com/silenceper/wechat"
 )
 
 // global var
@@ -33,6 +34,8 @@ type Config struct {
 	Db             *orm.Config
 	Redis          *redis.Config
 	UdpTraceConfig *trace.Config
+
+	Wechat      *wechat.Config
 }
 
 func init() {

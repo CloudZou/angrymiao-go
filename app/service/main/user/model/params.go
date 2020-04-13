@@ -19,3 +19,10 @@ type UserViewResponse struct {
 	Token string 	`json:"token"`
 	RefreshToken string `json:refreshToken`
 }
+
+type WechatInfoReq struct {
+	Code string 	`json:"code"`
+	Scope string 	`json:"scope"`
+	RedirectUrl string `json:"redirect_url"`
+	Scene string `json:"scene"`
+}

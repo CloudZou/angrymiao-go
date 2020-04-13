@@ -62,3 +62,29 @@ func phoneLogin(c *bm.Context) {
 	c.JSON(userMap, nil)
 	return
 }
+
+func wechatLogin(c *bm.Context) {
+	p := new(model.WechatInfoReq)
+	if err := c.Bind(p); err != nil {
+		return
+	}
+	user, err := srv.WechatLogin(c, p)
+	if err != nil {
+		log.Error("svr.WechatLogin(c,%v) err(%v)", p, err)
+		c.JSON(nil, ecode.AuthCodeCheckFailed)
+		return
+	}
+	accessToken, err := jwt.GenerateToken(user.Phone, user.ID)
+	if err != nil {
+		log.Error("jwt.GenerateToken(%v,%v) err(%v)", user.Phone, user.ID, err)
+		c.JSON(nil, ecode.AuthCodeCheckFailed)
+		return
+	}
+	c.Writer.Header().Add(AUTHORIZATION_HEADER, fmt.Sprintf("Bearer %s", accessToken))
+	userViewResponse := user.ToUserViewResponse()
+	userViewResponse.Token = accessToken
+	userMap := make(map[string]interface{})
+	userMap["user"] = userViewResponse
+	c.JSON(userMap, nil)
+	return
+}

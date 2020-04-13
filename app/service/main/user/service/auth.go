@@ -6,7 +6,7 @@ import (
 	"context"
 )
 
-func (s *Service)PhoneLogin(c context.Context, req model.PhoneLoginReq) (user *model.User, err error) {
+func (s *Service)PhoneLogin(c context.Context, req *model.PhoneLoginReq) (user *model.User, err error) {
 	if err = s.Authenticate(c, req); err != nil {
 		log.Error("s.Authenticate(c,%v) err(%v)", req, err)
 		return

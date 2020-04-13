@@ -8,6 +8,7 @@ import (
 	"angrymiao-go/punk/sync/pipeline/fanout"
 	"context"
 	"github.com/jinzhu/gorm"
+	"github.com/silenceper/wechat"
 )
 
 // Dao Dao.
@@ -15,6 +16,7 @@ type Dao struct {
 	db    *gorm.DB
 	redis *redis.Pool
 	cache *fanout.Fanout
+	wechat *wechat.Wechat
 }
 
 func New(c *conf.Config) (d *Dao, cf func(), err error) {
@@ -26,6 +28,7 @@ func New(c *conf.Config) (d *Dao, cf func(), err error) {
 	d = &Dao{
 		db:         db,
 		redis:      redis.NewPool(c.Redis),
+		wechat: wechat.NewWechat(c.Wechat),
 	}
 	d.initORM()
 	return
