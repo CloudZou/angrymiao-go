@@ -36,6 +36,13 @@ type Config struct {
 	UdpTraceConfig *trace.Config
 
 	Wechat      *wechat.Config
+
+	QQ  		*QQConfig
+}
+
+type QQConfig struct {
+	AppId 	string
+	AppKey  string
 }
 
 func init() {

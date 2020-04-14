@@ -14,7 +14,7 @@ func (d *Dao)OAuth2GetUserInfo(code string) (userInfo oauth.UserInfo, err error)
 	}
 	userInfo, err = oauth.GetUserInfo(resToken.AccessToken, resToken.OpenID)
 	if err != nil {
-		log.Error("oauth.GetUserInfo(%v, %v) err(%v)", resToken.AccessToken, resToken.OpenID)
+		log.Error("oauth.GetQQUserInfo(%v, %v) err(%v)", resToken.AccessToken, resToken.OpenID)
 		return
 	}
 	return

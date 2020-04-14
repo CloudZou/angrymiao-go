@@ -23,7 +23,22 @@ func (d *Dao) GetUserByPhone(phone string) (user *model.User, err error) {
 }
 
 func (d *Dao) GetUserByWechatInfo(unionId string) (user *model.User, err error) {
-	err = d.db.Where("union_id = ? and status = 0", unionId).Find(user).Error
+	err = d.db.Where("union_id = ? and auth_type = 'Wechat' and status = 0", unionId).Find(user).Error
+	if err == gorm.ErrRecordNotFound {
+		user = nil
+		err = nil
+		return
+	}
+	if err != nil {
+		log.Error("d.db.Where(%v) err(%v)", unionId, err)
+		return
+	}
+
+	return
+}
+
+func (d *Dao) GetUserByQQInfo(unionId string) (user *model.User, err error) {
+	err = d.db.Where("union_id = ? and auth_type = 'QQ' and status = 0", unionId).Find(user).Error
 	if err == gorm.ErrRecordNotFound {
 		user = nil
 		err = nil
@@ -74,6 +89,24 @@ func (d *Dao)CreateUserWithWechat(oauthUserInfo oauth.UserInfo) (user *model.Use
 	user.Gender = string(oauthUserInfo.Sex)
 	user.HeadPicurl = oauthUserInfo.HeadImgURL
 	user.AuthType = model.Wechat
+	if d.db.NewRecord(*user) {
+		err = d.db.Create(user).Error
+		if err != nil {
+			log.Error("d.db.Create(%v) err(%v)", *user, err)
+			return
+		}
+	}
+	return
+}
+
+func (d *Dao)CreateUserWithQQ(qqOpenID model.QQOpenIDResponse, qqUserInfo model.QQUserInfoResponse) (user *model.User, err error) {
+	user = &model.User{}
+	user.UnionId = qqOpenID.UnionID
+	user.WxOpenId = qqOpenID.OpenID
+	user.Username = qqUserInfo.Nickname
+	user.Gender = qqUserInfo.Gender
+	user.HeadPicurl = qqUserInfo.FigureUrl_qq_1
+	user.AuthType = model.QQ
 	if d.db.NewRecord(*user) {
 		err = d.db.Create(user).Error
 		if err != nil {

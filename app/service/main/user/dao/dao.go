@@ -17,6 +17,7 @@ type Dao struct {
 	redis *redis.Pool
 	cache *fanout.Fanout
 	wechat *wechat.Wechat
+	QQ     *QQConnector
 }
 
 func New(c *conf.Config) (d *Dao, cf func(), err error) {
@@ -29,6 +30,7 @@ func New(c *conf.Config) (d *Dao, cf func(), err error) {
 		db:         db,
 		redis:      redis.NewPool(c.Redis),
 		wechat: wechat.NewWechat(c.Wechat),
+		QQ: &QQConnector{Config:c.QQ},
 	}
 	d.initORM()
 	return
