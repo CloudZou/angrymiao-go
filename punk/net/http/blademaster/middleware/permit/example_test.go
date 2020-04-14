@@ -3,9 +3,6 @@ package permit_test
 import (
 	"fmt"
 	"time"
-
-	"angrymiao-go/punk/cache/memcache"
-	"angrymiao-go/punk/container/pool"
 	bm "angrymiao-go/punk/net/http/blademaster"
 	"angrymiao-go/punk/net/http/blademaster/middleware/permit"
 	"angrymiao-go/punk/net/metadata"

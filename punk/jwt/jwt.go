@@ -14,12 +14,12 @@ func Init(secret string) {
 
 type Claims struct {
 	Phone  string `json:"phone"`
-	UserID int    `json:"userId"`
+	UserID int64    `json:"userId"`
 	jwt.StandardClaims
 }
 
 // GenerateToken generate tokens used for auth
-func GenerateToken(phone string, userId int) (string, error) {
+func GenerateToken(phone string, userId int64) (string, error) {
 	nowTime := time.Now()
 	expireTime := nowTime.Add(3 * time.Hour)
 

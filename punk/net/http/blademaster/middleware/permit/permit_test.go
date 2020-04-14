@@ -87,8 +87,6 @@ func getPermit() *Permit {
 			Domain:          ".bilibili.co",
 		},
 		ManagerHost:     "http://uat-manager.bilibili.co",
-		DashboardHost:   "http://auth-mng.bilibili.co",
-		DashboardCaller: "manager-go",
 	})
 }
 

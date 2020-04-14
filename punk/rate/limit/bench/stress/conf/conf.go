@@ -3,9 +3,7 @@ package conf
 import (
 	"flag"
 
-	"angrymiao-go/punk/cache/memcache"
 	"angrymiao-go/punk/cache/redis"
-	"angrymiao-go/punk/database/sql"
 	ecode "angrymiao-go/punk/ecode/tip"
 	"angrymiao-go/punk/log"
 	bm "angrymiao-go/punk/net/http/blademaster"
@@ -31,10 +29,6 @@ type Config struct {
 	Tracer *trace.Config
 	// redis
 	Redis *redis.Config
-	// memcache
-	Memcache *memcache.Config
-	// MySQL
-	MySQL *sql.Config
 	// ecode
 	Ecode *ecode.Config
 }

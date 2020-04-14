@@ -3,9 +3,9 @@ package model
 import "time"
 
 type BaseModel struct {
-	ID         int `orm:"primary_key" json:"id"`
-	CreateTime time.Time `orm:"column:create_time" json:"create_time"`
-	UpdateTime time.Time `orm:"column:update_time" json:"update_time"`
-	Status int `orm:"status" json:"status"`
+	ID         int64 `gorm:"column:id;primary_key" json:"id"`
+	CreateTime time.Time `gorm:"column:create_time" json:"create_time"`
+	UpdateTime time.Time `gorm:"column:update_time" json:"update_time"`
+	Status int `gorm:"status" json:"status"`
 }
 

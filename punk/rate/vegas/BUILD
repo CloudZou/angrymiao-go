@@ -2,24 +2,29 @@ package(default_visibility = ["//visibility:public"])
 
 load(
     "@io_bazel_rules_go//go:def.bzl",
+    "go_test",
     "go_library",
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["vegas_test.go"],
+    embed = [":go_default_library"],
+    rundir = ".",
+    tags = ["automanaged"],
+    deps = ["//library/rate:go_default_library"],
 )
 
 go_library(
     name = "go_default_library",
     srcs = [
-        "file.go",
-        "memcache.go",
-        "store.go",
+        "sample.go",
+        "vegas.go",
     ],
-    importpath = "angrymiao-go/punk/net/http/blademaster/middleware/cache/store",
+    importpath = "angrymiao-go/punk/rate/vegas",
     tags = ["automanaged"],
     visibility = ["//visibility:public"],
-    deps = [
-        "//library/cache/memcache:go_default_library",
-        "//library/log:go_default_library",
-        "//vendor/github.com/pkg/errors:go_default_library",
-    ],
+    deps = ["//library/rate:go_default_library"],
 )
 
 filegroup(
