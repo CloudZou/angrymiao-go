@@ -1,26 +1,24 @@
 package auth
 
 import (
-	idtv1 "angrymiao-go/app/service/main/identify/api"
 	"angrymiao-go/punk/ecode"
+	jt "angrymiao-go/punk/jwt"
 	bm "angrymiao-go/punk/net/http/blademaster"
 	"angrymiao-go/punk/net/metadata"
-	"angrymiao-go/punk/net/rpc/warden"
-
-	"github.com/pkg/errors"
+	"github.com/dgrijalva/jwt-go"
+)
+const (
+	_authorization = "Authorization"
 )
 
 // Config is the identify config model.
 type Config struct {
-	Identify *warden.ClientConfig
 	// csrf switch.
 	DisableCSRF bool
 }
 
 // Auth is the authorization middleware
 type Auth struct {
-	idtv1.IdentifyClient
-
 	conf *Config
 }
 
@@ -28,7 +26,6 @@ type Auth struct {
 type authFunc func(*bm.Context) (int64, string, error)
 
 var _defaultConf = &Config{
-	Identify:    nil,
 	DisableCSRF: false,
 }
 
@@ -37,12 +34,7 @@ func New(conf *Config) *Auth {
 	if conf == nil {
 		conf = _defaultConf
 	}
-	identify, err := idtv1.NewClient(conf.Identify)
-	if err != nil {
-		panic(errors.WithMessage(err, "Failed to dial identify service"))
-	}
 	auth := &Auth{
-		IdentifyClient: identify,
 		conf:           conf,
 	}
 	return auth
@@ -75,19 +67,27 @@ func (a *Auth) GuestMobile(ctx *bm.Context) {
 // AuthToken is used to authorize request by token
 func (a *Auth) AuthToken(ctx *bm.Context) (int64, string,  error) {
 	req := ctx.Request
-	key := req.Form.Get("access_key")
-	if key == "" {
+	accessToken := req.Header.Get(_authorization)
+	if accessToken == "" {
 		return 0, "",  ecode.NoLogin
 	}
-	reply, err := a.GetTokenInfo(ctx, &idtv1.GetTokenInfoReq{Token: key})
+
+	var code ecode.Code
+	claims, err := jt.ParseToken(accessToken)
 	if err != nil {
-		return 0, "", err
+		switch err.(*jwt.ValidationError).Errors {
+		case jwt.ValidationErrorExpired:
+			code = ecode.AuthFailed
+		default:
+			code = ecode.AuthFailed
+		}
 	}
-	if !reply.IsLogin {
+	if code != ecode.OK {
+		ctx.JSON(nil, code)
+		ctx.Abort()
 		return 0, "", ecode.NoLogin
 	}
-
-	return reply.Mid, reply.Username, nil
+	return claims.UserID, claims.Phone, nil
 }
 
 func (a *Auth) midAuth(ctx *bm.Context, auth authFunc) {

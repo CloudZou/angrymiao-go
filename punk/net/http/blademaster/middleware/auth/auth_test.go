@@ -15,7 +15,6 @@ import (
 	bm "angrymiao-go/punk/net/http/blademaster"
 	"angrymiao-go/punk/net/metadata"
 	"angrymiao-go/punk/net/netutil/breaker"
-	"angrymiao-go/punk/net/rpc/warden"
 	xtime "angrymiao-go/punk/time"
 
 	"github.com/stretchr/testify/assert"
@@ -57,7 +56,6 @@ func client() *bm.Client {
 
 func create() *Auth {
 	return New(&Config{
-		Identify:    &warden.ClientConfig{},
 		DisableCSRF: false,
 	})
 }
