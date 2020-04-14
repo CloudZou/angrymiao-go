@@ -11,32 +11,16 @@ const (
 	_authorization = "Authorization"
 )
 
-// Config is the identify config model.
-type Config struct {
-	// csrf switch.
-	DisableCSRF bool
-}
-
 // Auth is the authorization middleware
 type Auth struct {
-	conf *Config
 }
 
 // authFunc will return mid and error by given context
 type authFunc func(*bm.Context) (int64, string, error)
 
-var _defaultConf = &Config{
-	DisableCSRF: false,
-}
-
 // New is used to create an authorization middleware
-func New(conf *Config) *Auth {
-	if conf == nil {
-		conf = _defaultConf
-	}
-	auth := &Auth{
-		conf:           conf,
-	}
+func New() *Auth {
+	auth := &Auth{}
 	return auth
 }
 
@@ -77,9 +61,9 @@ func (a *Auth) AuthToken(ctx *bm.Context) (int64, string,  error) {
 	if err != nil {
 		switch err.(*jwt.ValidationError).Errors {
 		case jwt.ValidationErrorExpired:
-			code = ecode.AuthFailed
+			code = ecode.NoLogin
 		default:
-			code = ecode.AuthFailed
+			code = ecode.NoLogin
 		}
 	}
 	if code != ecode.OK {
@@ -107,13 +91,7 @@ func (a *Auth) guestAuth(ctx *bm.Context, auth authFunc) {
 		setMid(ctx, mid, username)
 		return
 	}
-
-	ec := ecode.Cause(err)
-	if ecode.Equal(ec, ecode.CsrfNotMatchErr) {
-		ctx.JSON(nil, ec)
-		ctx.Abort()
-		return
-	}
+	return
 }
 
 // set mid into context
