@@ -8,6 +8,7 @@ import (
 	"angrymiao-go/punk/jwt"
 	"angrymiao-go/punk/log"
 	bm "angrymiao-go/punk/net/http/blademaster"
+	authService "angrymiao-go/punk/net/http/blademaster/middleware/auth"
 	"fmt"
 )
 
@@ -16,10 +17,11 @@ const (
 	AUTHORIZATION_BEARER = "Bearer"
 )
 var srv *service.Service
-
+var auth *authService.Auth
 // New new a bm server.
 func New(c *conf.Config, s *service.Service) (engine *bm.Engine, err error) {
 	srv = s
+	auth = authService.New()
 	engine = bm.DefaultServer(c.BM)
 	initRouter(engine)
 	err = engine.Start()
@@ -36,7 +38,29 @@ func initRouter(e *bm.Engine) {
 		g.POST("/phoneLogin", phoneLogin)
 		g.POST("/wechatLogin", wechatLogin)
 		g.POST("/qqLogin", qqLogin)
+
+		g.POST("/updateWxOpenId", auth.UserMobile, updateWxOpenId)
 	}
+}
+
+func updateWxOpenId(c *bm.Context) {
+	var err error
+	user, err := srv.GetCurrentUser(c)
+	if err != nil {
+		c.JSON(nil, ecode.NoLogin)
+		return
+	}
+	p := new(model.UpdateWxOpenIdReq)
+	if err = c.Bind(p); err != nil {
+		return
+	}
+	err = srv.UpdateWxOpenIdById(*user, p.WxOpenId)
+	if err != nil {
+		c.JSON(nil, err)
+		return
+	}
+	c.JSON(nil, nil)
+	return
 }
 
 func qqLogin(c *bm.Context) {

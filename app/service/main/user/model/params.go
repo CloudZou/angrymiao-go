@@ -26,3 +26,7 @@ type WechatInfoReq struct {
 	RedirectUrl string `json:"redirect_url"`
 	Scene string `json:"scene"`
 }
+
+type UpdateWxOpenIdReq struct {
+	WxOpenId string `json:"wxOpenId"`
+}
