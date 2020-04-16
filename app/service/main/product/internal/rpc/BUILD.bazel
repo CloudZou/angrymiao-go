@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["rpc.go"],
+    importpath = "angrymiao-go/app/service/main/product/internal/rpc",
+    visibility = ["//app/service/main/product:__subpackages__"],
+    deps = ["//punk/net/rpc:go_default_library"],
+)

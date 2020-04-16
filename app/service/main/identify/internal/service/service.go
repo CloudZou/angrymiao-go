@@ -1,15 +1,9 @@
 package service
 
 import (
-	"angrymiao-go/punk/cache"
-	"context"
-	"fmt"
-
-	pb "angrymiao-go/app/service/main/identify/api"
+	"angrymiao-go/app/service/main/identify/conf"
 	"angrymiao-go/app/service/main/identify/internal/dao"
-	"angrymiao-go/punk/conf/paladin"
-
-	"github.com/golang/protobuf/ptypes/empty"
+	"angrymiao-go/punk/cache"
 )
 // Service service.
 type Service struct {
@@ -18,9 +12,9 @@ type Service struct {
 }
 
 // New new a service and return.
-func New(d *dao.Dao) (s *Service, cf func(), err error) {
+func New(c *conf.Config) (s *Service, cf func(), err error) {
 	s = &Service{
-		d: d,
+		d: dao.New(c),
 	}
 	cf = s.Close
 	return

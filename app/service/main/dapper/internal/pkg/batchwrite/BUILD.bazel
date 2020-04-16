@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["batchwrite.go"],
+    importpath = "angrymiao-go/app/service/main/dapper/internal/pkg/batchwrite",
+    visibility = ["//app/service/main/dapper:__subpackages__"],
+    deps = [
+        "//app/service/main/dapper/internal/model:go_default_library",
+        "//punk/log:go_default_library",
+        "//vendor/github.com/pkg/errors:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["batchwrite_test.go"],
+    embed = [":go_default_library"],
+    deps = ["//app/service/main/dapper/internal/model:go_default_library"],
+)

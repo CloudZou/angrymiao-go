@@ -1,0 +1,37 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "dao.go",
+        "permit.go",
+        "redis.go",
+    ],
+    importpath = "angrymiao-go/app/admin/manager/dao",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//app/admin/manager/conf:go_default_library",
+        "//punk/cache/redis:go_default_library",
+        "//punk/database/orm:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/net/http/blademaster/middleware/permit:go_default_library",
+        "//vendor/github.com/jinzhu/gorm:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "dao_test.go",
+        "permit_test.go",
+        "redis_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//app/admin/manager/conf:go_default_library",
+        "//punk/ecode:go_default_library",
+        "//punk/net/http/blademaster/middleware/permit:go_default_library",
+        "//vendor/github.com/smartystreets/goconvey/convey:go_default_library",
+    ],
+)

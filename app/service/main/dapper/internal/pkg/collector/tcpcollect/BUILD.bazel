@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["server.go"],
+    importpath = "angrymiao-go/app/service/main/dapper/internal/pkg/collector/tcpcollect",
+    visibility = ["//app/service/main/dapper:__subpackages__"],
+    deps = [
+        "//app/service/main/dapper/conf:go_default_library",
+        "//app/service/main/dapper/internal/model:go_default_library",
+        "//app/service/main/dapper/internal/pkg/process:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/trace/proto:go_default_library",
+        "//punk/stat/counter:go_default_library",
+        "//punk/stat/prom:go_default_library",
+        "//vendor/github.com/golang/protobuf/proto:go_default_library",
+        "//vendor/github.com/golang/protobuf/ptypes/duration:go_default_library",
+        "//vendor/github.com/golang/protobuf/ptypes/timestamp:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["server_test.go"],
+    data = glob(["testdata/**"]),
+    embed = [":go_default_library"],
+    deps = [
+        "//app/service/main/dapper/conf:go_default_library",
+        "//app/service/main/dapper/internal/model:go_default_library",
+        "//app/service/main/dapper/internal/pkg/process:go_default_library",
+    ],
+)

@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["dao.go"],
+    importpath = "angrymiao-go/app/service/main/dapper/internal/dao",
+    visibility = ["//app/service/main/dapper:__subpackages__"],
+    deps = [
+        "//app/service/main/dapper/conf:go_default_library",
+        "//app/service/main/dapper/internal/model:go_default_library",
+        "//punk/log:go_default_library",
+        "//vendor/github.com/dgryski/go-farm:go_default_library",
+        "//vendor/github.com/influxdata/influxdb1-client/v2:go_default_library",
+        "//vendor/github.com/tsuna/gohbase:go_default_library",
+        "//vendor/github.com/tsuna/gohbase/hrpc:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["dao_test.go"],
+    embed = [":go_default_library"],
+)

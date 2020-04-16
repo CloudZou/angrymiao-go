@@ -10,5 +10,5 @@ func send(ctx *bm.Context) {
 	if err := ctx.Bind(req); err != nil {
 		return
 	}
-	ctx.JSON(smsSvc.Send(ctx, req))
+	//ctx.JSON(smsSvc.Send(ctx, req))
 }

@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "app.go",
+        "wire_gen.go",
+    ],
+    importpath = "angrymiao-go/app/service/main/product/internal/di",
+    visibility = ["//app/service/main/product:__subpackages__"],
+    deps = [
+        "//app/service/main/product/internal/dao:go_default_library",
+        "//app/service/main/product/internal/server/http:go_default_library",
+        "//app/service/main/product/internal/service:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+    ],
+)

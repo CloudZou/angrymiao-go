@@ -1,0 +1,8 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["handlersignal.go"],
+    importpath = "angrymiao-go/app/service/main/dapper/internal/pkg/util",
+    visibility = ["//app/service/main/dapper:__subpackages__"],
+)

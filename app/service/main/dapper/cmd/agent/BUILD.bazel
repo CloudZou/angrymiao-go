@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "angrymiao-go/app/service/main/dapper/cmd/agent",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//app/service/main/dapper/agent:go_default_library",
+        "//app/service/main/dapper/conf:go_default_library",
+        "//app/service/main/dapper/internal/pkg/util:go_default_library",
+        "//punk/log:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "agent",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

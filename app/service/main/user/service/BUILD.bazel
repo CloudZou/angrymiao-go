@@ -1,0 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "auth.go",
+        "captcha.go",
+        "qq.go",
+        "service.go",
+        "user.go",
+        "wechat.go",
+    ],
+    importpath = "angrymiao-go/app/service/main/user/service",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//app/service/main/sms/api:go_default_library",
+        "//app/service/main/user/conf:go_default_library",
+        "//app/service/main/user/dao:go_default_library",
+        "//app/service/main/user/model:go_default_library",
+        "//punk/ecode:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+    ],
+)

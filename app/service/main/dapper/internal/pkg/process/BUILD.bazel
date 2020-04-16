@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["process.go"],
+    importpath = "angrymiao-go/app/service/main/dapper/internal/pkg/process",
+    visibility = ["//app/service/main/dapper:__subpackages__"],
+    deps = ["//app/service/main/dapper/internal/model:go_default_library"],
+)

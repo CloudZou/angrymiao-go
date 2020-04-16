@@ -1,8 +1,8 @@
 package dao
 
 import (
+	"angrymiao-go/app/job/sms/conf"
 	"flag"
-	"angrymiao-go/app/admin/manager/conf"
 	"os"
 	"path/filepath"
 	"testing"

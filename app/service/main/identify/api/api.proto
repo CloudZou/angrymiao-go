@@ -3,7 +3,6 @@
 syntax = "proto3";
 package passport.service.identify.v1;
 option go_package = "v1";
-option (gogoproto.goproto_stringer_all) = false;
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 

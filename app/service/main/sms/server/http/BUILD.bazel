@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "http.go",
+        "sms.go",
+    ],
+    importpath = "angrymiao-go/app/service/main/sms/server/http",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//app/service/main/sms/api:go_default_library",
+        "//app/service/main/sms/conf:go_default_library",
+        "//app/service/main/sms/service:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/net/http/blademaster/middleware/verify:go_default_library",
+    ],
+)

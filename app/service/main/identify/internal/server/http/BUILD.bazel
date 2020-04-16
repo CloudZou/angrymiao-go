@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["server.go"],
+    importpath = "angrymiao-go/app/service/main/identify/internal/server/http",
+    visibility = ["//app/service/main/identify:__subpackages__"],
+    deps = [
+        "//app/service/main/identify/conf:go_default_library",
+        "//app/service/main/identify/internal/service:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/net/http/blademaster/middleware/verify:go_default_library",
+    ],
+)

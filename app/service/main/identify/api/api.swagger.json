@@ -1,0 +1,97 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": "1"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/passport.service.identify.v1.Identify/GetTokenInfo": {
+            "get": {
+                "summary": "TokenInfo identify info by token.",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.passport.service.identify.v1.GetTokenInfoReply"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "access_key",
+                        "description": "user access token",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "passport.service.identify.v1.Identify"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".passport.service.identify.v1.GetTokenInfoReply": {
+            "type": "object",
+            "properties": {
+                "is_login": {
+                    "type": "boolean",
+                    "description": "用户是否登录"
+                },
+                "mid": {
+                    "type": "integer",
+                    "description": "user mid"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "username"
+                },
+                "csrfToken": {
+                    "type": "string",
+                    "description": "cookie csrf\n when token reqest this field is empty"
+                },
+                "expires": {
+                    "type": "integer",
+                    "description": "expire time(unix timestamp)"
+                }
+            },
+            "description": "TokenReply reply val for rpc TokenInfo"
+        },
+        ".passport.service.identify.v1.GetTokenInfoReq": {
+            "type": "object",
+            "properties": {
+                "access_key": {
+                    "type": "string",
+                    "description": "user access token"
+                }
+            },
+            "description": "TokenReq request param for rpc TokenInfo",
+            "required": [
+                "access_key"
+            ]
+        }
+    }
+}

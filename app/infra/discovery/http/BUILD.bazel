@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "discovery.go",
+        "http.go",
+    ],
+    importpath = "angrymiao-go/app/infra/discovery/http",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//app/infra/discovery/conf:go_default_library",
+        "//app/infra/discovery/model:go_default_library",
+        "//app/infra/discovery/service:go_default_library",
+        "//punk/ecode:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+    ],
+)

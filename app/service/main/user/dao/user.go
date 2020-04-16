@@ -136,11 +136,6 @@ func (d *Dao)CreateUserWithQQ(qqOpenID model.QQOpenIDResponse, qqUserInfo model.
 
 func (d *Dao)UpdateWxOpenIdById(user model.User, wxOpenId string) (err error) {
 	err = d.db.Model(&user).Update("wx_open_id", wxOpenId).Error
-	if err == gorm.ErrRecordNotFound {
-		user = nil
-		err = nil
-		return
-	}
 	if err != nil {
 		log.Error("d.db.Where(%v) err(%v)", user.ID, err)
 		return

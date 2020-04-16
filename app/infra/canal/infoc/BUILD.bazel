@@ -9,7 +9,7 @@ go_library(
     importpath = "angrymiao-go/app/infra/canal/infoc",
     visibility = ["//visibility:public"],
     deps = [
-        "//vendor/angrymiao-go/punk/log:go_default_library",
-        "//vendor/angrymiao-go/punk/net/ip:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/ip:go_default_library",
     ],
 )

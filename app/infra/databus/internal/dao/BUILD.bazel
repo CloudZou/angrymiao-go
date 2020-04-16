@@ -14,11 +14,11 @@ go_library(
     deps = [
         "//app/infra/databus/conf:go_default_library",
         "//app/infra/databus/internal/model:go_default_library",
-        "//vendor/angrymiao-go/punk/conf/paladin:go_default_library",
-        "//vendor/angrymiao-go/punk/gredis:go_default_library",
-        "//vendor/angrymiao-go/punk/log:go_default_library",
-        "//vendor/angrymiao-go/punk/sync/pipeline/fanout:go_default_library",
-        "//vendor/angrymiao-go/punk/time:go_default_library",
+        "//punk/conf/paladin:go_default_library",
+        "//punk/gredis:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/sync/pipeline/fanout:go_default_library",
+        "//punk/time:go_default_library",
         "//vendor/github.com/google/wire:go_default_library",
         "//vendor/github.com/jinzhu/gorm:go_default_library",
         "//vendor/github.com/jinzhu/gorm/dialects/mysql:go_default_library",
@@ -29,5 +29,5 @@ go_test(
     name = "go_default_test",
     srcs = ["dao_test.go"],
     embed = [":go_default_library"],
-    deps = ["//vendor/angrymiao-go/punk/conf/paladin:go_default_library"],
+    deps = ["//punk/conf/paladin:go_default_library"],
 )

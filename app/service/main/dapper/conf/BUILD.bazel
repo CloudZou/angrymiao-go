@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "agentconfig.go",
+        "conf.go",
+    ],
+    importpath = "angrymiao-go/app/service/main/dapper/conf",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//punk/conf:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/time:go_default_library",
+        "//vendor/github.com/BurntSushi/toml:go_default_library",
+    ],
+)

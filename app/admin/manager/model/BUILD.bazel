@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["user.go"],
+    importpath = "angrymiao-go/app/admin/manager/model",
+    visibility = ["//visibility:public"],
+    deps = ["//punk/model:go_default_library"],
+)

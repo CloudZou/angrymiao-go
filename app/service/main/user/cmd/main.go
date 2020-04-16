@@ -9,7 +9,6 @@ import (
 	"angrymiao-go/punk/conf/env"
 	"angrymiao-go/punk/naming"
 	"angrymiao-go/punk/naming/discovery"
-	"angrymiao-go/punk/net/trace"
 	"os"
 	"os/signal"
 	"syscall"

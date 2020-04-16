@@ -11,13 +11,13 @@ import (
 
 func (s *Service)ValidateAndSend(c context.Context, mobile string, smsType model.SmsType) (err error) {
 	frequencyKey := model.KeyOfMobileGetCaptchaFrequency(mobile, smsType)
-	if err := s.dao.ValidateFrequency(c, frequencyKey);err != nil {
+	if err = s.dao.ValidateFrequency(c, frequencyKey);err != nil {
 		log.Error("s.dao.GetFrequency(c,%v) err(%v)", frequencyKey, err)
 		return
 	}
 	captcha := s.dao.GenerateRandomNumericString()
 	captchaKey := model.KeyOfMobileCaptcha(mobile, smsType)
-	if err := s.dao.AddCaptchaCache(c, captchaKey, captcha); err != nil {
+	if err = s.dao.AddCaptchaCache(c, captchaKey, captcha); err != nil {
 		log.Error("s.dao.AddCaptchaCache(c,%v,%v) err(%v)", captchaKey, captcha, err)
 		return
 	}
@@ -28,7 +28,7 @@ func (s *Service)ValidateAndSend(c context.Context, mobile string, smsType model
 		Tcode:                "SMS_180950718",
 		Tparam:               fmt.Sprintf("{\"code\":%s}", captcha),
 	}
-	if _, err := s.smsgrpc.Send(c, sendReq); err != nil {
+	if _, err = s.smsgrpc.Send(c, sendReq); err != nil {
 		log.Error("s.smsgrpc.Send(c,%v) err(%v)", sendReq, err)
 		return
 	}

@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["agent.go"],
+    importpath = "angrymiao-go/app/service/main/dapper/agent",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//app/service/main/dapper/conf:go_default_library",
+        "//app/service/main/dapper/internal/pkg/deliver:go_default_library",
+        "//app/service/main/dapper/internal/pkg/diskqueue:go_default_library",
+        "//app/service/main/dapper/internal/server/udpcollect:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/trace/proto:go_default_library",
+        "//vendor/github.com/golang/protobuf/proto:go_default_library",
+    ],
+)

@@ -6,10 +6,10 @@ go_library(
     importpath = "angrymiao-go/app/infra/databus/conf",
     visibility = ["//visibility:public"],
     deps = [
+        "//punk/conf:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/net/netutil/breaker:go_default_library",
         "//vendor/github.com/BurntSushi/toml:go_default_library",
-        "//vendor/angrymiao-go/punk/conf:go_default_library",
-        "//vendor/angrymiao-go/punk/log:go_default_library",
-        "//vendor/angrymiao-go/punk/net/http/blademaster:go_default_library",
-        "//vendor/angrymiao-go/punk/net/netutil/breaker:go_default_library",
     ],
 )

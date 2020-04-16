@@ -3,11 +3,11 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "go_default_library",
     srcs = ["server.go"],
-    importpath = "angrymiao-go/app/service/main/user/internal/server/grpc",
-    visibility = ["//app/service/main/user:__subpackages__"],
+    importpath = "angrymiao-go/app/service/main/user/server/grpc",
+    visibility = ["//visibility:public"],
     deps = [
-        "//app/service/main/user/api:go_default_library",
-        "//vendor/angrymiao-go/punk/conf/paladin:go_default_library",
-        "//vendor/angrymiao-go/punk/net/rpc/warden:go_default_library",
+        "//app/service/main/user/conf:go_default_library",
+        "//app/service/main/user/service:go_default_library",
+        "//punk/net/rpc/warden:go_default_library",
     ],
 )

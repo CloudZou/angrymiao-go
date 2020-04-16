@@ -14,7 +14,7 @@ func (s *Service)QQLogin(c context.Context, wechatInfoReq *model.WechatInfoReq) 
 		log.Error("s.dao.QQ.GetQQAccessToken(%v,%v) err(%v)", wechatInfoReq.Code, wechatInfoReq.RedirectUrl, err)
 		return
 	}
-	if err := checkErrInfo(qqTokenResponse); err != nil {
+	if err = checkErrInfo(qqTokenResponse); err != nil {
 		log.Error("checkErrInfo(%v), err(%v)", qqTokenResponse, err)
 		return
 	}
@@ -23,7 +23,7 @@ func (s *Service)QQLogin(c context.Context, wechatInfoReq *model.WechatInfoReq) 
 		log.Error("s.dao.QQ.GetQQOpenId(%v) err(%v)", qqTokenResponse.AccessToken, err)
 		return
 	}
-	if err := checkErrInfo(qqTokenResponse); err != nil {
+	if err = checkErrInfo(qqTokenResponse); err != nil {
 		log.Error("checkErrInfo(%v), err(%v)", qqTokenResponse, err)
 		return
 	}

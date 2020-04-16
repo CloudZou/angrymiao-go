@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["conf.go"],
+    importpath = "angrymiao-go/app/service/main/user/conf",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//punk/cache/redis:go_default_library",
+        "//punk/conf:go_default_library",
+        "//punk/database/orm:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/net/rpc:go_default_library",
+        "//punk/net/rpc/warden:go_default_library",
+        "//punk/net/trace:go_default_library",
+        "//vendor/github.com/BurntSushi/toml:go_default_library",
+        "//vendor/github.com/silenceper/wechat:go_default_library",
+    ],
+)

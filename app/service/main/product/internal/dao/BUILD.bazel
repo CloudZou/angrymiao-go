@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "dao.go",
+        "db.go",
+        "wire_gen.go",
+    ],
+    importpath = "angrymiao-go/app/service/main/product/internal/dao",
+    visibility = ["//app/service/main/product:__subpackages__"],
+    deps = [
+        "//app/service/main/product/conf:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/sync/pipeline/fanout:go_default_library",
+        "//vendor/github.com/google/wire:go_default_library",
+        "//vendor/github.com/jinzhu/gorm:go_default_library",
+        "//vendor/github.com/jinzhu/gorm/dialects/mysql:go_default_library",
+    ],
+)

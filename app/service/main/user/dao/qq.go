@@ -35,7 +35,7 @@ func (c *QQConnector)GetQQAccessToken(code string, redirectUrl string) (qqTokenR
 	}
 	data, _ := ioutil.ReadAll(resp.Body)
 	jsonStr := getJsonStr(data)
-	if err := json.Unmarshal([]byte(jsonStr), &qqTokenResponse); err != nil {
+	if err = json.Unmarshal([]byte(jsonStr), &qqTokenResponse); err != nil {
 		log.Error("json.Unmarshal(%v, %v) err(%v)", jsonStr, qqTokenResponse)
 		return
 	}
@@ -52,7 +52,7 @@ func (c *QQConnector)GetQQOpenId(accessToken string) (qqOpenIDResponse QQOpenIDR
 	}
 	data, _ := ioutil.ReadAll(resp.Body)
 	jsonStr := getJsonStr(data)
-	if err := json.Unmarshal([]byte(jsonStr), &qqOpenIDResponse); err != nil {
+	if err = json.Unmarshal([]byte(jsonStr), &qqOpenIDResponse); err != nil {
 		log.Error("json.Unmarshal(%v, %v) err(%v)", jsonStr, qqOpenIDResponse)
 		return
 	}
@@ -69,7 +69,7 @@ func (c *QQConnector) GetQQUserInfo(accessToken string, openID string)(qqUserInf
 	}
 	data, _ := ioutil.ReadAll(resp.Body)
 	jsonStr := getJsonStr(data)
-	if err := json.Unmarshal([]byte(jsonStr), &qqUserInfo); err != nil {
+	if err = json.Unmarshal([]byte(jsonStr), &qqUserInfo); err != nil {
 		log.Error("json.Unmarshal(%v, %v) err(%v)", jsonStr, qqUserInfo)
 		return
 	}

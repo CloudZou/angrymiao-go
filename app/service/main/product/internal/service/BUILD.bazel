@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["service.go"],
+    importpath = "angrymiao-go/app/service/main/product/internal/service",
+    visibility = ["//app/service/main/product:__subpackages__"],
+    deps = [
+        "//app/service/main/product/api:go_default_library",
+        "//app/service/main/product/internal/dao:go_default_library",
+        "//vendor/github.com/golang/protobuf/ptypes/empty:go_default_library",
+        "//vendor/github.com/google/wire:go_default_library",
+    ],
+)

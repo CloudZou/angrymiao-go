@@ -1,0 +1,41 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "breaker.go",
+        "collector.go",
+        "detect.go",
+        "operation_name.go",
+        "process.go",
+    ],
+    importpath = "angrymiao-go/app/service/main/dapper/internal/collectors",
+    visibility = ["//app/service/main/dapper:__subpackages__"],
+    deps = [
+        "//app/service/main/dapper/conf:go_default_library",
+        "//app/service/main/dapper/internal/dao:go_default_library",
+        "//app/service/main/dapper/internal/model:go_default_library",
+        "//app/service/main/dapper/internal/pkg/batchwrite:go_default_library",
+        "//app/service/main/dapper/internal/pkg/collector:go_default_library",
+        "//app/service/main/dapper/internal/pkg/collector/kafkacollect:go_default_library",
+        "//app/service/main/dapper/internal/pkg/collector/tcpcollect:go_default_library",
+        "//app/service/main/dapper/internal/pkg/pointwrite:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "breaker_test.go",
+        "collector_test.go",
+        "detect_test.go",
+        "operation_name_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//app/service/main/dapper/internal/model:go_default_library",
+        "//punk/net/trace/proto:go_default_library",
+    ],
+)

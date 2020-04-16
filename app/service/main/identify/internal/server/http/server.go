@@ -2,7 +2,6 @@ package http
 
 import (
 	"angrymiao-go/app/service/main/identify/conf"
-	"angrymiao-go/app/service/main/identify/internal/model"
 	"angrymiao-go/app/service/main/identify/internal/service"
 	"angrymiao-go/punk/net/http/blademaster/middleware/verify"
 
@@ -29,8 +28,4 @@ func New(c *conf.Config, s *service.Service) (engine *bm.Engine, err error) {
 }
 
 func initRouter(e *bm.Engine) {
-	g := e.Group("/identify")
-	{
-
-	}
 }

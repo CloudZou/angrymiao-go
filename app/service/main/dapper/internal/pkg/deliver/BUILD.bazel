@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["deliver.go"],
+    importpath = "angrymiao-go/app/service/main/dapper/internal/pkg/deliver",
+    visibility = ["//app/service/main/dapper:__subpackages__"],
+    deps = ["//punk/log:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["deliver_test.go"],
+    embed = [":go_default_library"],
+)

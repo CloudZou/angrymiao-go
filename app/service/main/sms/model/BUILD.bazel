@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "constant.go",
+        "model.pb.go",
+        "sms.go",
+    ],
+    importpath = "angrymiao-go/app/service/main/sms/model",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/gogo/protobuf/gogoproto:go_default_library",
+        "//vendor/github.com/golang/protobuf/proto:go_default_library",
+    ],
+)

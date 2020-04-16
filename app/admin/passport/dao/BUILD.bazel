@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "dao.go",
+        "passport.go",
+    ],
+    importpath = "angrymiao-go/app/admin/passport/dao",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//app/admin/passport/conf:go_default_library",
+        "//app/admin/passport/model:go_default_library",
+        "//punk/cache/redis:go_default_library",
+        "//punk/database/orm:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/sync/pipeline/fanout:go_default_library",
+        "//vendor/github.com/jinzhu/gorm:go_default_library",
+    ],
+)
