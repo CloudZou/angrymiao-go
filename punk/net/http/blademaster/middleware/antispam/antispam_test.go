@@ -1,56 +1,49 @@
 package antispam
 
 import (
-	"context"
 	"io/ioutil"
 	"net/http"
-	"strconv"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/assert"
-
-	"angrymiao-go/punk/cache/redis"
-	"angrymiao-go/punk/container/pool"
-	bm "angrymiao-go/punk/net/http/blademaster"
-	xtime "angrymiao-go/punk/time"
 )
 
 func TestAntiSpamHandler(t *testing.T) {
-	anti := New(
-		&Config{
-			On:     true,
-			Second: 1,
-			N:      1,
-			Hour:   1,
-			M:      1,
-			Redis: &redis.Config{
-				Config: &pool.Config{
-					Active:      10,
-					Idle:        10,
-					IdleTimeout: xtime.Duration(time.Second * 60),
-				},
-				Name:         "test",
-				Proto:        "tcp",
-				Addr:         "172.18.33.60:6889",
-				DialTimeout:  xtime.Duration(time.Second),
-				ReadTimeout:  xtime.Duration(time.Second),
-				WriteTimeout: xtime.Duration(time.Second),
-			},
-		},
-	)
+	//anti := New(
+	//	&Config{
+	//		On:     true,
+	//		Second: 1,
+	//		N:      1,
+	//		Hour:   1,
+	//		M:      1,
+	//		Redis: &redis.Config{
+	//			Config: &pool.Config{
+	//				Active:      10,
+	//				Idle:        10,
+	//				IdleTimeout: xtime.Duration(time.Second * 60),
+	//			},
+	//			Name:         "test",
+	//			Proto:        "tcp",
+	//			Addr:         "172.18.33.60:6889",
+	//			DialTimeout:  xtime.Duration(time.Second),
+	//			ReadTimeout:  xtime.Duration(time.Second),
+	//			WriteTimeout: xtime.Duration(time.Second),
+	//		},
+	//	},
+	//)
 
-	engine := bm.New()
-	engine.UseFunc(func(c *bm.Context) {
-		mid, _ := strconv.ParseInt(c.Request.Form.Get("mid"), 10, 64)
-		c.Set("mid", mid)
-		c.Next()
-	})
-	engine.Use(anti.Handler())
-	engine.GET("/antispam", func(c *bm.Context) {
-		c.String(200, "pass")
-	})
-	go engine.Run(":18080")
+	//engine := bm.New()
+	//engine.UseFunc(func(c *bm.Context) {
+	//	mid, _ := strconv.ParseInt(c.Request.Form.Get("mid"), 10, 64)
+	//	c.Set("mid", mid)
+	//	c.Next()
+	//})
+	//engine.Use(anti.Handler())
+	//engine.GET("/antispam", func(c *bm.Context) {
+	//	c.String(200, "pass")
+	//})
+	//go engine.Run(":18080")
 
 	time.Sleep(time.Millisecond * 50)
 	code, content, err := httpGet("http://127.0.0.1:18080/antispam?mid=11")
@@ -73,7 +66,7 @@ func TestAntiSpamHandler(t *testing.T) {
 		t.FailNow()
 	}
 
-	engine.Server().Shutdown(context.TODO())
+	//engine.Server().Shutdown(context.TODO())
 }
 
 func httpGet(url string) (code int, content []byte, err error) {

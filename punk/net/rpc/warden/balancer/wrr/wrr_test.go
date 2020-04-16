@@ -60,7 +60,7 @@ func TestBalancerPick(t *testing.T) {
 	picker := b.Build(scs)
 	res := []string{"test1", "test1", "test1", "test1"}
 	for i := 0; i < 3; i++ {
-		conn, _, err := picker.Pick(context.Background(), balancer.PickOptions{})
+		conn, _, err := picker.Pick(context.Background(), balancer.PickInfo{})
 		if err != nil {
 			t.Fatalf("picker.Pick failed!idx:=%d", i)
 		}
@@ -72,7 +72,7 @@ func TestBalancerPick(t *testing.T) {
 	res2 := []string{"test2", "test3", "test2", "test2", "test3", "test2"}
 	ctx := nmd.NewContext(context.Background(), nmd.New(map[string]interface{}{"color": "red"}))
 	for i := 0; i < 6; i++ {
-		conn, _, err := picker.Pick(ctx, balancer.PickOptions{})
+		conn, _, err := picker.Pick(ctx, balancer.PickInfo{})
 		if err != nil {
 			t.Fatalf("picker.Pick failed!idx:=%d", i)
 		}
@@ -83,7 +83,7 @@ func TestBalancerPick(t *testing.T) {
 	}
 	ctx = nmd.NewContext(context.Background(), nmd.New(map[string]interface{}{"color": "black"}))
 	for i := 0; i < 4; i++ {
-		conn, _, err := picker.Pick(ctx, balancer.PickOptions{})
+		conn, _, err := picker.Pick(ctx, balancer.PickInfo{})
 		if err != nil {
 			t.Fatalf("picker.Pick failed!idx:=%d", i)
 		}

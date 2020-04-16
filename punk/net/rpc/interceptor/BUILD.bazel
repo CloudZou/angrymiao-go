@@ -11,10 +11,10 @@ go_library(
     tags = ["automanaged"],
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/ecode:go_default_library",
-        "//pkg/log:go_default_library",
-        "//pkg/net/rpc/context:go_default_library",
-        "//pkg/stat:go_default_library",
+        "//punk/ecode:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/rpc/context:go_default_library",
+        "//punk/stat:go_default_library",
         "//vendor/golang.org/x/time/rate:go_default_library",
     ],
 )
@@ -26,8 +26,8 @@ go_test(
     rundir = ".",
     tags = ["automanaged"],
     deps = [
-        "//pkg/ecode:go_default_library",
-        "//pkg/net/rpc/context:go_default_library",
+        "//punk/ecode:go_default_library",
+        "//punk/net/rpc/context:go_default_library",
         "//vendor/golang.org/x/time/rate:go_default_library",
     ],
 )

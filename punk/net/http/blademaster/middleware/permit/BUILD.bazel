@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "permit.go",
+        "session.go",
+    ],
+    importpath = "angrymiao-go/punk/net/http/blademaster/middleware/permit",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//app/admin/manager/api:go_default_library",
+        "//punk/cache/redis:go_default_library",
+        "//punk/ecode:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/net/metadata:go_default_library",
+        "//punk/net/rpc/warden:go_default_library",
+        "//vendor/github.com/pkg/errors:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "example_test.go",
+        "permit_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//punk/ecode:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/net/metadata:go_default_library",
+        "//punk/net/netutil/breaker:go_default_library",
+        "//punk/time:go_default_library",
+    ],
+)

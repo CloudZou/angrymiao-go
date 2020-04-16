@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["tag.go"],
+    importpath = "angrymiao-go/punk/net/http/blademaster/middleware/tag",
+    visibility = ["//visibility:public"],
+    deps = ["//punk/net/http/blademaster:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "example_test.go",
+        "tag_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

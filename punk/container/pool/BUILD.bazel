@@ -9,7 +9,7 @@ go_library(
     ],
     importpath = "angrymiao-go/punk/container/pool",
     visibility = ["//visibility:public"],
-    deps = ["//pkg/time:go_default_library"],
+    deps = ["//punk/time:go_default_library"],
 )
 
 go_test(
@@ -20,7 +20,7 @@ go_test(
     ],
     embed = [":go_default_library"],
     deps = [
-        "//pkg/time:go_default_library",
+        "//punk/time:go_default_library",
         "//vendor/github.com/stretchr/testify/assert:go_default_library",
     ],
 )

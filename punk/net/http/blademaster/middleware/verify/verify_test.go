@@ -72,7 +72,8 @@ func client() *bm.Client {
 }
 
 func engine() *bm.Engine {
-	e := bm.New()
+	e := bm.DefaultServer(nil)
+	//e := bm.New()
 	idt := verify()
 	e.GET("/verify", idt.Verify, func(c *bm.Context) {
 		c.JSON("pass", nil)

@@ -19,7 +19,7 @@ func Example() {
 		},
 	})
 
-	engine := blademaster.Default()
+	engine := blademaster.DefaultServer(nil)
 	engine.Use(lim)
 	engine.GET("/ping", func(c *blademaster.Context) {
 		c.String(200, "%s", "pong")

@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["service.go"],
+    importpath = "angrymiao-go/punk/rate/limit/bench/stress/service",
+    visibility = ["//visibility:public"],
+    deps = ["//punk/rate/limit/bench/stress/conf:go_default_library"],
+)

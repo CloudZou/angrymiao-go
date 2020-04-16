@@ -10,21 +10,21 @@ import (
 // You can define a custom policy through any request param or http header.
 // Register several tag middlewares to put several tags.
 func Example() {
-	var pf tag.PolicyFunc
-	// create your tag policy
-	pf = func(ctx *blademaster.Context) string {
-		if ctx.Request.Form.Get("group") == "a" {
-			return "a"
-		}
-		return "b"
-	}
-	t := tag.New("abtest", pf)
+	//var pf tag.PolicyFunc
+	//// create your tag policy
+	//pf = func(ctx *blademaster.Context) string {
+	//	if ctx.Request.Form.Get("group") == "a" {
+	//		return "a"
+	//	}
+	//	return "b"
+	//}
+	//t := tag.New("abtest", pf)
 
-	engine := blademaster.Default()
-	engine.Use(t)
-	engine.GET("/abtest", HandlerMap)
-
-	engine.Run(":18080")
+	//engine := blademaster.Default()
+	//engine.Use(t)
+	//engine.GET("/abtest", HandlerMap)
+	//
+	//engine.Run(":18080")
 }
 
 func HandlerMap(ctx *blademaster.Context) {

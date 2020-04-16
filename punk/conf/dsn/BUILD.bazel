@@ -20,5 +20,5 @@ go_test(
         "query_test.go",
     ],
     embed = [":go_default_library"],
-    deps = ["//pkg/time:go_default_library"],
+    deps = ["//punk/time:go_default_library"],
 )

@@ -11,8 +11,8 @@ go_library(
         "pool.go",
     ],
     importpath = "angrymiao-go/punk/log/internal/core",
-    visibility = ["//pkg/log:__subpackages__"],
-    deps = ["//pkg/time:go_default_library"],
+    visibility = ["//punk/log:__subpackages__"],
+    deps = ["//punk/time:go_default_library"],
 )
 
 go_test(

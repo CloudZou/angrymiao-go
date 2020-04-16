@@ -6,8 +6,8 @@ go_library(
     importpath = "angrymiao-go/punk/net/rpc/liverpc/testdata",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/net/rpc/liverpc:go_default_library",
-        "//pkg/net/rpc/liverpc/testdata/v1:go_default_library",
-        "//pkg/net/rpc/liverpc/testdata/v2:go_default_library",
+        "//punk/net/rpc/liverpc:go_default_library",
+        "//punk/net/rpc/liverpc/testdata/v1:go_default_library",
+        "//punk/net/rpc/liverpc/testdata/v2:go_default_library",
     ],
 )

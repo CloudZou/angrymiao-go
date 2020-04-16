@@ -9,10 +9,10 @@ go_library(
     importpath = "angrymiao-go/punk/net/netutil/breaker",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/ecode:go_default_library",
-        "//pkg/log:go_default_library",
-        "//pkg/stat/metric:go_default_library",
-        "//pkg/time:go_default_library",
+        "//punk/ecode:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/stat/metric:go_default_library",
+        "//punk/time:go_default_library",
     ],
 )
 
@@ -25,8 +25,8 @@ go_test(
     ],
     embed = [":go_default_library"],
     deps = [
-        "//pkg/stat/metric:go_default_library",
-        "//pkg/time:go_default_library",
+        "//punk/stat/metric:go_default_library",
+        "//punk/time:go_default_library",
         "//vendor/github.com/stretchr/testify/assert:go_default_library",
     ],
 )

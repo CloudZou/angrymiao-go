@@ -6,9 +6,9 @@ go_library(
     importpath = "angrymiao-go/punk/net/rpc/warden/benchmark/helloworld/server",
     visibility = ["//visibility:private"],
     deps = [
-        "//pkg/net/rpc/warden:go_default_library",
-        "//pkg/net/rpc/warden/proto/testproto:go_default_library",
-        "//pkg/time:go_default_library",
+        "//punk/net/rpc/warden:go_default_library",
+        "//punk/net/rpc/warden/proto/testproto:go_default_library",
+        "//punk/time:go_default_library",
         "//vendor/github.com/prometheus/client_golang/prometheus/promhttp:go_default_library",
     ],
 )

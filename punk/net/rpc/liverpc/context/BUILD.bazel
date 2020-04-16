@@ -5,5 +5,5 @@ go_library(
     srcs = ["context.go"],
     importpath = "angrymiao-go/punk/net/rpc/liverpc/context",
     visibility = ["//visibility:public"],
-    deps = ["//pkg/net/rpc/liverpc:go_default_library"],
+    deps = ["//punk/net/rpc/liverpc:go_default_library"],
 )

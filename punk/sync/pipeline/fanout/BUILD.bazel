@@ -9,10 +9,10 @@ go_library(
     importpath = "angrymiao-go/punk/sync/pipeline/fanout",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/log:go_default_library",
-        "//pkg/net/metadata:go_default_library",
-        "//pkg/net/trace:go_default_library",
-        "//pkg/stat/metric:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/metadata:go_default_library",
+        "//punk/net/trace:go_default_library",
+        "//punk/stat/metric:go_default_library",
     ],
 )
 

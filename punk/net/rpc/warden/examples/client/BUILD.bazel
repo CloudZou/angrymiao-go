@@ -6,9 +6,9 @@ go_library(
     importpath = "angrymiao-go/punk/net/rpc/warden/examples/client",
     visibility = ["//visibility:private"],
     deps = [
-        "//pkg/ecode:go_default_library",
-        "//pkg/net/rpc/warden:go_default_library",
-        "//pkg/net/rpc/warden/proto/testproto:go_default_library",
+        "//punk/ecode:go_default_library",
+        "//punk/net/rpc/warden:go_default_library",
+        "//punk/net/rpc/warden/proto/testproto:go_default_library",
         "//vendor/github.com/golang/protobuf/ptypes:go_default_library",
         "//vendor/github.com/golang/protobuf/ptypes/any:go_default_library",
         "//vendor/github.com/pkg/errors:go_default_library",

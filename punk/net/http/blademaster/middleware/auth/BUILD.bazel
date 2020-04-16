@@ -1,0 +1,33 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["auth.go"],
+    importpath = "angrymiao-go/punk/net/http/blademaster/middleware/auth",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//punk/ecode:go_default_library",
+        "//punk/jwt:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/net/metadata:go_default_library",
+        "//vendor/github.com/dgrijalva/jwt-go:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "auth_test.go",
+        "example_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//punk/ecode:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/net/metadata:go_default_library",
+        "//punk/net/netutil/breaker:go_default_library",
+        "//punk/time:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

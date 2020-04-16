@@ -53,8 +53,6 @@ func Example() {
 			Domain:          ".bilibili.co",
 		},
 		ManagerHost:     "http://uat-manager.bilibili.co",
-		DashboardHost:   "http://uat-auth-mng.bilibili.co",
-		DashboardCaller: "manager-go",
 	})
 
 

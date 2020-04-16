@@ -12,7 +12,7 @@ go_test(
     embed = [":go_default_library"],
     rundir = ".",
     tags = ["automanaged"],
-    deps = ["//library/rate:go_default_library"],
+    deps = ["//punk/rate:go_default_library"],
 )
 
 go_library(
@@ -24,7 +24,7 @@ go_library(
     importpath = "angrymiao-go/punk/rate/vegas",
     tags = ["automanaged"],
     visibility = ["//visibility:public"],
-    deps = ["//library/rate:go_default_library"],
+    deps = ["//punk/rate:go_default_library"],
 )
 
 filegroup(

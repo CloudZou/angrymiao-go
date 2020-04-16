@@ -36,7 +36,7 @@ go_test(
     ],
     embed = [":go_default_library"],
     deps = [
-        "//pkg/conf/paladin/apollo:go_default_library",
+        "//punk/conf/paladin/apollo:go_default_library",
         "//vendor/github.com/BurntSushi/toml:go_default_library",
         "//vendor/github.com/stretchr/testify/assert:go_default_library",
     ],

@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["gorm.go"],
+    importpath = "angrymiao-go/punk/database/orm",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//punk/log:go_default_library",
+        "//punk/net/netutil/breaker:go_default_library",
+        "//vendor/github.com/jinzhu/gorm:go_default_library",
+    ],
+)

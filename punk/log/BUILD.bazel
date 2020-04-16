@@ -19,12 +19,12 @@ go_library(
     importpath = "angrymiao-go/punk/log",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/conf/env:go_default_library",
-        "//pkg/log/internal/core:go_default_library",
-        "//pkg/log/internal/filewriter:go_default_library",
-        "//pkg/net/metadata:go_default_library",
-        "//pkg/net/trace:go_default_library",
-        "//pkg/stat/metric:go_default_library",
+        "//punk/conf/env:go_default_library",
+        "//punk/log/internal/core:go_default_library",
+        "//punk/log/internal/filewriter:go_default_library",
+        "//punk/net/metadata:go_default_library",
+        "//punk/net/trace:go_default_library",
+        "//punk/stat/metric:go_default_library",
         "//vendor/github.com/pkg/errors:go_default_library",
         "//vendor/github.com/sirupsen/logrus:go_default_library",
     ],
@@ -39,7 +39,7 @@ go_test(
     ],
     embed = [":go_default_library"],
     deps = [
-        "//pkg/net/metadata:go_default_library",
+        "//punk/net/metadata:go_default_library",
         "//vendor/github.com/stretchr/testify/assert:go_default_library",
     ],
 )

@@ -20,7 +20,7 @@ func init() {
 }
 
 func TestProxy(t *testing.T) {
-	engine := bm.Default()
+	engine := bm.DefaultServer(nil)
 	engine.GET("/icon", NewAlways("http://api.bilibili.com/x/web-interface/index/icon"))
 	engine.POST("/x/web-interface/archive/like", NewAlways("http://api.bilibili.com"))
 
@@ -66,7 +66,7 @@ func TestProxy(t *testing.T) {
 }
 
 func TestProxyRace(t *testing.T) {
-	engine := bm.Default()
+	engine := bm.DefaultServer(nil)
 	engine.GET("/icon", NewAlways("http://api.bilibili.com/x/web-interface/index/icon"))
 
 	go engine.Run(":18080")
@@ -94,7 +94,7 @@ func TestProxyRace(t *testing.T) {
 }
 
 func TestZoneProxy(t *testing.T) {
-	engine := bm.Default()
+	engine := bm.DefaultServer(nil)
 	engine.GET("/icon", NewZoneProxy("sh004", "http://api.bilibili.com/x/web-interface/index/icon"), func(ctx *bm.Context) {
 		ctx.AbortWithStatus(500)
 	})
@@ -145,7 +145,7 @@ func TestZoneProxy(t *testing.T) {
 }
 
 func BenchmarkProxy(b *testing.B) {
-	engine := bm.Default()
+	engine := bm.DefaultServer(nil)
 	engine.GET("/icon", NewAlways("http://api.bilibili.com/x/web-interface/index/icon"))
 
 	go engine.Run(":18080")

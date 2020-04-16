@@ -1,7 +1,6 @@
 package tag_test
 
 import (
-	"context"
 	"io/ioutil"
 	"net/http"
 	"testing"
@@ -32,24 +31,24 @@ func makeBlueGreenTag() *tag.Tag {
 }
 
 func TestBlueGreen(t *testing.T) {
-	tg := makeBlueGreenTag()
-	engine := blademaster.Default()
-	engine.Use(tg)
-	engine.GET("/bgget", func(ctx *blademaster.Context) {
-		color, ok := tag.Value(ctx, "BlueGreen")
-		if !ok {
-			ctx.Abort()
-			return
-		}
-		ctx.String(200, "color is: "+color)
-	})
-
-	go func() {
-		engine.Run(":18080")
-	}()
-	defer func() {
-		engine.Server().Shutdown(context.TODO())
-	}()
+	//tg := makeBlueGreenTag()
+	//engine := blademaster.Default()
+	//engine.Use(tg)
+	//engine.GET("/bgget", func(ctx *blademaster.Context) {
+	//	color, ok := tag.Value(ctx, "BlueGreen")
+	//	if !ok {
+	//		ctx.Abort()
+	//		return
+	//	}
+	//	ctx.String(200, "color is: "+color)
+	//})
+	//
+	//go func() {
+	//	engine.Run(":18080")
+	//}()
+	//defer func() {
+	//	engine.Server().Shutdown(context.TODO())
+	//}()
 
 	time.Sleep(1 * time.Second)
 	client := new(http.Client)

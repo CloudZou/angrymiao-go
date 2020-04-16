@@ -6,9 +6,9 @@ go_library(
     importpath = "angrymiao-go/punk/net/rpc/warden/resolver/direct",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/conf/env:go_default_library",
-        "//pkg/naming:go_default_library",
-        "//pkg/net/rpc/warden/resolver:go_default_library",
+        "//punk/conf/env:go_default_library",
+        "//punk/naming:go_default_library",
+        "//punk/net/rpc/warden/resolver:go_default_library",
     ],
 )
 
@@ -17,10 +17,10 @@ go_test(
     srcs = ["direct_test.go"],
     embed = [":go_default_library"],
     deps = [
-        "//pkg/net/netutil/breaker:go_default_library",
-        "//pkg/net/rpc/warden:go_default_library",
-        "//pkg/net/rpc/warden/proto/testproto:go_default_library",
-        "//pkg/net/rpc/warden/resolver:go_default_library",
-        "//pkg/time:go_default_library",
+        "//punk/net/netutil/breaker:go_default_library",
+        "//punk/net/rpc/warden:go_default_library",
+        "//punk/net/rpc/warden/proto/testproto:go_default_library",
+        "//punk/net/rpc/warden/resolver:go_default_library",
+        "//punk/time:go_default_library",
     ],
 )

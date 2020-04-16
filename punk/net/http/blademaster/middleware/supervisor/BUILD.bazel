@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["supervisor.go"],
+    importpath = "angrymiao-go/punk/net/http/blademaster/middleware/supervisor",
+    visibility = ["//visibility:public"],
+    deps = ["//punk/net/http/blademaster:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "example_test.go",
+        "supervisor_test.go",
+    ],
+    embed = [":go_default_library"],
+)

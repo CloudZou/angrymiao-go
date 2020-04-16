@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["dao.go"],
+    importpath = "angrymiao-go/punk/rate/limit/bench/stress/dao",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//punk/cache/redis:go_default_library",
+        "//punk/rate/limit/bench/stress/conf:go_default_library",
+    ],
+)

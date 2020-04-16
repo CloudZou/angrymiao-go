@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["http.go"],
+    importpath = "angrymiao-go/punk/rate/limit/bench/stress/http",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
+        "//punk/rate:go_default_library",
+        "//punk/rate/limit:go_default_library",
+        "//punk/rate/limit/bench/stress/conf:go_default_library",
+        "//punk/rate/limit/bench/stress/service:go_default_library",
+        "//punk/rate/vegas:go_default_library",
+    ],
+)

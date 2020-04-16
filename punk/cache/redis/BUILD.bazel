@@ -20,10 +20,10 @@ go_library(
     importpath = "angrymiao-go/punk/cache/redis",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/container/pool:go_default_library",
-        "//pkg/net/trace:go_default_library",
-        "//pkg/stat:go_default_library",
-        "//pkg/time:go_default_library",
+        "//punk/container/pool:go_default_library",
+        "//punk/net/trace:go_default_library",
+        "//punk/stat:go_default_library",
+        "//punk/time:go_default_library",
         "//vendor/github.com/pkg/errors:go_default_library",
     ],
 )
@@ -44,9 +44,9 @@ go_test(
     ],
     embed = [":go_default_library"],
     deps = [
-        "//pkg/container/pool:go_default_library",
-        "//pkg/net/trace:go_default_library",
-        "//pkg/time:go_default_library",
+        "//punk/container/pool:go_default_library",
+        "//punk/net/trace:go_default_library",
+        "//punk/time:go_default_library",
         "//vendor/github.com/pkg/errors:go_default_library",
         "//vendor/github.com/stretchr/testify/assert:go_default_library",
     ],

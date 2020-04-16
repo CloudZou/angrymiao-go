@@ -4,8 +4,10 @@ package ecode
 var (
 	OK = add(200) // 正确
 
-	NoLogin                 = add(-101) // 账号未登录
 	AccessKeyErr            = add(-2)   // Access Key错误
+	SignCheckErr            = add(-3)   // API校验密匙错误
+
+	NoLogin                 = add(-101) // 账号未登录
 	CsrfNotMatchErr         = add(-111) // csrf 校验失败
 
 	NotModified        = add(-304) // 木有改动

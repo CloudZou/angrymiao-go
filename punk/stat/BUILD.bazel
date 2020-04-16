@@ -5,5 +5,5 @@ go_library(
     srcs = ["stat.go"],
     importpath = "angrymiao-go/punk/stat",
     visibility = ["//visibility:public"],
-    deps = ["//pkg/stat/prom:go_default_library"],
+    deps = ["//punk/stat/prom:go_default_library"],
 )

@@ -6,9 +6,9 @@ go_library(
     importpath = "angrymiao-go/punk/sync/pipeline",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/net/metadata:go_default_library",
-        "//pkg/stat/metric:go_default_library",
-        "//pkg/time:go_default_library",
+        "//punk/net/metadata:go_default_library",
+        "//punk/stat/metric:go_default_library",
+        "//punk/time:go_default_library",
     ],
 )
 
@@ -17,7 +17,7 @@ go_test(
     srcs = ["pipeline_test.go"],
     embed = [":go_default_library"],
     deps = [
-        "//pkg/net/metadata:go_default_library",
-        "//pkg/time:go_default_library",
+        "//punk/net/metadata:go_default_library",
+        "//punk/time:go_default_library",
     ],
 )

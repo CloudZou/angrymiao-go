@@ -20,7 +20,7 @@ func init() {
 func TestAQM(t *testing.T) {
 	var group sync.WaitGroup
 	rand.Seed(time.Now().Unix())
-	eng := bm.Default()
+	eng := bm.DefaultServer(nil)
 	router := eng.Use(New(nil).Limit())
 	router.GET("/aqm", testaqm)
 	go eng.Run(":9999")

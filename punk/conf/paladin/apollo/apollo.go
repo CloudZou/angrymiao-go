@@ -148,7 +148,7 @@ func (ad *apolloDriver) new(conf *Config) (paladin.Client, error) {
 		AppID:          conf.AppID,
 		Cluster:        conf.Cluster,
 		NameSpaceNames: conf.Namespaces, // these namespaces will be subscribed at init
-		CacheDir:       conf.CacheDir,
+		//CacheDir:       conf.CacheDir,
 		IP:             conf.MetaAddr,
 	})
 	err := client.Start()
@@ -248,11 +248,11 @@ func (a *apollo) GetAll() *paladin.Map {
 // WatchEvent watch with the specified keys.
 func (a *apollo) WatchEvent(ctx context.Context, keys ...string) <-chan paladin.Event {
 	aw := newApolloWatcher(keys)
-	err := a.client.SubscribeToNamespaces(keys...)
-	if err != nil {
-		log.Printf("subscribe namespaces %v failed, %v", keys, err)
-		return aw.C
-	}
+	//err := a.client.SubscribeToNamespaces(keys...)
+	//if err != nil {
+	//	log.Printf("subscribe namespaces %v failed, %v", keys, err)
+	//	return aw.C
+	//}
 	a.wmu.Lock()
 	a.watchers[aw] = struct{}{}
 	a.wmu.Unlock()

@@ -4,5 +4,5 @@ go_library(
     name = "go_default_library",
     srcs = ["mockserver.go"],
     importpath = "angrymiao-go/punk/conf/paladin/apollo/internal/mockserver",
-    visibility = ["//pkg/conf/paladin/apollo:__subpackages__"],
+    visibility = ["//punk/conf/paladin/apollo:__subpackages__"],
 )

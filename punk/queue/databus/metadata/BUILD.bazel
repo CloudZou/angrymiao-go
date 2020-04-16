@@ -5,5 +5,5 @@ go_library(
     srcs = ["metadata.go"],
     importpath = "angrymiao-go/punk/queue/databus/metadata",
     visibility = ["//visibility:public"],
-    deps = ["//pkg/net/metadata:go_default_library"],
+    deps = ["//punk/net/metadata:go_default_library"],
 )

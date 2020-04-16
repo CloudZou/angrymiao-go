@@ -10,9 +10,9 @@ go_library(
     importpath = "angrymiao-go/punk/app",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/ecode:go_default_library",
-        "//pkg/log:go_default_library",
-        "//pkg/net/http/blademaster:go_default_library",
+        "//punk/ecode:go_default_library",
+        "//punk/log:go_default_library",
+        "//punk/net/http/blademaster:go_default_library",
         "//vendor/github.com/astaxie/beego/validation:go_default_library",
     ],
 )

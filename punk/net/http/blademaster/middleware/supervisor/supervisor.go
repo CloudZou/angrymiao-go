@@ -3,7 +3,6 @@ package supervisor
 import (
 	"time"
 
-	"angrymiao-go/punk/ecode"
 	bm "angrymiao-go/punk/net/http/blademaster"
 )
 
@@ -43,7 +42,7 @@ func (s *Supervisor) ServeHTTP(c *bm.Context) {
 		now := time.Now()
 		method := c.Request.Method
 		if s.forbid(method, now) {
-			c.JSON(nil, ecode.ServiceUpdate)
+			//c.JSON(nil, ecode.ServiceUpdate)
 			c.Abort()
 			return
 		}

@@ -55,9 +55,7 @@ func client() *bm.Client {
 }
 
 func create() *Auth {
-	return New(&Config{
-		DisableCSRF: false,
-	})
+	return New()
 }
 
 func engine() *bm.Engine {
@@ -110,9 +108,6 @@ func engine() *bm.Engine {
 	return e
 }
 
-func TestFromNilConfig(t *testing.T) {
-	New(nil)
-}
 
 func TestIdentifyHandler(t *testing.T) {
 	e := engine()
