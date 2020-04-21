@@ -28,10 +28,9 @@ func New(s *service.Service) (engine *bm.Engine, err error) {
 func initRouter(e *bm.Engine) {
 	e.Ping(ping)
 	e.Register(register)
-	g := e.Group("/api/v1")
-	{
-		g.GET("/sayHello", sayHello)
-	}
+	//g := e.Group("/api/v1")
+	//{
+	//}
 }
 
 func ping(ctx *bm.Context) {
@@ -41,14 +40,6 @@ func ping(ctx *bm.Context) {
 	}
 }
 
-func sayHello(c *bm.Context) {
-	err := grpcSvc.SayHello(c, c.Params.ByName("name"))
-	if err != nil {
-		log.Error("say hello error(%v)", err)
-	}
-	c.JSON(nil, nil)
-	return
-}
 
 func register(c *bm.Context) {
 	c.JSON(map[string]interface{}{}, nil)

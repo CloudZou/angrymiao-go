@@ -29,3 +29,9 @@ func (s *Service)UpdateWxOpenIdById(user model.User, wxOpenId string) (err error
 	err = s.dao.UpdateWxOpenIdById(user, wxOpenId)
 	return
 }
+
+
+func (s *Service) GetUserById(id int64) (user *model.User, err error) {
+	user, err = s.dao.GetUserById(id)
+	return
+}

@@ -4,31 +4,33 @@
 syntax = "proto3";
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
-import "google/protobuf/empty.proto";
-import "google/api/annotations.proto";
 
 // package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
-package demo.service.v1;
-
-// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
+package user.service.v1;
 
 option go_package = "api";
 option (gogoproto.goproto_getters_all) = false;
 
-service Demo {
-  rpc Ping(.google.protobuf.Empty) returns (.google.protobuf.Empty);
-  rpc SayHello(HelloReq) returns (.google.protobuf.Empty);
-  rpc SayHelloURL(HelloReq) returns (HelloResp) {
-    option (google.api.http) = {
-      get: "/punk-demo/say_hello"
-    };
-  };
+service UserInfo {
+  rpc GetUserInfoByID(GetUserInfoReq) returns (GetUserInfoResp);
 }
 
-message HelloReq {
-  string name = 1 [(gogoproto.moretags) = 'form:"name" validate:"required"'];
+message GetUserInfoReq {
+  int64 userId = 1 [(gogoproto.moretags) = 'form:"userId" validate:"required"'];
 }
 
-message HelloResp {
-  string Content = 1 [(gogoproto.jsontag) = 'content'];
+message GetUserInfoResp {
+   int64 userId = 1 [(gogoproto.jsontag) = 'userId'];
+   string email = 2 [(gogoproto.jsontag) = 'email'];
+   string phone = 3 [(gogoproto.jsontag) = 'phone'];
+   string username = 4 [(gogoproto.jsontag) = 'username'];
+   string gender = 5 [(gogoproto.jsontag) = 'gender'];
+   string nickname = 6 [(gogoproto.jsontag) = 'nickname'];
+   string headPicUrl = 7 [(gogoproto.jsontag) = 'headPicUrl'];
+   string wxOpenId  = 8 [(gogoproto.jsontag) = 'wxOpenId'];
+   string unionId = 9 [(gogoproto.jsontag) = 'unionId'];
+   string qqOpenId = 10 [(gogoproto.jsontag) = 'qqOpenId'];
+   string authType = 11 [(gogoproto.jsontag) = 'authType'];
+   string registerTime = 12 [(gogoproto.jsontag) = 'registerTime'];
+   string lastLoginTime = 13 [(gogoproto.jsontag) = 'lastLoginTime'];
 }

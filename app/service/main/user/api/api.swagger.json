@@ -16,9 +16,9 @@
         "application/json"
     ],
     "paths": {
-        "/demo.service.v1.Demo/Ping": {
+        "/user.service.v1.UserInfo/GetUserInfoByID": {
             "get": {
-                "summary": "/demo.service.v1.Demo/Ping",
+                "summary": "/user.service.v1.UserInfo/GetUserInfoByID",
                 "responses": {
                     "200": {
                         "description": "A successful response.",
@@ -32,34 +32,7 @@
                                     "type": "string"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/.google.protobuf.Empty"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "demo.service.v1.Demo"
-                ]
-            }
-        },
-        "/demo.service.v1.Demo/SayHello": {
-            "get": {
-                "summary": "/demo.service.v1.Demo/SayHello",
-                "responses": {
-                    "200": {
-                        "description": "A successful response.",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "integer"
-                                },
-                                "message": {
-                                    "type": "string"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/.google.protobuf.Empty"
+                                    "$ref": "#/definitions/.user.service.v1.GetUserInfoResp"
                                 }
                             }
                         }
@@ -67,77 +40,73 @@
                 },
                 "parameters": [
                     {
-                        "name": "name",
+                        "name": "userId",
                         "in": "query",
                         "required": true,
-                        "type": "string"
+                        "type": "integer"
                     }
                 ],
                 "tags": [
-                    "demo.service.v1.Demo"
-                ]
-            }
-        },
-        "/punk-demo/say_hello": {
-            "get": {
-                "summary": "/punk-demo/say_hello",
-                "responses": {
-                    "200": {
-                        "description": "A successful response.",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "integer"
-                                },
-                                "message": {
-                                    "type": "string"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/.demo.service.v1.HelloResp"
-                                }
-                            }
-                        }
-                    }
-                },
-                "parameters": [
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "tags": [
-                    "demo.service.v1.Demo"
+                    "user.service.v1.UserInfo"
                 ]
             }
         }
     },
     "definitions": {
-        ".demo.service.v1.HelloReq": {
+        ".user.service.v1.GetUserInfoReq": {
             "type": "object",
             "properties": {
-                "name": {
-                    "type": "string"
+                "userId": {
+                    "type": "integer"
                 }
             },
             "required": [
-                "name"
+                "userId"
             ]
         },
-        ".demo.service.v1.HelloResp": {
+        ".user.service.v1.GetUserInfoResp": {
             "type": "object",
             "properties": {
-                "content": {
+                "userId": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "headPicUrl": {
+                    "type": "string"
+                },
+                "wxOpenId": {
+                    "type": "string"
+                },
+                "unionId": {
+                    "type": "string"
+                },
+                "qqOpenId": {
+                    "type": "string"
+                },
+                "authType": {
+                    "type": "string"
+                },
+                "registerTime": {
+                    "type": "string"
+                },
+                "lastLoginTime": {
                     "type": "string"
                 }
             }
-        },
-        ".google.protobuf.Empty": {
-            "type": "object",
-            "properties": {},
-            "description": "A generic empty message that you can re-use to avoid defining duplicated\n empty messages in your APIs. A typical example is to use it as the request\n or the response type of an API method. For instance:\n\n     service Foo {\n       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n     }\n\n The JSON representation for `Empty` is empty JSON object `{}`."
         }
     }
 }

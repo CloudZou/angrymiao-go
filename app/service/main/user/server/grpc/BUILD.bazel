@@ -6,8 +6,10 @@ go_library(
     importpath = "angrymiao-go/app/service/main/user/server/grpc",
     visibility = ["//visibility:public"],
     deps = [
+        "//app/service/main/user/api:go_default_library",
         "//app/service/main/user/conf:go_default_library",
         "//app/service/main/user/service:go_default_library",
         "//punk/net/rpc/warden:go_default_library",
+        "//punk/util:go_default_library",
     ],
 )

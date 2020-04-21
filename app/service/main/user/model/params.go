@@ -30,3 +30,8 @@ type WechatInfoReq struct {
 type UpdateWxOpenIdReq struct {
 	WxOpenId string `json:"wxOpenId"`
 }
+
+type UserAddressReq struct {
+	UserAddress
+	name string `json:"name"`
+}

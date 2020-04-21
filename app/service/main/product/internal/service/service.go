@@ -1,16 +1,10 @@
 package service
 
 import (
-	"context"
-	"fmt"
-
-	pb "angrymiao-go/app/service/main/product/api"
 	"angrymiao-go/app/service/main/product/internal/dao"
+	"context"
 	"github.com/golang/protobuf/ptypes/empty"
-	"github.com/google/wire"
 )
-
-var Provider = wire.NewSet(New, wire.Bind(new(pb.DemoServer), new(*Service)))
 
 // Service service.
 type Service struct {
@@ -23,22 +17,6 @@ func New(d *dao.Dao) (s *Service, cf func(), err error) {
 		dao: d,
 	}
 	cf = s.Close
-	return
-}
-
-// SayHello grpc demo func.
-func (s *Service) SayHello(ctx context.Context, req *pb.HelloReq) (reply *empty.Empty, err error) {
-	reply = new(empty.Empty)
-	fmt.Printf("hello %s", req.Name)
-	return
-}
-
-// SayHelloURL bm demo func.
-func (s *Service) SayHelloURL(ctx context.Context, req *pb.HelloReq) (reply *pb.HelloResp, err error) {
-	reply = &pb.HelloResp{
-		Content: "hello " + req.Name,
-	}
-	fmt.Printf("hello url %s", req.Name)
 	return
 }
 

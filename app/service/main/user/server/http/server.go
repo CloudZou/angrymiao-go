@@ -41,6 +41,11 @@ func initRouter(e *bm.Engine) {
 
 		g.POST("/updateWxOpenId", auth.UserMobile, updateWxOpenId)
 	}
+	address := e.Group("/address")
+	{
+		address.POST("/add", auth.User, addAddress)
+		address.GET("/list", auth.User, getAddresses)
+	}
 }
 
 func updateWxOpenId(c *bm.Context) {

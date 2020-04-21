@@ -10,8 +10,6 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -31,25 +29,25 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type HelloReq struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" form:"name" validate:"required"`
+type GetUserInfoReq struct {
+	UserId               int64    `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty" form:"userId" validate:"required"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *HelloReq) Reset()         { *m = HelloReq{} }
-func (m *HelloReq) String() string { return proto.CompactTextString(m) }
-func (*HelloReq) ProtoMessage()    {}
-func (*HelloReq) Descriptor() ([]byte, []int) {
+func (m *GetUserInfoReq) Reset()         { *m = GetUserInfoReq{} }
+func (m *GetUserInfoReq) String() string { return proto.CompactTextString(m) }
+func (*GetUserInfoReq) ProtoMessage()    {}
+func (*GetUserInfoReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_00212fb1f9d3bf1c, []int{0}
 }
-func (m *HelloReq) XXX_Unmarshal(b []byte) error {
+func (m *GetUserInfoReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *HelloReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetUserInfoReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_HelloReq.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetUserInfoReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -59,37 +57,49 @@ func (m *HelloReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *HelloReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloReq.Merge(m, src)
+func (m *GetUserInfoReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetUserInfoReq.Merge(m, src)
 }
-func (m *HelloReq) XXX_Size() int {
+func (m *GetUserInfoReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *HelloReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_HelloReq.DiscardUnknown(m)
+func (m *GetUserInfoReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetUserInfoReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_HelloReq proto.InternalMessageInfo
+var xxx_messageInfo_GetUserInfoReq proto.InternalMessageInfo
 
-type HelloResp struct {
-	Content              string   `protobuf:"bytes,1,opt,name=Content,proto3" json:"content"`
+type GetUserInfoResp struct {
+	UserId               int64    `protobuf:"varint,1,opt,name=userId,proto3" json:"userId"`
+	Email                string   `protobuf:"bytes,2,opt,name=email,proto3" json:"email"`
+	Phone                string   `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone"`
+	Username             string   `protobuf:"bytes,4,opt,name=username,proto3" json:"username"`
+	Gender               string   `protobuf:"bytes,5,opt,name=gender,proto3" json:"gender"`
+	Nickname             string   `protobuf:"bytes,6,opt,name=nickname,proto3" json:"nickname"`
+	HeadPicUrl           string   `protobuf:"bytes,7,opt,name=headPicUrl,proto3" json:"headPicUrl"`
+	WxOpenId             string   `protobuf:"bytes,8,opt,name=wxOpenId,proto3" json:"wxOpenId"`
+	UnionId              string   `protobuf:"bytes,9,opt,name=unionId,proto3" json:"unionId"`
+	QqOpenId             string   `protobuf:"bytes,10,opt,name=qqOpenId,proto3" json:"qqOpenId"`
+	AuthType             string   `protobuf:"bytes,11,opt,name=authType,proto3" json:"authType"`
+	RegisterTime         string   `protobuf:"bytes,12,opt,name=registerTime,proto3" json:"registerTime"`
+	LastLoginTime        string   `protobuf:"bytes,13,opt,name=lastLoginTime,proto3" json:"lastLoginTime"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *HelloResp) Reset()         { *m = HelloResp{} }
-func (m *HelloResp) String() string { return proto.CompactTextString(m) }
-func (*HelloResp) ProtoMessage()    {}
-func (*HelloResp) Descriptor() ([]byte, []int) {
+func (m *GetUserInfoResp) Reset()         { *m = GetUserInfoResp{} }
+func (m *GetUserInfoResp) String() string { return proto.CompactTextString(m) }
+func (*GetUserInfoResp) ProtoMessage()    {}
+func (*GetUserInfoResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_00212fb1f9d3bf1c, []int{1}
 }
-func (m *HelloResp) XXX_Unmarshal(b []byte) error {
+func (m *GetUserInfoResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *HelloResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetUserInfoResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_HelloResp.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetUserInfoResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -99,49 +109,57 @@ func (m *HelloResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *HelloResp) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloResp.Merge(m, src)
+func (m *GetUserInfoResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetUserInfoResp.Merge(m, src)
 }
-func (m *HelloResp) XXX_Size() int {
+func (m *GetUserInfoResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *HelloResp) XXX_DiscardUnknown() {
-	xxx_messageInfo_HelloResp.DiscardUnknown(m)
+func (m *GetUserInfoResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetUserInfoResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_HelloResp proto.InternalMessageInfo
+var xxx_messageInfo_GetUserInfoResp proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*HelloReq)(nil), "demo.service.v1.HelloReq")
-	proto.RegisterType((*HelloResp)(nil), "demo.service.v1.HelloResp")
+	proto.RegisterType((*GetUserInfoReq)(nil), "user.service.v1.GetUserInfoReq")
+	proto.RegisterType((*GetUserInfoResp)(nil), "user.service.v1.GetUserInfoResp")
 }
 
 func init() { proto.RegisterFile("api.proto", fileDescriptor_00212fb1f9d3bf1c) }
 
 var fileDescriptor_00212fb1f9d3bf1c = []byte{
-	// 344 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x50, 0x4f, 0x4b, 0xe3, 0x40,
-	0x14, 0x6f, 0x76, 0xcb, 0xb6, 0x9d, 0x1e, 0x16, 0x86, 0xa5, 0x6c, 0x63, 0x49, 0x4b, 0x44, 0xf0,
-	0xd2, 0x09, 0x56, 0x50, 0x28, 0x78, 0x69, 0x15, 0x3c, 0x78, 0x90, 0x88, 0x17, 0x2f, 0x32, 0x69,
-	0xa7, 0xe9, 0x60, 0x32, 0x6f, 0x9a, 0x4c, 0x0a, 0xbd, 0xfa, 0x15, 0xbc, 0xf8, 0x91, 0x7a, 0x14,
-	0xbc, 0x17, 0x5b, 0x3d, 0x79, 0xf4, 0x13, 0x48, 0x26, 0x09, 0x82, 0x50, 0x6f, 0xf3, 0x7e, 0xff,
-	0xe6, 0xfd, 0x1e, 0xaa, 0x51, 0xc9, 0x89, 0x8c, 0x40, 0x01, 0xfe, 0x3b, 0x66, 0x21, 0x90, 0x98,
-	0x45, 0x73, 0x3e, 0x62, 0x64, 0x7e, 0x60, 0x76, 0x7d, 0xae, 0xa6, 0x89, 0x47, 0x46, 0x10, 0x3a,
-	0x3e, 0xf8, 0xe0, 0x68, 0x9d, 0x97, 0x4c, 0xf4, 0xa4, 0x07, 0xfd, 0xca, 0xfc, 0xe6, 0x8e, 0x0f,
-	0xe0, 0x07, 0xec, 0x4b, 0xc5, 0x42, 0xa9, 0x16, 0x39, 0xd9, 0xca, 0x49, 0x2a, 0xb9, 0x43, 0x85,
-	0x00, 0x45, 0x15, 0x07, 0x11, 0x67, 0xac, 0x3d, 0x44, 0xd5, 0x73, 0x16, 0x04, 0xe0, 0xb2, 0x19,
-	0x3e, 0x46, 0x65, 0x41, 0x43, 0xf6, 0xdf, 0xe8, 0x18, 0xfb, 0xb5, 0xc1, 0xee, 0xc7, 0xaa, 0xdd,
-	0x9e, 0x40, 0x14, 0xf6, 0xed, 0x14, 0xb5, 0x3b, 0x73, 0x1a, 0xf0, 0x31, 0x55, 0xac, 0x6f, 0x47,
-	0x6c, 0x96, 0xf0, 0x88, 0x8d, 0x6d, 0x57, 0x1b, 0xec, 0x1e, 0xaa, 0xe5, 0x21, 0xb1, 0xc4, 0x7b,
-	0xa8, 0x32, 0x04, 0xa1, 0x98, 0x50, 0x79, 0x50, 0xfd, 0x7d, 0xd5, 0xae, 0x8c, 0x32, 0xc8, 0x2d,
-	0xb8, 0xde, 0xda, 0x40, 0xe5, 0x53, 0x16, 0x02, 0x3e, 0x42, 0xe5, 0x4b, 0x2e, 0x7c, 0xdc, 0x20,
-	0xd9, 0xa2, 0xa4, 0x68, 0x41, 0xce, 0xd2, 0x16, 0xe6, 0x16, 0x1c, 0x9f, 0xa0, 0xea, 0x15, 0x5d,
-	0xe8, 0x7f, 0x71, 0x93, 0x7c, 0xbb, 0x20, 0x29, 0x4a, 0x6d, 0xb5, 0x7b, 0xa8, 0x5e, 0xd8, 0xaf,
-	0xdd, 0x8b, 0x9f, 0x12, 0xcc, 0x6d, 0x54, 0x2c, 0xed, 0xd6, 0xfd, 0xf3, 0xdb, 0xc3, 0xaf, 0x06,
-	0xfe, 0xe7, 0xc8, 0x44, 0xdc, 0x75, 0x53, 0xa1, 0x13, 0xd3, 0xc5, 0xed, 0x34, 0x55, 0x0c, 0x9a,
-	0xcb, 0xb5, 0x55, 0x5a, 0x6e, 0x2c, 0xe3, 0x69, 0x63, 0x19, 0x2f, 0x1b, 0xcb, 0x78, 0x7c, 0xb5,
-	0x4a, 0x37, 0xbf, 0xa9, 0xe4, 0xde, 0x1f, 0xbd, 0xce, 0xe1, 0x67, 0x00, 0x00, 0x00, 0xff, 0xff,
-	0x30, 0xa0, 0xa0, 0x93, 0x06, 0x02, 0x00, 0x00,
+	// 466 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x93, 0x4f, 0x6e, 0xd3, 0x40,
+	0x14, 0xc6, 0x6b, 0xd2, 0xa6, 0xc9, 0x34, 0x6d, 0x61, 0x56, 0x43, 0x17, 0x9e, 0x60, 0xa9, 0x52,
+	0x36, 0xb8, 0xe2, 0x8f, 0x84, 0x54, 0x89, 0x4d, 0x84, 0x84, 0x22, 0x21, 0x15, 0x8d, 0xd2, 0x0d,
+	0x2b, 0x26, 0xf1, 0x8b, 0x33, 0x22, 0xf6, 0x38, 0x63, 0x3b, 0xd0, 0x9b, 0x70, 0x0f, 0x2e, 0xd1,
+	0x25, 0x27, 0xb0, 0x20, 0xec, 0xbc, 0xe4, 0x04, 0x68, 0xc6, 0x19, 0xbb, 0xce, 0x82, 0xd5, 0x7c,
+	0xef, 0x97, 0xef, 0xfd, 0xe4, 0xc5, 0x0b, 0xea, 0xf3, 0x44, 0xf8, 0x89, 0x92, 0x99, 0xc4, 0xe7,
+	0x79, 0x0a, 0xca, 0x4f, 0x41, 0x6d, 0xc4, 0x1c, 0xfc, 0xcd, 0x8b, 0x8b, 0xe7, 0xa1, 0xc8, 0x96,
+	0xf9, 0xcc, 0x9f, 0xcb, 0xe8, 0x2a, 0x94, 0xa1, 0xbc, 0x32, 0xbd, 0x59, 0xbe, 0x30, 0x93, 0x19,
+	0x4c, 0xaa, 0xf6, 0xbd, 0x1b, 0x74, 0xf6, 0x1e, 0xb2, 0xdb, 0x14, 0xd4, 0x24, 0x5e, 0x48, 0x06,
+	0x6b, 0xfc, 0x16, 0x75, 0xb5, 0x73, 0x12, 0x10, 0x67, 0xe8, 0x8c, 0x3a, 0xe3, 0xcb, 0xbf, 0x05,
+	0x7d, 0xb6, 0x90, 0x2a, 0xba, 0xf6, 0x2a, 0xee, 0x0d, 0x37, 0x7c, 0x25, 0x02, 0x9e, 0xc1, 0xb5,
+	0xa7, 0x60, 0x9d, 0x0b, 0x05, 0x81, 0xc7, 0x76, 0x4b, 0xde, 0x8f, 0x43, 0x74, 0xde, 0x32, 0xa6,
+	0x09, 0xf6, 0xf6, 0x94, 0xa8, 0x2c, 0xe8, 0x8e, 0xd8, 0x3d, 0x4c, 0xd1, 0x11, 0x44, 0x5c, 0xac,
+	0xc8, 0xa3, 0xa1, 0x33, 0xea, 0x8f, 0xfb, 0x65, 0x41, 0x2b, 0xc0, 0xaa, 0x47, 0x17, 0x92, 0xa5,
+	0x8c, 0x81, 0x74, 0x9a, 0x82, 0x01, 0xac, 0x7a, 0xf0, 0x08, 0xf5, 0xb4, 0x2b, 0xe6, 0x11, 0x90,
+	0x43, 0xd3, 0x19, 0x94, 0x05, 0xad, 0x19, 0xab, 0x93, 0xfe, 0x9e, 0x10, 0xe2, 0x00, 0x14, 0x39,
+	0x32, 0x3d, 0xf3, 0x3d, 0x15, 0x61, 0xbb, 0x57, 0xdb, 0x62, 0x31, 0xff, 0x62, 0x6c, 0xdd, 0xc6,
+	0x66, 0x19, 0xab, 0x13, 0xf6, 0x11, 0x5a, 0x02, 0x0f, 0x3e, 0x8a, 0xf9, 0xad, 0x5a, 0x91, 0x63,
+	0xd3, 0x3d, 0x2b, 0x0b, 0xfa, 0x80, 0xb2, 0x07, 0x59, 0x9b, 0xbf, 0x7e, 0xbb, 0x49, 0x20, 0x9e,
+	0x04, 0xa4, 0xd7, 0x98, 0x2d, 0x63, 0x75, 0xc2, 0x97, 0xe8, 0x38, 0x8f, 0x85, 0xd4, 0xc5, 0xbe,
+	0x29, 0x9e, 0x94, 0x05, 0xb5, 0x88, 0xd9, 0xa0, 0x85, 0xeb, 0xf5, 0x4e, 0x88, 0x1a, 0xa1, 0x65,
+	0xac, 0x4e, 0xba, 0xc9, 0xf3, 0x6c, 0x39, 0xbd, 0x4b, 0x80, 0x9c, 0x34, 0x4d, 0xcb, 0x58, 0x9d,
+	0xf0, 0x6b, 0x34, 0x50, 0x10, 0x8a, 0x34, 0x03, 0x35, 0x15, 0x11, 0x90, 0x81, 0x69, 0x3f, 0x2e,
+	0x0b, 0xda, 0xe2, 0xac, 0x35, 0xe1, 0x37, 0xe8, 0x74, 0xc5, 0xd3, 0xec, 0x83, 0x0c, 0x45, 0x6c,
+	0xd6, 0x4e, 0xcd, 0xda, 0x93, 0xb2, 0xa0, 0xed, 0x1f, 0x58, 0x7b, 0x7c, 0xf9, 0x19, 0xf5, 0xec,
+	0xc5, 0xe0, 0x69, 0xeb, 0x80, 0xc6, 0x77, 0x93, 0x77, 0x98, 0xfa, 0x7b, 0x67, 0xee, 0xb7, 0x8f,
+	0xf6, 0x62, 0xf8, 0xff, 0x42, 0x9a, 0x8c, 0x9f, 0xde, 0xff, 0x76, 0x0f, 0xee, 0xb7, 0xae, 0xf3,
+	0x73, 0xeb, 0x3a, 0xbf, 0xb6, 0xae, 0xf3, 0xfd, 0x8f, 0x7b, 0xf0, 0xa9, 0xc3, 0x13, 0x31, 0xeb,
+	0x9a, 0xbf, 0xc2, 0xab, 0x7f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xd5, 0xb6, 0xc2, 0x4d, 0x57, 0x03,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -152,151 +170,79 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// DemoClient is the client API for Demo service.
+// UserInfoClient is the client API for UserInfo service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type DemoClient interface {
-	Ping(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*empty.Empty, error)
-	SayHello(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*empty.Empty, error)
-	SayHelloURL(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*HelloResp, error)
+type UserInfoClient interface {
+	GetUserInfoByID(ctx context.Context, in *GetUserInfoReq, opts ...grpc.CallOption) (*GetUserInfoResp, error)
 }
 
-type demoClient struct {
+type userInfoClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewDemoClient(cc *grpc.ClientConn) DemoClient {
-	return &demoClient{cc}
+func NewUserInfoClient(cc *grpc.ClientConn) UserInfoClient {
+	return &userInfoClient{cc}
 }
 
-func (c *demoClient) Ping(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/demo.service.v1.Demo/Ping", in, out, opts...)
+func (c *userInfoClient) GetUserInfoByID(ctx context.Context, in *GetUserInfoReq, opts ...grpc.CallOption) (*GetUserInfoResp, error) {
+	out := new(GetUserInfoResp)
+	err := c.cc.Invoke(ctx, "/user.service.v1.UserInfo/GetUserInfoByID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *demoClient) SayHello(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/demo.service.v1.Demo/SayHello", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+// UserInfoServer is the server API for UserInfo service.
+type UserInfoServer interface {
+	GetUserInfoByID(context.Context, *GetUserInfoReq) (*GetUserInfoResp, error)
 }
 
-func (c *demoClient) SayHelloURL(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*HelloResp, error) {
-	out := new(HelloResp)
-	err := c.cc.Invoke(ctx, "/demo.service.v1.Demo/SayHelloURL", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+// UnimplementedUserInfoServer can be embedded to have forward compatible implementations.
+type UnimplementedUserInfoServer struct {
 }
 
-// DemoServer is the server API for Demo service.
-type DemoServer interface {
-	Ping(context.Context, *empty.Empty) (*empty.Empty, error)
-	SayHello(context.Context, *HelloReq) (*empty.Empty, error)
-	SayHelloURL(context.Context, *HelloReq) (*HelloResp, error)
+func (*UnimplementedUserInfoServer) GetUserInfoByID(ctx context.Context, req *GetUserInfoReq) (*GetUserInfoResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserInfoByID not implemented")
 }
 
-// UnimplementedDemoServer can be embedded to have forward compatible implementations.
-type UnimplementedDemoServer struct {
+func RegisterUserInfoServer(s *grpc.Server, srv UserInfoServer) {
+	s.RegisterService(&_UserInfo_serviceDesc, srv)
 }
 
-func (*UnimplementedDemoServer) Ping(ctx context.Context, req *empty.Empty) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
-}
-func (*UnimplementedDemoServer) SayHello(ctx context.Context, req *HelloReq) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
-}
-func (*UnimplementedDemoServer) SayHelloURL(ctx context.Context, req *HelloReq) (*HelloResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SayHelloURL not implemented")
-}
-
-func RegisterDemoServer(s *grpc.Server, srv DemoServer) {
-	s.RegisterService(&_Demo_serviceDesc, srv)
-}
-
-func _Demo_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
+func _UserInfo_GetUserInfoByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserInfoReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DemoServer).Ping(ctx, in)
+		return srv.(UserInfoServer).GetUserInfoByID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/demo.service.v1.Demo/Ping",
+		FullMethod: "/user.service.v1.UserInfo/GetUserInfoByID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DemoServer).Ping(ctx, req.(*empty.Empty))
+		return srv.(UserInfoServer).GetUserInfoByID(ctx, req.(*GetUserInfoReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Demo_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HelloReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DemoServer).SayHello(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/demo.service.v1.Demo/SayHello",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DemoServer).SayHello(ctx, req.(*HelloReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Demo_SayHelloURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HelloReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DemoServer).SayHelloURL(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/demo.service.v1.Demo/SayHelloURL",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DemoServer).SayHelloURL(ctx, req.(*HelloReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Demo_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "demo.service.v1.Demo",
-	HandlerType: (*DemoServer)(nil),
+var _UserInfo_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "user.service.v1.UserInfo",
+	HandlerType: (*UserInfoServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Ping",
-			Handler:    _Demo_Ping_Handler,
-		},
-		{
-			MethodName: "SayHello",
-			Handler:    _Demo_SayHello_Handler,
-		},
-		{
-			MethodName: "SayHelloURL",
-			Handler:    _Demo_SayHelloURL_Handler,
+			MethodName: "GetUserInfoByID",
+			Handler:    _UserInfo_GetUserInfoByID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "api.proto",
 }
 
-func (m *HelloReq) Marshal() (dAtA []byte, err error) {
+func (m *GetUserInfoReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -306,12 +252,12 @@ func (m *HelloReq) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *HelloReq) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetUserInfoReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *HelloReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetUserInfoReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -320,17 +266,15 @@ func (m *HelloReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if len(m.Name) > 0 {
-		i -= len(m.Name)
-		copy(dAtA[i:], m.Name)
-		i = encodeVarintApi(dAtA, i, uint64(len(m.Name)))
+	if m.UserId != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.UserId))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *HelloResp) Marshal() (dAtA []byte, err error) {
+func (m *GetUserInfoResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -340,12 +284,12 @@ func (m *HelloResp) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *HelloResp) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetUserInfoResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *HelloResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetUserInfoResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -354,12 +298,94 @@ func (m *HelloResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if len(m.Content) > 0 {
-		i -= len(m.Content)
-		copy(dAtA[i:], m.Content)
-		i = encodeVarintApi(dAtA, i, uint64(len(m.Content)))
+	if len(m.LastLoginTime) > 0 {
+		i -= len(m.LastLoginTime)
+		copy(dAtA[i:], m.LastLoginTime)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.LastLoginTime)))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x6a
+	}
+	if len(m.RegisterTime) > 0 {
+		i -= len(m.RegisterTime)
+		copy(dAtA[i:], m.RegisterTime)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.RegisterTime)))
+		i--
+		dAtA[i] = 0x62
+	}
+	if len(m.AuthType) > 0 {
+		i -= len(m.AuthType)
+		copy(dAtA[i:], m.AuthType)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.AuthType)))
+		i--
+		dAtA[i] = 0x5a
+	}
+	if len(m.QqOpenId) > 0 {
+		i -= len(m.QqOpenId)
+		copy(dAtA[i:], m.QqOpenId)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.QqOpenId)))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.UnionId) > 0 {
+		i -= len(m.UnionId)
+		copy(dAtA[i:], m.UnionId)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.UnionId)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.WxOpenId) > 0 {
+		i -= len(m.WxOpenId)
+		copy(dAtA[i:], m.WxOpenId)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.WxOpenId)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.HeadPicUrl) > 0 {
+		i -= len(m.HeadPicUrl)
+		copy(dAtA[i:], m.HeadPicUrl)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.HeadPicUrl)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Nickname) > 0 {
+		i -= len(m.Nickname)
+		copy(dAtA[i:], m.Nickname)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Nickname)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Gender) > 0 {
+		i -= len(m.Gender)
+		copy(dAtA[i:], m.Gender)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Gender)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Username) > 0 {
+		i -= len(m.Username)
+		copy(dAtA[i:], m.Username)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Username)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Phone) > 0 {
+		i -= len(m.Phone)
+		copy(dAtA[i:], m.Phone)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Phone)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Email) > 0 {
+		i -= len(m.Email)
+		copy(dAtA[i:], m.Email)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Email)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.UserId != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.UserId))
+		i--
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -375,15 +401,14 @@ func encodeVarintApi(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *HelloReq) Size() (n int) {
+func (m *GetUserInfoReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Name)
-	if l > 0 {
-		n += 1 + l + sovApi(uint64(l))
+	if m.UserId != 0 {
+		n += 1 + sovApi(uint64(m.UserId))
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -391,13 +416,60 @@ func (m *HelloReq) Size() (n int) {
 	return n
 }
 
-func (m *HelloResp) Size() (n int) {
+func (m *GetUserInfoResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Content)
+	if m.UserId != 0 {
+		n += 1 + sovApi(uint64(m.UserId))
+	}
+	l = len(m.Email)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.Phone)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.Username)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.Gender)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.Nickname)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.HeadPicUrl)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.WxOpenId)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.UnionId)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.QqOpenId)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.AuthType)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.RegisterTime)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.LastLoginTime)
 	if l > 0 {
 		n += 1 + l + sovApi(uint64(l))
 	}
@@ -413,7 +485,7 @@ func sovApi(x uint64) (n int) {
 func sozApi(x uint64) (n int) {
 	return sovApi(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *HelloReq) Unmarshal(dAtA []byte) error {
+func (m *GetUserInfoReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -436,17 +508,17 @@ func (m *HelloReq) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: HelloReq: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetUserInfoReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: HelloReq: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetUserInfoReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UserId", wireType)
 			}
-			var stringLen uint64
+			m.UserId = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowApi
@@ -456,24 +528,11 @@ func (m *HelloReq) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				m.UserId |= int64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthApi
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthApi
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Name = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipApi(dAtA[iNdEx:])
@@ -499,7 +558,7 @@ func (m *HelloReq) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *HelloResp) Unmarshal(dAtA []byte) error {
+func (m *GetUserInfoResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -522,15 +581,34 @@ func (m *HelloResp) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: HelloResp: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetUserInfoResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: HelloResp: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetUserInfoResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UserId", wireType)
+			}
+			m.UserId = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.UserId |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Content", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -558,7 +636,359 @@ func (m *HelloResp) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Content = string(dAtA[iNdEx:postIndex])
+			m.Email = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Phone", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Phone = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Username", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Username = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Gender", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Gender = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Nickname", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Nickname = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field HeadPicUrl", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.HeadPicUrl = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WxOpenId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.WxOpenId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UnionId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.UnionId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field QqOpenId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.QqOpenId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 11:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AuthType", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AuthType = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 12:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RegisterTime", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RegisterTime = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 13:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field LastLoginTime", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.LastLoginTime = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
